@@ -5,7 +5,7 @@ provider: Resemble AI
 providerId: resemble-ai
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: partial
 tags:
 - AI
 - Voice
@@ -15,21 +15,31 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Resemble AI. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: >-
+  Resemble caps API throughput primarily through plan-based concurrency. Enterprise plans
+  unlock higher concurrency limits, SLAs, and SOC 2 compliance. Specific HTTP RPS limits
+  are not publicly documented.
+notes: Plan tier (Flex vs Enterprise) is the documented scaling lever; verify HTTP RPS limits with Resemble support.
 sources:
-- https://www.resemble.ai/
+- https://www.resemble.ai/pricing/
+- https://docs.resemble.ai/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
+- name: Concurrent Connections (Flex)
   scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  metric: concurrent_connections
+  limit: see Flex plan
+  notes: Flex tier concurrency cap; enterprise customers receive higher limits.
+- name: HTTP Requests
+  scope: account
+  metric: requests
+  limit: not publicly documented
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+- name: Streaming Choice
+  description: Use HTTP streaming or WebSocket streaming for low-latency TTS to reduce per-request overhead.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

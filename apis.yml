@@ -3,21 +3,57 @@ url: https://raw.githubusercontent.com/api-evangelist/resemble-ai/refs/heads/mai
 name: Resemble AI
 x-type: company
 description: >-
-  Resemble AI is a voice cloning and TTS platform offering high-quality voice synthesis, voice transfer, and Localize multilingual voices.
+  Resemble AI is a voice cloning, TTS, voice conversion, and voice agent platform. The
+  Resemble REST API at https://api.resemble.ai exposes synchronous synthesis, HTTP
+  streaming, WebSocket streaming, voice creation/cloning/design, speech-to-speech
+  conversion, speech-to-text, audio editing, deepfake detection/watermarking, and AI agents
+  with knowledge bases. Public OpenAPI 3.1 published.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - AI
   - Voice
   - TTS
   - Voice Cloning
+  - Voice Conversion
   - Audio
+  - Detection
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: resemble-ai:platform
+    name: Resemble AI Platform API
+    description: >-
+      REST API for TTS (synchronous, HTTP streaming, WebSocket streaming), voice creation,
+      cloning, design, speech-to-speech, speech-to-text, audio editing, deepfake detection,
+      and AI agents. Base URL https://api.resemble.ai. OpenAPI at https://docs.resemble.ai/openapi.yaml.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.resemble.ai/
+    baseURL: https://api.resemble.ai
+    tags:
+      - TTS
+      - Voice Cloning
+      - Speech-to-Speech
+      - Speech-to-Text
+      - Streaming
+      - Detection
+      - Voice Agents
+    properties:
+      - type: Documentation
+        url: https://docs.resemble.ai/
+      - type: OpenAPI
+        url: openapi/resemble-ai-openapi.yml
+      - type: SignUp
+        url: https://app.resemble.ai/
+      - type: Pricing
+        url: https://www.resemble.ai/pricing/
 common:
   - type: Website
     url: https://www.resemble.ai/
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: OpenAPI
+    url: openapi/resemble-ai-openapi.yml
   - type: Plans
     url: plans/resemble-ai-plans-pricing.yml
   - type: RateLimits

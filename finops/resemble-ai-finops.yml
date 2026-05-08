@@ -5,7 +5,7 @@ provider: Resemble AI
 providerId: resemble-ai
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - AI
 - Voice
@@ -15,10 +15,14 @@ tags:
 - FinOps
 - Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Resemble AI. Pipeline will replace with real billing details.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: >-
+  FOCUS-aligned FinOps view of Resemble AI. Resemble bills per second across TTS, voice
+  agents, STT, audio detection, and video detection, with monthly add-ons for team seats
+  and voice clones. Enterprise volume discounts can reach 80%.
+notes: Per-second billing aligns FinOps reporting cleanly to call duration; track each service meter independently.
 sources:
-- https://www.resemble.ai/
+- https://www.resemble.ai/pricing/
+- https://docs.resemble.ai/
 - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -29,7 +33,7 @@ alignedWith:
 publisherName: Resemble AI
 serviceCategory: AI
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Usage-Based (Per Second) + Subscription Add-ons
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
@@ -45,22 +49,60 @@ focusColumns:
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation.
-  unit: varies
+- name: tts_seconds
+  description: Synthesized TTS audio at $0.0005/sec.
+  unit: second
   aggregation: sum
   dimensions:
   - account
-  - resource
+  - voice
+- name: voice_agent_seconds
+  description: Voice agent runtime at $0.001/sec.
+  unit: second
+  aggregation: sum
+  dimensions:
+  - account
+  - agent
+- name: stt_seconds
+  description: Speech-to-Text at $0.001/sec.
+  unit: second
+  aggregation: sum
+  dimensions:
+  - account
+- name: audio_detection_seconds
+  description: Audio deepfake detection at $0.001/sec.
+  unit: second
+  aggregation: sum
+  dimensions:
+  - account
+- name: video_detection_seconds
+  description: Video deepfake detection at $0.07/sec.
+  unit: second
+  aggregation: sum
+  dimensions:
+  - account
+- name: voice_clone_subscriptions
+  description: Monthly voice clone fees ($2 rapid / $5 professional).
+  unit: voice-month
+  aggregation: max
+  dimensions:
+  - account
+  - clone_type
+- name: team_seats
+  description: Team seat add-on at $20/user/month.
+  unit: user-month
+  aggregation: max
+  dimensions:
+  - account
 principles:
 - name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
+  description: Per-service second-level billing aligns to call duration; pull from Resemble usage dashboard.
 - name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
+  description: Tag voices, agents, and detection workflows to consuming business units.
 - name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
+  description: Right-size voice clone count (rapid vs professional); enterprise contracts deliver up to 80% discount at volume.
 - name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  description: Assign budget owners per consuming product (TTS, agents, detection).
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

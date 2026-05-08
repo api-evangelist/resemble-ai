@@ -5,7 +5,7 @@ provider: Resemble AI
 providerId: resemble-ai
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - AI
 - Voice
@@ -13,29 +13,118 @@ tags:
 - Voice Cloning
 - Audio
 - Plans
-description: Placeholder plans/pricing artifact for Resemble AI. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
+description: >-
+  Resemble AI uses a per-second pay-as-you-go model (Flex plan) with credits that never
+  expire, plus an Enterprise plan with up to 80% volume discounts. Voice clones and team
+  seats are monthly add-ons.
+notes: Reconciled from public Resemble pricing page (May 2026).
 sources:
-- https://www.resemble.ai/
+- https://www.resemble.ai/pricing/
 plans:
-- id: resemble-ai-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
+- id: resemble-ai-flex
+  name: Flex (Pay-as-you-go)
+  type: usage
+  description: Per-second billing across TTS, voice agents, STT, and detection services.
   entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
+  - label: Text-to-Speech
+    name: tts
+    type: per_unit
+    metric: second
     limit: -1
     timeFrame: usage
     geo: global
     unit: 1
-    price: see https://www.resemble.ai/
+    price: 0.0005 USD/second
+    userMultiplied: false
+  - label: Voice Agents
+    name: voice_agents
+    type: per_unit
+    metric: second
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: 0.001 USD/second
+    userMultiplied: false
+  - label: Speech-to-Text
+    name: stt
+    type: per_unit
+    metric: second
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: 0.001 USD/second
+    userMultiplied: false
+  - label: Audio Deepfake Detection
+    name: audio_detect
+    type: per_unit
+    metric: second
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: 0.001 USD/second
+    userMultiplied: false
+  - label: Video Deepfake Detection
+    name: video_detect
+    type: per_unit
+    metric: second
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: 0.07 USD/second
+    userMultiplied: false
+  - label: Team Seat (Add-on)
+    name: team_seat
+    type: subscription
+    metric: user-month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 20 USD/month per user
+    userMultiplied: true
+  - label: Rapid Voice Clone (Add-on)
+    name: rapid_clone
+    type: subscription
+    metric: voice-month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 2 USD/month per voice
+    userMultiplied: false
+  - label: Professional Voice Clone (Add-on)
+    name: pro_clone
+    type: subscription
+    metric: voice-month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 5 USD/month per voice
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Credits never expire
+  - name: Full API access
+  - name: Voice cloning + deepfake detection
+- id: resemble-ai-enterprise
+  name: Enterprise
+  type: enterprise
+  description: Volume discounts up to 80%, SLAs, SOC 2, custom training, SSO/SAML, on-prem.
+  entries:
+  - label: Enterprise Contract
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: annual
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
