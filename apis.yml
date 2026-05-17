@@ -1,7 +1,7 @@
 aid: resemble-ai
 url: https://raw.githubusercontent.com/api-evangelist/resemble-ai/refs/heads/main/apis.yml
 name: Resemble AI
-x-type: company
+kind: company
 description: >-
   Resemble AI is a voice cloning, TTS, voice conversion, and voice agent platform. The
   Resemble REST API at https://api.resemble.ai exposes synchronous synthesis, HTTP
