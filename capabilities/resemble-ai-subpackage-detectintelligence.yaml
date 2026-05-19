@@ -1,0 +1,150 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_detectIntelligence
+  description: 'API Reference — subpackage_detectIntelligence. 2 operations. Lead operation: Ask a question about a detection.
+    Self-contained Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_detectIntelligence
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-detectintelligence
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_detectIntelligence business capability. Self-contained, no shared references.
+    resources:
+    - name: detects-uuid-intelligence
+      path: /detects/{uuid}/intelligence
+      operations:
+      - name: askdetectintelligencequestion
+        method: POST
+        description: Ask a question about a detection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: UUID of the completed detection report
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: detects-uuid-intelligence-question_uuid
+      path: /detects/{uuid}/intelligence/{question_uuid}
+      operations:
+      - name: getdetectintelligencequestion
+        method: GET
+        description: Get answer to a detection question
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: UUID of the detection report
+          required: true
+        - name: question_uuid
+          in: path
+          type: string
+          description: UUID of the question
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-detectintelligence-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_detectIntelligence. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/detects/{uuid}/intelligence
+      name: detects-uuid-intelligence
+      description: REST surface for detects-uuid-intelligence.
+      operations:
+      - method: POST
+        name: askdetectintelligencequestion
+        description: Ask a question about a detection
+        call: resemble-ai-subpackage-detectintelligence.askdetectintelligencequestion
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/detects/{uuid}/intelligence/{question-uuid}
+      name: detects-uuid-intelligence-question-uuid
+      description: REST surface for detects-uuid-intelligence-question_uuid.
+      operations:
+      - method: GET
+        name: getdetectintelligencequestion
+        description: Get answer to a detection question
+        call: resemble-ai-subpackage-detectintelligence.getdetectintelligencequestion
+        with:
+          uuid: rest.uuid
+          question_uuid: rest.question_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-detectintelligence-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_detectIntelligence. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: ask-question-about-detection
+      description: Ask a question about a detection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-detectintelligence.askdetectintelligencequestion
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-answer-detection-question
+      description: Get answer to a detection question
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-detectintelligence.getdetectintelligencequestion
+      with:
+        uuid: tools.uuid
+        question_uuid: tools.question_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.

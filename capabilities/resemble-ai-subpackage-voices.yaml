@@ -1,0 +1,282 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_voices
+  description: 'API Reference — subpackage_voices. 5 operations. Lead operation: List voices. Self-contained Naftiko capability
+    covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_voices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-voices
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_voices business capability. Self-contained, no shared references.
+    resources:
+    - name: voices
+      path: /voices
+      operations:
+      - name: listvoices
+        method: GET
+        description: List voices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: true
+        - name: page_size
+          in: query
+          type: integer
+        - name: advanced
+          in: query
+          type: boolean
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createvoice
+        method: POST
+        description: Create voice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: voices-voice_uuid
+      path: /voices/{voice_uuid}
+      operations:
+      - name: getvoice
+        method: GET
+        description: Get voice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deletevoice
+        method: DELETE
+        description: Delete voice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: voices-voice_uuid-build
+      path: /voices/{voice_uuid}/build
+      operations:
+      - name: buildvoice
+        method: POST
+        description: Build voice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-voices-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_voices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/voices
+      name: voices
+      description: REST surface for voices.
+      operations:
+      - method: GET
+        name: listvoices
+        description: List voices
+        call: resemble-ai-subpackage-voices.listvoices
+        with:
+          page: rest.page
+          page_size: rest.page_size
+          advanced: rest.advanced
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createvoice
+        description: Create voice
+        call: resemble-ai-subpackage-voices.createvoice
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/voices/{voice-uuid}
+      name: voices-voice-uuid
+      description: REST surface for voices-voice_uuid.
+      operations:
+      - method: GET
+        name: getvoice
+        description: Get voice
+        call: resemble-ai-subpackage-voices.getvoice
+        with:
+          voice_uuid: rest.voice_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevoice
+        description: Delete voice
+        call: resemble-ai-subpackage-voices.deletevoice
+        with:
+          voice_uuid: rest.voice_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/voices/{voice-uuid}/build
+      name: voices-voice-uuid-build
+      description: REST surface for voices-voice_uuid-build.
+      operations:
+      - method: POST
+        name: buildvoice
+        description: Build voice
+        call: resemble-ai-subpackage-voices.buildvoice
+        with:
+          voice_uuid: rest.voice_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-voices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_voices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-voices
+      description: List voices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-voices.listvoices
+      with:
+        page: tools.page
+        page_size: tools.page_size
+        advanced: tools.advanced
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-voice
+      description: Create voice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-voices.createvoice
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-voice
+      description: Get voice
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-voices.getvoice
+      with:
+        voice_uuid: tools.voice_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-voice
+      description: Delete voice
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-voices.deletevoice
+      with:
+        voice_uuid: tools.voice_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: build-voice
+      description: Build voice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-voices.buildvoice
+      with:
+        voice_uuid: tools.voice_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

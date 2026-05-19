@@ -1,0 +1,244 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_watermark
+  description: 'API Reference — subpackage_watermark. 4 operations. Lead operation: Apply watermark. Self-contained Naftiko
+    capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_watermark
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-watermark
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_watermark business capability. Self-contained, no shared references.
+    resources:
+    - name: watermark-apply
+      path: /watermark/apply
+      operations:
+      - name: applywatermark
+        method: POST
+        description: Apply watermark
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: Prefer
+          in: header
+          type: string
+          description: When set to "wait", the API processes synchronously and returns the completed result.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: watermark-apply-uuid-result
+      path: /watermark/apply/{uuid}/result
+      operations:
+      - name: getwatermarkapplyresult
+        method: GET
+        description: Get watermark apply result
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: watermark-detect
+      path: /watermark/detect
+      operations:
+      - name: detectwatermark
+        method: POST
+        description: Detect watermark
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: Prefer
+          in: header
+          type: string
+          description: When set to "wait", the API processes synchronously and returns the completed result with metrics.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: watermark-detect-uuid-result
+      path: /watermark/detect/{uuid}/result
+      operations:
+      - name: getwatermarkdetectionresult
+        method: GET
+        description: Get watermark detection result
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-watermark-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_watermark. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/watermark/apply
+      name: watermark-apply
+      description: REST surface for watermark-apply.
+      operations:
+      - method: POST
+        name: applywatermark
+        description: Apply watermark
+        call: resemble-ai-subpackage-watermark.applywatermark
+        with:
+          Authorization: rest.Authorization
+          Prefer: rest.Prefer
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/watermark/apply/{uuid}/result
+      name: watermark-apply-uuid-result
+      description: REST surface for watermark-apply-uuid-result.
+      operations:
+      - method: GET
+        name: getwatermarkapplyresult
+        description: Get watermark apply result
+        call: resemble-ai-subpackage-watermark.getwatermarkapplyresult
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/watermark/detect
+      name: watermark-detect
+      description: REST surface for watermark-detect.
+      operations:
+      - method: POST
+        name: detectwatermark
+        description: Detect watermark
+        call: resemble-ai-subpackage-watermark.detectwatermark
+        with:
+          Authorization: rest.Authorization
+          Prefer: rest.Prefer
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/watermark/detect/{uuid}/result
+      name: watermark-detect-uuid-result
+      description: REST surface for watermark-detect-uuid-result.
+      operations:
+      - method: GET
+        name: getwatermarkdetectionresult
+        description: Get watermark detection result
+        call: resemble-ai-subpackage-watermark.getwatermarkdetectionresult
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-watermark-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_watermark. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apply-watermark
+      description: Apply watermark
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-watermark.applywatermark
+      with:
+        Authorization: tools.Authorization
+        Prefer: tools.Prefer
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-watermark-apply-result
+      description: Get watermark apply result
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-watermark.getwatermarkapplyresult
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: detect-watermark
+      description: Detect watermark
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-watermark.detectwatermark
+      with:
+        Authorization: tools.Authorization
+        Prefer: tools.Prefer
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-watermark-detection-result
+      description: Get watermark detection result
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-watermark.getwatermarkdetectionresult
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.

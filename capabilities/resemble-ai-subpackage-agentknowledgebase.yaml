@@ -1,0 +1,440 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_agentKnowledgeBase
+  description: 'API Reference — subpackage_agentKnowledgeBase. 8 operations. Lead operation: List agent''s knowledge items.
+    Self-contained Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_agentKnowledgeBase
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-agentknowledgebase
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_agentKnowledgeBase business capability. Self-contained, no shared references.
+    resources:
+    - name: agents-agent_uuid-knowledge_items
+      path: /agents/{agent_uuid}/knowledge_items
+      operations:
+      - name: listagentknowledgeitems
+        method: GET
+        description: List agent's knowledge items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          description: The UUID of the agent
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: attachknowledgeitemtoagent
+        method: POST
+        description: Attach knowledge item to agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          description: The UUID of the agent
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: agents-agent_uuid-knowledge_items-knowledge_item_uuid
+      path: /agents/{agent_uuid}/knowledge_items/{knowledge_item_uuid}
+      operations:
+      - name: detachknowledgeitemfromagent
+        method: DELETE
+        description: Detach knowledge item from agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          description: The UUID of the agent
+          required: true
+        - name: knowledge_item_uuid
+          in: path
+          type: string
+          description: The UUID of the knowledge item to detach
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: knowledge_items
+      path: /knowledge_items
+      operations:
+      - name: listknowledgeitems
+        method: GET
+        description: List knowledge items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by status
+        - name: source_type
+          in: query
+          type: string
+          description: Filter by source type
+        - name: page
+          in: query
+          type: integer
+          description: Page number
+        - name: per_page
+          in: query
+          type: integer
+          description: Items per page
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createknowledgeitem
+        method: POST
+        description: Create knowledge item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: knowledge_items-uuid
+      path: /knowledge_items/{uuid}
+      operations:
+      - name: getknowledgeitem
+        method: GET
+        description: Get knowledge item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The UUID of the knowledge item
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deleteknowledgeitem
+        method: DELETE
+        description: Delete knowledge item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The UUID of the knowledge item
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: knowledge_items-uuid-reingest
+      path: /knowledge_items/{uuid}/reingest
+      operations:
+      - name: reingestknowledgeitem
+        method: POST
+        description: Re-ingest knowledge item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The UUID of the knowledge item
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-agentknowledgebase-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_agentKnowledgeBase. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/agents/{agent-uuid}/knowledge-items
+      name: agents-agent-uuid-knowledge-items
+      description: REST surface for agents-agent_uuid-knowledge_items.
+      operations:
+      - method: GET
+        name: listagentknowledgeitems
+        description: List agent's knowledge items
+        call: resemble-ai-subpackage-agentknowledgebase.listagentknowledgeitems
+        with:
+          agent_uuid: rest.agent_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: attachknowledgeitemtoagent
+        description: Attach knowledge item to agent
+        call: resemble-ai-subpackage-agentknowledgebase.attachknowledgeitemtoagent
+        with:
+          agent_uuid: rest.agent_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agents/{agent-uuid}/knowledge-items/{knowledge-item-uuid}
+      name: agents-agent-uuid-knowledge-items-knowledge-item-uuid
+      description: REST surface for agents-agent_uuid-knowledge_items-knowledge_item_uuid.
+      operations:
+      - method: DELETE
+        name: detachknowledgeitemfromagent
+        description: Detach knowledge item from agent
+        call: resemble-ai-subpackage-agentknowledgebase.detachknowledgeitemfromagent
+        with:
+          agent_uuid: rest.agent_uuid
+          knowledge_item_uuid: rest.knowledge_item_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-items
+      name: knowledge-items
+      description: REST surface for knowledge_items.
+      operations:
+      - method: GET
+        name: listknowledgeitems
+        description: List knowledge items
+        call: resemble-ai-subpackage-agentknowledgebase.listknowledgeitems
+        with:
+          status: rest.status
+          source_type: rest.source_type
+          page: rest.page
+          per_page: rest.per_page
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createknowledgeitem
+        description: Create knowledge item
+        call: resemble-ai-subpackage-agentknowledgebase.createknowledgeitem
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-items/{uuid}
+      name: knowledge-items-uuid
+      description: REST surface for knowledge_items-uuid.
+      operations:
+      - method: GET
+        name: getknowledgeitem
+        description: Get knowledge item
+        call: resemble-ai-subpackage-agentknowledgebase.getknowledgeitem
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteknowledgeitem
+        description: Delete knowledge item
+        call: resemble-ai-subpackage-agentknowledgebase.deleteknowledgeitem
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/knowledge-items/{uuid}/reingest
+      name: knowledge-items-uuid-reingest
+      description: REST surface for knowledge_items-uuid-reingest.
+      operations:
+      - method: POST
+        name: reingestknowledgeitem
+        description: Re-ingest knowledge item
+        call: resemble-ai-subpackage-agentknowledgebase.reingestknowledgeitem
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-agentknowledgebase-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_agentKnowledgeBase. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-agent-s-knowledge-items
+      description: List agent's knowledge items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agentknowledgebase.listagentknowledgeitems
+      with:
+        agent_uuid: tools.agent_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: attach-knowledge-item-agent
+      description: Attach knowledge item to agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-agentknowledgebase.attachknowledgeitemtoagent
+      with:
+        agent_uuid: tools.agent_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: detach-knowledge-item-agent
+      description: Detach knowledge item from agent
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-agentknowledgebase.detachknowledgeitemfromagent
+      with:
+        agent_uuid: tools.agent_uuid
+        knowledge_item_uuid: tools.knowledge_item_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-knowledge-items
+      description: List knowledge items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agentknowledgebase.listknowledgeitems
+      with:
+        status: tools.status
+        source_type: tools.source_type
+        page: tools.page
+        per_page: tools.per_page
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledge-item
+      description: Create knowledge item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-agentknowledgebase.createknowledgeitem
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-knowledge-item
+      description: Get knowledge item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agentknowledgebase.getknowledgeitem
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-knowledge-item
+      description: Delete knowledge item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-agentknowledgebase.deleteknowledgeitem
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: re-ingest-knowledge-item
+      description: Re-ingest knowledge item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-agentknowledgebase.reingestknowledgeitem
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.

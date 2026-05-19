@@ -1,0 +1,300 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_recordings
+  description: 'API Reference — subpackage_recordings. 5 operations. Lead operation: List recordings. Self-contained Naftiko
+    capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_recordings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-recordings
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_recordings business capability. Self-contained, no shared references.
+    resources:
+    - name: voices-voice_uuid-recordings
+      path: /voices/{voice_uuid}/recordings
+      operations:
+      - name: listrecordings
+        method: GET
+        description: List recordings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+          required: true
+        - name: page_size
+          in: query
+          type: integer
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createrecording
+        method: POST
+        description: Create recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: voices-voice_uuid-recordings-recording_id
+      path: /voices/{voice_uuid}/recordings/{recording_id}
+      operations:
+      - name: getrecording
+        method: GET
+        description: Get recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: recording_id
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deleterecording
+        method: DELETE
+        description: Delete recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: recording_id
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: updaterecording
+        method: PATCH
+        description: Update recording
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: voice_uuid
+          in: path
+          type: string
+          required: true
+        - name: recording_id
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-recordings-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_recordings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/voices/{voice-uuid}/recordings
+      name: voices-voice-uuid-recordings
+      description: REST surface for voices-voice_uuid-recordings.
+      operations:
+      - method: GET
+        name: listrecordings
+        description: List recordings
+        call: resemble-ai-subpackage-recordings.listrecordings
+        with:
+          voice_uuid: rest.voice_uuid
+          page: rest.page
+          page_size: rest.page_size
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrecording
+        description: Create recording
+        call: resemble-ai-subpackage-recordings.createrecording
+        with:
+          voice_uuid: rest.voice_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/voices/{voice-uuid}/recordings/{recording-id}
+      name: voices-voice-uuid-recordings-recording-id
+      description: REST surface for voices-voice_uuid-recordings-recording_id.
+      operations:
+      - method: GET
+        name: getrecording
+        description: Get recording
+        call: resemble-ai-subpackage-recordings.getrecording
+        with:
+          voice_uuid: rest.voice_uuid
+          recording_id: rest.recording_id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterecording
+        description: Delete recording
+        call: resemble-ai-subpackage-recordings.deleterecording
+        with:
+          voice_uuid: rest.voice_uuid
+          recording_id: rest.recording_id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updaterecording
+        description: Update recording
+        call: resemble-ai-subpackage-recordings.updaterecording
+        with:
+          voice_uuid: rest.voice_uuid
+          recording_id: rest.recording_id
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-recordings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_recordings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-recordings
+      description: List recordings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-recordings.listrecordings
+      with:
+        voice_uuid: tools.voice_uuid
+        page: tools.page
+        page_size: tools.page_size
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-recording
+      description: Create recording
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-recordings.createrecording
+      with:
+        voice_uuid: tools.voice_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-recording
+      description: Get recording
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-recordings.getrecording
+      with:
+        voice_uuid: tools.voice_uuid
+        recording_id: tools.recording_id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-recording
+      description: Delete recording
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-recordings.deleterecording
+      with:
+        voice_uuid: tools.voice_uuid
+        recording_id: tools.recording_id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-recording
+      description: Update recording
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-recordings.updaterecording
+      with:
+        voice_uuid: tools.voice_uuid
+        recording_id: tools.recording_id
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

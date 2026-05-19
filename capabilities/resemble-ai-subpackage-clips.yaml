@@ -1,0 +1,252 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_clips
+  description: 'API Reference — subpackage_clips. 4 operations. Lead operation: List clips. Self-contained Naftiko capability
+    covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_clips
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-clips
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_clips business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-project_uuid-clips
+      path: /projects/{project_uuid}/clips
+      operations:
+      - name: listclips
+        method: GET
+        description: List clips
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_uuid
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+          required: true
+        - name: page_size
+          in: query
+          type: integer
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: projects-project_uuid-clips-clip_uuid
+      path: /projects/{project_uuid}/clips/{clip_uuid}
+      operations:
+      - name: getclip
+        method: GET
+        description: Get clip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_uuid
+          in: path
+          type: string
+          required: true
+        - name: clip_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deleteclip
+        method: DELETE
+        description: Delete clip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_uuid
+          in: path
+          type: string
+          required: true
+        - name: clip_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: updateclip
+        method: PATCH
+        description: Update clip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_uuid
+          in: path
+          type: string
+          required: true
+        - name: clip_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-clips-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_clips. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{project-uuid}/clips
+      name: projects-project-uuid-clips
+      description: REST surface for projects-project_uuid-clips.
+      operations:
+      - method: GET
+        name: listclips
+        description: List clips
+        call: resemble-ai-subpackage-clips.listclips
+        with:
+          project_uuid: rest.project_uuid
+          page: rest.page
+          page_size: rest.page_size
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{project-uuid}/clips/{clip-uuid}
+      name: projects-project-uuid-clips-clip-uuid
+      description: REST surface for projects-project_uuid-clips-clip_uuid.
+      operations:
+      - method: GET
+        name: getclip
+        description: Get clip
+        call: resemble-ai-subpackage-clips.getclip
+        with:
+          project_uuid: rest.project_uuid
+          clip_uuid: rest.clip_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteclip
+        description: Delete clip
+        call: resemble-ai-subpackage-clips.deleteclip
+        with:
+          project_uuid: rest.project_uuid
+          clip_uuid: rest.clip_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateclip
+        description: Update clip
+        call: resemble-ai-subpackage-clips.updateclip
+        with:
+          project_uuid: rest.project_uuid
+          clip_uuid: rest.clip_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-clips-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_clips. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-clips
+      description: List clips
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-clips.listclips
+      with:
+        project_uuid: tools.project_uuid
+        page: tools.page
+        page_size: tools.page_size
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-clip
+      description: Get clip
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-clips.getclip
+      with:
+        project_uuid: tools.project_uuid
+        clip_uuid: tools.clip_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-clip
+      description: Delete clip
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-clips.deleteclip
+      with:
+        project_uuid: tools.project_uuid
+        clip_uuid: tools.clip_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-clip
+      description: Update clip
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-clips.updateclip
+      with:
+        project_uuid: tools.project_uuid
+        clip_uuid: tools.clip_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,289 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_agentTools
+  description: 'API Reference — subpackage_agentTools. 5 operations. Lead operation: List agent tools. Self-contained Naftiko
+    capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_agentTools
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-agenttools
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_agentTools business capability. Self-contained, no shared references.
+    resources:
+    - name: agents-agent_uuid-tools
+      path: /agents/{agent_uuid}/tools
+      operations:
+      - name: listagenttools
+        method: GET
+        description: List agent tools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createagenttool
+        method: POST
+        description: Create agent tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: agents-agent_uuid-tools-tool_uuid
+      path: /agents/{agent_uuid}/tools/{tool_uuid}
+      operations:
+      - name: getagenttool
+        method: GET
+        description: Get agent tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          required: true
+        - name: tool_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deleteagenttool
+        method: DELETE
+        description: Delete agent tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          required: true
+        - name: tool_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: updateagenttool
+        method: PATCH
+        description: Update agent tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_uuid
+          in: path
+          type: string
+          required: true
+        - name: tool_uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-agenttools-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_agentTools. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/agents/{agent-uuid}/tools
+      name: agents-agent-uuid-tools
+      description: REST surface for agents-agent_uuid-tools.
+      operations:
+      - method: GET
+        name: listagenttools
+        description: List agent tools
+        call: resemble-ai-subpackage-agenttools.listagenttools
+        with:
+          agent_uuid: rest.agent_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createagenttool
+        description: Create agent tool
+        call: resemble-ai-subpackage-agenttools.createagenttool
+        with:
+          agent_uuid: rest.agent_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agents/{agent-uuid}/tools/{tool-uuid}
+      name: agents-agent-uuid-tools-tool-uuid
+      description: REST surface for agents-agent_uuid-tools-tool_uuid.
+      operations:
+      - method: GET
+        name: getagenttool
+        description: Get agent tool
+        call: resemble-ai-subpackage-agenttools.getagenttool
+        with:
+          agent_uuid: rest.agent_uuid
+          tool_uuid: rest.tool_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteagenttool
+        description: Delete agent tool
+        call: resemble-ai-subpackage-agenttools.deleteagenttool
+        with:
+          agent_uuid: rest.agent_uuid
+          tool_uuid: rest.tool_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateagenttool
+        description: Update agent tool
+        call: resemble-ai-subpackage-agenttools.updateagenttool
+        with:
+          agent_uuid: rest.agent_uuid
+          tool_uuid: rest.tool_uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-agenttools-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_agentTools. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-agent-tools
+      description: List agent tools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agenttools.listagenttools
+      with:
+        agent_uuid: tools.agent_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-agent-tool
+      description: Create agent tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-agenttools.createagenttool
+      with:
+        agent_uuid: tools.agent_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-tool
+      description: Get agent tool
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agenttools.getagenttool
+      with:
+        agent_uuid: tools.agent_uuid
+        tool_uuid: tools.tool_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-tool
+      description: Delete agent tool
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-agenttools.deleteagenttool
+      with:
+        agent_uuid: tools.agent_uuid
+        tool_uuid: tools.tool_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-agent-tool
+      description: Update agent tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agenttools.updateagenttool
+      with:
+        agent_uuid: tools.agent_uuid
+        tool_uuid: tools.tool_uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

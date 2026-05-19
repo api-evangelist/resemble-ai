@@ -1,0 +1,222 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_termSubstitutions
+  description: 'API Reference — subpackage_termSubstitutions. 4 operations. Lead operation: List term substitutions. Self-contained
+    Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_termSubstitutions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-termsubstitutions
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_termSubstitutions business capability. Self-contained, no shared references.
+    resources:
+    - name: term_substitutions
+      path: /term_substitutions
+      operations:
+      - name: listtermsubstitutions
+        method: GET
+        description: List term substitutions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: true
+        - name: page_size
+          in: query
+          type: integer
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createtermsubstitution
+        method: POST
+        description: Create term substitution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: term_substitutions-id
+      path: /term_substitutions/{id}
+      operations:
+      - name: gettermsubstitution
+        method: GET
+        description: Get term substitution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deletetermsubstitution
+        method: DELETE
+        description: Delete term substitution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-termsubstitutions-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_termSubstitutions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/term-substitutions
+      name: term-substitutions
+      description: REST surface for term_substitutions.
+      operations:
+      - method: GET
+        name: listtermsubstitutions
+        description: List term substitutions
+        call: resemble-ai-subpackage-termsubstitutions.listtermsubstitutions
+        with:
+          page: rest.page
+          page_size: rest.page_size
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtermsubstitution
+        description: Create term substitution
+        call: resemble-ai-subpackage-termsubstitutions.createtermsubstitution
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/term-substitutions/{id}
+      name: term-substitutions-id
+      description: REST surface for term_substitutions-id.
+      operations:
+      - method: GET
+        name: gettermsubstitution
+        description: Get term substitution
+        call: resemble-ai-subpackage-termsubstitutions.gettermsubstitution
+        with:
+          id: rest.id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetermsubstitution
+        description: Delete term substitution
+        call: resemble-ai-subpackage-termsubstitutions.deletetermsubstitution
+        with:
+          id: rest.id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-termsubstitutions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_termSubstitutions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-term-substitutions
+      description: List term substitutions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-termsubstitutions.listtermsubstitutions
+      with:
+        page: tools.page
+        page_size: tools.page_size
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-term-substitution
+      description: Create term substitution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-termsubstitutions.createtermsubstitution
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-term-substitution
+      description: Get term substitution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-termsubstitutions.gettermsubstitution
+      with:
+        id: tools.id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-term-substitution
+      description: Delete term substitution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-termsubstitutions.deletetermsubstitution
+      with:
+        id: tools.id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.

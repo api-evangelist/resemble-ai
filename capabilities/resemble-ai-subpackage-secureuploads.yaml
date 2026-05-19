@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_secureUploads
+  description: 'API Reference — subpackage_secureUploads. 1 operations. Lead operation: Upload media securely. Self-contained
+    Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_secureUploads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-secureuploads
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_secureUploads business capability. Self-contained, no shared references.
+    resources:
+    - name: secure_uploads
+      path: /secure_uploads
+      operations:
+      - name: createsecureupload
+        method: POST
+        description: Upload media securely
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-secureuploads-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_secureUploads. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/secure-uploads
+      name: secure-uploads
+      description: REST surface for secure_uploads.
+      operations:
+      - method: POST
+        name: createsecureupload
+        description: Upload media securely
+        call: resemble-ai-subpackage-secureuploads.createsecureupload
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-secureuploads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_secureUploads. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: upload-media-securely
+      description: Upload media securely
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-secureuploads.createsecureupload
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

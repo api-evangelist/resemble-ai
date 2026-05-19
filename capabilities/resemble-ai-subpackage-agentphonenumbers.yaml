@@ -1,0 +1,259 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_agentPhoneNumbers
+  description: 'API Reference — subpackage_agentPhoneNumbers. 5 operations. Lead operation: List agent phone numbers. Self-contained
+    Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_agentPhoneNumbers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-agentphonenumbers
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_agentPhoneNumbers business capability. Self-contained, no shared references.
+    resources:
+    - name: phone_numbers
+      path: /phone_numbers
+      operations:
+      - name: listphonenumbers
+        method: GET
+        description: List agent phone numbers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createphonenumber
+        method: POST
+        description: Create agent phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: phone_numbers-id
+      path: /phone_numbers/{id}
+      operations:
+      - name: getphonenumber
+        method: GET
+        description: Get agent phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deletephonenumber
+        method: DELETE
+        description: Delete agent phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    - name: phone_numbers-id-force
+      path: /phone_numbers/{id}/force
+      operations:
+      - name: forcedeletephonenumber
+        method: DELETE
+        description: Force delete agent phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-agentphonenumbers-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_agentPhoneNumbers. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/phone-numbers
+      name: phone-numbers
+      description: REST surface for phone_numbers.
+      operations:
+      - method: GET
+        name: listphonenumbers
+        description: List agent phone numbers
+        call: resemble-ai-subpackage-agentphonenumbers.listphonenumbers
+        with:
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createphonenumber
+        description: Create agent phone number
+        call: resemble-ai-subpackage-agentphonenumbers.createphonenumber
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/phone-numbers/{id}
+      name: phone-numbers-id
+      description: REST surface for phone_numbers-id.
+      operations:
+      - method: GET
+        name: getphonenumber
+        description: Get agent phone number
+        call: resemble-ai-subpackage-agentphonenumbers.getphonenumber
+        with:
+          id: rest.id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletephonenumber
+        description: Delete agent phone number
+        call: resemble-ai-subpackage-agentphonenumbers.deletephonenumber
+        with:
+          id: rest.id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/phone-numbers/{id}/force
+      name: phone-numbers-id-force
+      description: REST surface for phone_numbers-id-force.
+      operations:
+      - method: DELETE
+        name: forcedeletephonenumber
+        description: Force delete agent phone number
+        call: resemble-ai-subpackage-agentphonenumbers.forcedeletephonenumber
+        with:
+          id: rest.id
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-agentphonenumbers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_agentPhoneNumbers. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-agent-phone-numbers
+      description: List agent phone numbers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agentphonenumbers.listphonenumbers
+      with:
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-agent-phone-number
+      description: Create agent phone number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-agentphonenumbers.createphonenumber
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-phone-number
+      description: Get agent phone number
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-agentphonenumbers.getphonenumber
+      with:
+        id: tools.id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-phone-number
+      description: Delete agent phone number
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-agentphonenumbers.deletephonenumber
+      with:
+        id: tools.id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: force-delete-agent-phone-number
+      description: Force delete agent phone number
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-agentphonenumbers.forcedeletephonenumber
+      with:
+        id: tools.id
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_textToSpeech
+  description: 'API Reference — subpackage_textToSpeech. 2 operations. Lead operation: Streaming text-to-speech synthesis
+    (HTTP). Self-contained Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_textToSpeech
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-texttospeech
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_textToSpeech business capability. Self-contained, no shared references.
+    resources:
+    - name: stream
+      path: /stream
+      operations:
+      - name: streamsynthesize
+        method: POST
+        description: Streaming text-to-speech synthesis (HTTP)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: synthesize
+      path: /synthesize
+      operations:
+      - name: synthesize
+        method: POST
+        description: Synchronous text-to-speech synthesis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-texttospeech-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_textToSpeech. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/stream
+      name: stream
+      description: REST surface for stream.
+      operations:
+      - method: POST
+        name: streamsynthesize
+        description: Streaming text-to-speech synthesis (HTTP)
+        call: resemble-ai-subpackage-texttospeech.streamsynthesize
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/synthesize
+      name: synthesize
+      description: REST surface for synthesize.
+      operations:
+      - method: POST
+        name: synthesize
+        description: Synchronous text-to-speech synthesis
+        call: resemble-ai-subpackage-texttospeech.synthesize
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-texttospeech-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_textToSpeech. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: streaming-text-speech-synthesis-http
+      description: Streaming text-to-speech synthesis (HTTP)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-texttospeech.streamsynthesize
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: synchronous-text-speech-synthesis
+      description: Synchronous text-to-speech synthesis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-texttospeech.synthesize
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

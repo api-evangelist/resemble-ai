@@ -1,0 +1,259 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_voiceSettingsPresets
+  description: 'API Reference — subpackage_voiceSettingsPresets. 5 operations. Lead operation: List voice settings presets.
+    Self-contained Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_voiceSettingsPresets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-voicesettingspresets
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_voiceSettingsPresets business capability. Self-contained, no shared references.
+    resources:
+    - name: voice_settings_presets
+      path: /voice_settings_presets
+      operations:
+      - name: listvoicesettingspresets
+        method: GET
+        description: List voice settings presets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createvoicesettingspreset
+        method: POST
+        description: Create voice settings preset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: voice_settings_presets-uuid
+      path: /voice_settings_presets/{uuid}
+      operations:
+      - name: getvoicesettingspreset
+        method: GET
+        description: Get voice settings preset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: deletevoicesettingspreset
+        method: DELETE
+        description: Delete voice settings preset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: updatevoicesettingspreset
+        method: PATCH
+        description: Update voice settings preset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-voicesettingspresets-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_voiceSettingsPresets. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/voice-settings-presets
+      name: voice-settings-presets
+      description: REST surface for voice_settings_presets.
+      operations:
+      - method: GET
+        name: listvoicesettingspresets
+        description: List voice settings presets
+        call: resemble-ai-subpackage-voicesettingspresets.listvoicesettingspresets
+        with:
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createvoicesettingspreset
+        description: Create voice settings preset
+        call: resemble-ai-subpackage-voicesettingspresets.createvoicesettingspreset
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/voice-settings-presets/{uuid}
+      name: voice-settings-presets-uuid
+      description: REST surface for voice_settings_presets-uuid.
+      operations:
+      - method: GET
+        name: getvoicesettingspreset
+        description: Get voice settings preset
+        call: resemble-ai-subpackage-voicesettingspresets.getvoicesettingspreset
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevoicesettingspreset
+        description: Delete voice settings preset
+        call: resemble-ai-subpackage-voicesettingspresets.deletevoicesettingspreset
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatevoicesettingspreset
+        description: Update voice settings preset
+        call: resemble-ai-subpackage-voicesettingspresets.updatevoicesettingspreset
+        with:
+          uuid: rest.uuid
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-voicesettingspresets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_voiceSettingsPresets. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-voice-settings-presets
+      description: List voice settings presets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-voicesettingspresets.listvoicesettingspresets
+      with:
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-voice-settings-preset
+      description: Create voice settings preset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-voicesettingspresets.createvoicesettingspreset
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-voice-settings-preset
+      description: Get voice settings preset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-voicesettingspresets.getvoicesettingspreset
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-voice-settings-preset
+      description: Delete voice settings preset
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: resemble-ai-subpackage-voicesettingspresets.deletevoicesettingspreset
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-voice-settings-preset
+      description: Update voice settings preset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-voicesettingspresets.updatevoicesettingspreset
+      with:
+        uuid: tools.uuid
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

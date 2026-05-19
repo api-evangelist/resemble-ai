@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: API Reference — subpackage_audioEnhancement
+  description: 'API Reference — subpackage_audioEnhancement. 3 operations. Lead operation: List audio enhancements. Self-contained
+    Naftiko capability covering one Resemble Ai business surface.'
+  tags:
+  - Resemble Ai
+  - subpackage_audioEnhancement
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESEMBLE_AI_API_KEY: RESEMBLE_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: resemble-ai-subpackage-audioenhancement
+    baseUri: https://f.cluster.resemble.ai
+    description: API Reference — subpackage_audioEnhancement business capability. Self-contained, no shared references.
+    resources:
+    - name: audio_enhancements
+      path: /audio_enhancements
+      operations:
+      - name: listaudioenhancements
+        method: GET
+        description: List audio enhancements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number (starting from 1).
+          required: true
+        - name: page_size
+          in: query
+          type: integer
+          description: Items per page (10 to 1000). Default 10.
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+      - name: createaudioenhancement
+        method: POST
+        description: Create audio enhancement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: audio_enhancements-enhancement_uuid
+      path: /audio_enhancements/{enhancement_uuid}
+      operations:
+      - name: getaudioenhancement
+        method: GET
+        description: Get audio enhancement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: enhancement_uuid
+          in: path
+          type: string
+          description: The UUID returned from the create endpoint.
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: API token from https://app.resemble.ai/account/api
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RESEMBLE_AI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: resemble-ai-subpackage-audioenhancement-rest
+    port: 8080
+    description: REST adapter for API Reference — subpackage_audioEnhancement. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/audio-enhancements
+      name: audio-enhancements
+      description: REST surface for audio_enhancements.
+      operations:
+      - method: GET
+        name: listaudioenhancements
+        description: List audio enhancements
+        call: resemble-ai-subpackage-audioenhancement.listaudioenhancements
+        with:
+          page: rest.page
+          page_size: rest.page_size
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaudioenhancement
+        description: Create audio enhancement
+        call: resemble-ai-subpackage-audioenhancement.createaudioenhancement
+        with:
+          Authorization: rest.Authorization
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/audio-enhancements/{enhancement-uuid}
+      name: audio-enhancements-enhancement-uuid
+      description: REST surface for audio_enhancements-enhancement_uuid.
+      operations:
+      - method: GET
+        name: getaudioenhancement
+        description: Get audio enhancement
+        call: resemble-ai-subpackage-audioenhancement.getaudioenhancement
+        with:
+          enhancement_uuid: rest.enhancement_uuid
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: resemble-ai-subpackage-audioenhancement-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for API Reference — subpackage_audioEnhancement. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-audio-enhancements
+      description: List audio enhancements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-audioenhancement.listaudioenhancements
+      with:
+        page: tools.page
+        page_size: tools.page_size
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-audio-enhancement
+      description: Create audio enhancement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: resemble-ai-subpackage-audioenhancement.createaudioenhancement
+      with:
+        Authorization: tools.Authorization
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-audio-enhancement
+      description: Get audio enhancement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: resemble-ai-subpackage-audioenhancement.getaudioenhancement
+      with:
+        enhancement_uuid: tools.enhancement_uuid
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
