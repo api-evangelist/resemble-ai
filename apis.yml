@@ -111,6 +111,8 @@ common:
     url: rate-limits/resemble-ai-rate-limits.yml
   - type: FinOps
     url: finops/resemble-ai-finops.yml
+  - type: LLMsTxt
+    url: https://docs.resemble.ai/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
