@@ -1,0 +1,3335 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_textToSpeech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Synchronous text-to-speech synthesis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/synthesize",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate speech synchronously from text or SSML. Returns complete audio as base64."
+        },
+        {
+          "info": {
+            "name": "Streaming text-to-speech synthesis (HTTP)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/stream",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stream audio as it's generated. Returns chunked WAV data for progressive playback."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_speechToText",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transcripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/speech-to-text",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve paginated list of transcript jobs"
+        },
+        {
+          "info": {
+            "name": "Create transcript job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/speech-to-text",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "query",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit audio or video for transcription"
+        },
+        {
+          "info": {
+            "name": "Get transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/speech-to-text/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve transcript status, text, and timestamps"
+        },
+        {
+          "info": {
+            "name": "Ask intelligence question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/speech-to-text/:uuid/ask",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a question about a completed transcript"
+        },
+        {
+          "info": {
+            "name": "List intelligence questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/speech-to-text/:uuid/questions",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all questions asked about a transcript"
+        },
+        {
+          "info": {
+            "name": "Get intelligence question status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/speech-to-text/:uuid/questions/:question_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "question_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the status of a specific question"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_audioEdit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio edits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/edit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve paginated list of audio edits"
+        },
+        {
+          "info": {
+            "name": "Create audio edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/edit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "input_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "original_transcript",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "target_transcript",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_uuid",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Edit audio segments using voice synthesis"
+        },
+        {
+          "info": {
+            "name": "Get audio edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/edit/:audio_edit_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "audio_edit_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get status and result of an audio edit"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_audioEnhancement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio enhancements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (starting from 1)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Items per page (10 to 1000). Default 10."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all audio enhancements for your team, ordered by most recent first."
+        },
+        {
+          "info": {
+            "name": "Create audio enhancement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "audio_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhancement_engine",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "remove_noise",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "normalize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "studio_sound",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhancement_level",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "loudness_target_level",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "loudness_peak_limit",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit an audio file for enhancement. Processing happens asynchronously in the background.\nThe API defaults to the v2 enhancement engine. The v1 engine is legacy and will be sunset in a future release.\n"
+        },
+        {
+          "info": {
+            "name": "Get audio enhancement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements/:enhancement_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enhancement_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID returned from the create endpoint."
+              }
+            ]
+          },
+          "docs": "Poll this endpoint to check the status of an enhancement job and retrieve the download URL when complete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "query",
+                "description": "Filter by associated phone number"
+              },
+              {
+                "name": "advanced",
+                "value": "",
+                "type": "query",
+                "description": "Include detailed configuration"
+              }
+            ]
+          },
+          "docs": "Retrieve all agents for the authenticated team"
+        },
+        {
+          "info": {
+            "name": "Create agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new voice agent"
+        },
+        {
+          "info": {
+            "name": "Get agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "advanced",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific agent's details"
+        },
+        {
+          "info": {
+            "name": "Update agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/agents/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing agent's configuration"
+        },
+        {
+          "info": {
+            "name": "Delete agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an agent and all its configurations"
+        },
+        {
+          "info": {
+            "name": "Dispatch agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:uuid/dispatch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Make an outbound call with an agent"
+        },
+        {
+          "info": {
+            "name": "Get capabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/capabilities",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List supported ASR and LLM providers and models"
+        },
+        {
+          "info": {
+            "name": "Get system tools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/system-tools",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List available system tools"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_agentTools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent tools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/tools",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all tools for an agent"
+        },
+        {
+          "info": {
+            "name": "Create agent tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/tools",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tool for an agent"
+        },
+        {
+          "info": {
+            "name": "Get agent tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/tools/:tool_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tool_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specific tool"
+        },
+        {
+          "info": {
+            "name": "Update agent tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/tools/:tool_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tool_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing tool"
+        },
+        {
+          "info": {
+            "name": "Delete agent tool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/tools/:tool_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tool_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a tool"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_agentWebhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all webhooks for an agent"
+        },
+        {
+          "info": {
+            "name": "Create agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook for an agent"
+        },
+        {
+          "info": {
+            "name": "Get agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specific webhook"
+        },
+        {
+          "info": {
+            "name": "Update agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook"
+        },
+        {
+          "info": {
+            "name": "Delete agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_agentPhoneNumbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/phone_numbers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all agent phone numbers"
+        },
+        {
+          "info": {
+            "name": "Create agent phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/phone_numbers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new agent phone number"
+        },
+        {
+          "info": {
+            "name": "Get agent phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/phone_numbers/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get agent phone number details"
+        },
+        {
+          "info": {
+            "name": "Delete agent phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/phone_numbers/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an agent phone number"
+        },
+        {
+          "info": {
+            "name": "Force delete agent phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/phone_numbers/:id/force",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Force delete an agent phone number even if linked to agent"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_agentKnowledgeBase",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List knowledge items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              },
+              {
+                "name": "source_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ]
+          },
+          "docs": "List all knowledge items belonging to the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Create knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new knowledge item and queues it for ingestion processing"
+        },
+        {
+          "info": {
+            "name": "Get knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Retrieves a single knowledge item with detailed information including attached agents"
+        },
+        {
+          "info": {
+            "name": "Delete knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Deletes a knowledge item and cleans up associated data"
+        },
+        {
+          "info": {
+            "name": "Re-ingest knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid/reingest",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Re-runs the ingestion pipeline for an existing knowledge item"
+        },
+        {
+          "info": {
+            "name": "List agent's knowledge items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              }
+            ]
+          },
+          "docs": "Lists all knowledge items attached to a specific agent"
+        },
+        {
+          "info": {
+            "name": "Attach knowledge item to agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attaches an existing knowledge item to an agent"
+        },
+        {
+          "info": {
+            "name": "Detach knowledge item from agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items/:knowledge_item_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              },
+              {
+                "name": "knowledge_item_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item to detach"
+              }
+            ]
+          },
+          "docs": "Removes a knowledge item from an agent"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_secureUploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload media securely",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/secure_uploads",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a media file and receive a short-lived token that can be passed to\ndownstream endpoints (such as `/detect` and `/intelligence`) in place of a\npublic URL. The returned token is a JWT that expires 1 hour after issuance.\n\nKeeping uploads private avoids exposing source media on the open internet and\nmeans you do not need to host files yourself for jobs that only need the API\nto read them once.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_deepfakeDetection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all detects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all detect objects for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Create deepfake detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "callback_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "visualize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_length",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "max_video_secs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_types",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "intelligence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_source_tracing",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_reverse_search",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_ood_detector",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zero_retention_mode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Analyze audio, image, and video for deepfake detection.\n\nSupply media via one of three intake methods:\n\n- **Direct file upload** — `multipart/form-data` with the file attached as `file`. Files must be 150 MB or smaller and use one of the supported audio/video/image extensions. For larger files, use the secure upload flow.\n- **Public URL** — `application/json` with a `url` field. The API fetches the URL itself.\n- **Secure upload token** — `application/json` with a `media_token` field obtained fro"
+        },
+        {
+          "info": {
+            "name": "Get deepfake detection result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the detect object"
+              }
+            ]
+          },
+          "docs": "Get deepfake detection result by UUID"
+        },
+        {
+          "info": {
+            "name": "Create a batch deepfake detection job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detect/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files[]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "callback_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "intelligence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "search_identity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "visualize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_source_tracing_enabled",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_length",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "max_video_secs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_llm",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zero_retention_mode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit up to 50 files in a single request and process them as a single logical\ngroup. Returns HTTP 202 with a batch UUID; each file is analyzed in the\nbackground and individual results are available via `GET /detect/{uuid}` for\neach entry in `detect_uuids`.\n\nTwo intake methods:\n\n- **Multiple media files** — repeated `files[]` form fields.\n- **Single zip archive** — a single `file` form field whose value is a `.zip`\n  containing the media files. Non-media entries are skipped.\n\nProvide one of `fil"
+        },
+        {
+          "info": {
+            "name": "Get batch status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect/batch/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Batch UUID returned by `POST /detect/batch`."
+              }
+            ]
+          },
+          "docs": "Retrieve the latest aggregate status for a batch. The response shape mirrors\nthe create response — `status`, `completed_count`, and `failed_count` update\nas child detects progress. Use the `detect_uuids` array to fetch per-file\nresults via `GET /detect/{uuid}`.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run intelligence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/intelligence",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Analyze audio, image, or video for comprehensive insights. Optionally reference an existing detect to associate."
+        },
+        {
+          "info": {
+            "name": "List intelligences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/intelligences",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all intelligence reports for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Get intelligence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/intelligences/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the intelligence report"
+              }
+            ]
+          },
+          "docs": "Retrieve a single intelligence report by its UUID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_detectIntelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ask a question about a detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detects/:uuid/intelligence",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the completed detection report"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a natural-language question about a completed detection report. Returns 202 Accepted while the answer is generated in the background."
+        },
+        {
+          "info": {
+            "name": "Get answer to a detection question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detects/:uuid/intelligence/:question_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the detection report"
+              },
+              {
+                "name": "question_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the question"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and answer for a previously submitted question. Poll until status is completed or failed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_audioSourceTracing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio source tracings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_source_tracings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all source tracing reports for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Get audio source tracing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_source_tracings/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the source tracing report"
+              }
+            ]
+          },
+          "docs": "Retrieve a single source tracing report by its UUID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/identity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all speaker identities"
+        },
+        {
+          "info": {
+            "name": "Create identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/identity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new speaker identity"
+        },
+        {
+          "info": {
+            "name": "Search identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/identity/search",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for matching speaker identities"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_watermark",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apply watermark",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/watermark/apply",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply a watermark to an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing."
+        },
+        {
+          "info": {
+            "name": "Get watermark apply result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/watermark/apply/:uuid/result",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the result of a watermark apply job."
+        },
+        {
+          "info": {
+            "name": "Detect watermark",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/watermark/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detect a watermark in an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing."
+        },
+        {
+          "info": {
+            "name": "Get watermark detection result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/watermark/detect/:uuid/result",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the result of a watermark detection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "advanced",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve voice metadata"
+        },
+        {
+          "info": {
+            "name": "Create voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new voice"
+        },
+        {
+          "info": {
+            "name": "Get voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get voice details"
+        },
+        {
+          "info": {
+            "name": "Delete voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a voice"
+        },
+        {
+          "info": {
+            "name": "Build voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/build",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start voice training"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_voiceDesign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate voice candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voice-design",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "user_prompt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate three voice candidates from a text prompt"
+        },
+        {
+          "info": {
+            "name": "Create voice from candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voice-design/create",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a voice from a voice design candidate"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all recordings for a voice"
+        },
+        {
+          "info": {
+            "name": "Create recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "is_active",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fill",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a new recording for voice training"
+        },
+        {
+          "info": {
+            "name": "Get recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get recording details"
+        },
+        {
+          "info": {
+            "name": "Update recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a recording"
+        },
+        {
+          "info": {
+            "name": "Delete recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a recording"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_termSubstitutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List term substitutions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/term_substitutions",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all term substitutions"
+        },
+        {
+          "info": {
+            "name": "Create term substitution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/term_substitutions",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pronunciation substitution"
+        },
+        {
+          "info": {
+            "name": "Get term substitution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/term_substitutions/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get term substitution details"
+        },
+        {
+          "info": {
+            "name": "Delete term substitution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/term_substitutions/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a term substitution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_customPronunciations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List custom pronunciations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/pronunciations",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language (e.g., en-us)"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter by domain (e.g., medical)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by processing status"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Filter by active state"
+              }
+            ]
+          },
+          "docs": "Retrieve all custom pronunciations for your team, with optional filters."
+        },
+        {
+          "info": {
+            "name": "Create custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/pronunciations",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "word",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a single pronunciation with a reference audio file."
+        },
+        {
+          "info": {
+            "name": "Bulk create pronunciations from ZIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/pronunciations/bulk",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "zip",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload multiple pronunciations at once. Each audio file in the ZIP becomes a pronunciation — the filename (without extension) is used as the word."
+        },
+        {
+          "info": {
+            "name": "Get custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single custom pronunciation by UUID"
+        },
+        {
+          "info": {
+            "name": "Toggle pronunciation active status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable a pronunciation without deleting it. Inactive pronunciations are not used during synthesis."
+        },
+        {
+          "info": {
+            "name": "Delete custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently remove a custom pronunciation. Takes effect immediately."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_voiceSettingsPresets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voice settings presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all voice settings presets"
+        },
+        {
+          "info": {
+            "name": "Create voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new voice settings preset (max 5 per user)"
+        },
+        {
+          "info": {
+            "name": "Get voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get preset details"
+        },
+        {
+          "info": {
+            "name": "Update voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a preset"
+        },
+        {
+          "info": {
+            "name": "Delete voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a preset"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all projects"
+        },
+        {
+          "info": {
+            "name": "Create project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/projects",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project"
+        },
+        {
+          "info": {
+            "name": "Get project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get project details"
+        },
+        {
+          "info": {
+            "name": "Update project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project"
+        },
+        {
+          "info": {
+            "name": "Delete project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_clips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List clips in a project"
+        },
+        {
+          "info": {
+            "name": "Get clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get clip details"
+        },
+        {
+          "info": {
+            "name": "Update clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a clip"
+        },
+        {
+          "info": {
+            "name": "Delete clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a clip"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/account",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get account information"
+        },
+        {
+          "info": {
+            "name": "Get teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/account/teams",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get team information"
+        },
+        {
+          "info": {
+            "name": "Get team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/account/teams/:team_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "team_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get specific team information"
+        },
+        {
+          "info": {
+            "name": "Get billing usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/account/billing_usage",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get billing and usage information"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subpackage_duets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List duet voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/duet_voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns default and custom duet voices"
+        },
+        {
+          "info": {
+            "name": "Create custom duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet_voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "style_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a custom voice for duet generation"
+        },
+        {
+          "info": {
+            "name": "Update duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://f.cluster.resemble.ai/duet_voices/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom duet voice (default voices cannot be modified)"
+        },
+        {
+          "info": {
+            "name": "Delete duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/duet_voices/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom duet voice (default voices cannot be deleted)"
+        },
+        {
+          "info": {
+            "name": "List duet voice pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/duet_voice_pairs",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all voice pairs for duet generation"
+        },
+        {
+          "info": {
+            "name": "Create duet voice pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet_voice_pairs",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a voice pair for duet generation"
+        },
+        {
+          "info": {
+            "name": "Generate duet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate conversational audio with two speakers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
