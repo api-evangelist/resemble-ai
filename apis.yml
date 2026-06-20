@@ -7,7 +7,7 @@ description: >-
   https://api.resemble.ai exposes synchronous synthesis, HTTP streaming, WebSocket streaming, voice
   creation/cloning/design, speech-to-speech conversion, speech-to-text, audio editing, deepfake detection/watermarking,
   and AI agents with knowledge bases. Public OpenAPI 3.1 published.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AI
   - Voice
@@ -26,7 +26,7 @@ apis:
       REST API for TTS (synchronous, HTTP streaming, WebSocket streaming), voice creation, cloning, design,
       speech-to-speech, speech-to-text, audio editing, deepfake detection, and AI agents. Base URL
       https://api.resemble.ai. OpenAPI at https://docs.resemble.ai/openapi.yaml.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.resemble.ai/
     baseURL: https://api.resemble.ai
     tags:
