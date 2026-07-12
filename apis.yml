@@ -47,6 +47,12 @@ apis:
       - type: Pricing
         url: https://www.resemble.ai/pricing/
 common:
+  - type: TrustCenter
+    url: security/resemble-ai-trust-center.yml
+  - type: DomainSecurity
+    url: security/resemble-ai-domain-security.yml
+  - type: Authentication
+    url: authentication/resemble-ai-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/resemble-ai
   - type: LinkedIn

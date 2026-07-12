@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/resemble-ai-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: API token from https://app.resemble.ai/account/api
+  sources:
+  - openapi/resemble-ai-openapi.yml
