@@ -47,6 +47,8 @@ apis:
       - type: Pricing
         url: https://www.resemble.ai/pricing/
 common:
+  - type: AgenticAccess
+    url: agentic-access/resemble-ai-agentic-access.yml
   - type: TrustCenter
     url: security/resemble-ai-trust-center.yml
   - type: DomainSecurity
