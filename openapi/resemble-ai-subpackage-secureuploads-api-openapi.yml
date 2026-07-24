@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_secureUploads API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_secureUploads
+paths:
+  /secure_uploads:
+    post:
+      operationId: create-secure-upload
+      summary: Upload media securely
+      description: 'Upload a media file and receive a short-lived token that can be passed to
+
+        downstream endpoints (such as `/detect` and `/intelligence`) in place of a
+
+        public URL. The returned token is a JWT that expires 1 hour after issuance.
+
+
+        Keeping uploads private avoids exposing source media on the open internet and
+
+        means you do not need to host files yourself for jobs that only need the API
+
+        to read them once.
+
+        '
+      tags:
+      - subpackage_secureUploads
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Upload accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secure Uploads_createSecureUpload_Response_200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The media file to upload (audio, image, or video).
+              required:
+              - file
+components:
+  schemas:
+    Secure Uploads_createSecureUpload_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        token:
+          type: string
+          description: JWT referencing the uploaded file. Valid for 1 hour. Pass this value as `media_token` on downstream requests.
+      title: Secure Uploads_createSecureUpload_Response_200
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

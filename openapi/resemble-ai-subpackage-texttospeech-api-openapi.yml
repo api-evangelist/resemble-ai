@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_textToSpeech API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_textToSpeech
+paths:
+  /synthesize:
+    post:
+      operationId: synthesize
+      summary: Synchronous text-to-speech synthesis
+      description: Generate speech synchronously from text or SSML. Returns complete audio as base64.
+      tags:
+      - subpackage_textToSpeech
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful synthesis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Text-to-Speech_synthesize_Response_200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voice_uuid:
+                  type: string
+                  description: Voice UUID to use for synthesis
+                project_uuid:
+                  type: string
+                  description: Optional project UUID to store the clip
+                title:
+                  type: string
+                  description: Optional title for the generated clip
+                data:
+                  type: string
+                  description: Text or SSML to synthesize (max 3,000 characters)
+                model:
+                  type: string
+                  description: Model to use for synthesis. Pass `chatterbox-turbo` to use the Turbo model for lower latency and paralinguistic tag support. If not specified, defaults to Chatterbox or Chatterbox Multilingual based on the voice. Note - Chatterbox-Turbo is supported by all Rapid English voices and Pre Built Library voices.
+                precision:
+                  $ref: '#/components/schemas/SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision'
+                  description: Audio precision for WAV output
+                output_format:
+                  $ref: '#/components/schemas/SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat'
+                  description: Audio output format
+                sample_rate:
+                  $ref: '#/components/schemas/SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate'
+                  description: Audio sample rate in Hz
+                use_hd:
+                  type: boolean
+                  default: false
+                  description: Enable HD synthesis with small latency trade-off
+                apply_custom_pronunciations:
+                  type: boolean
+                  default: false
+                  description: When true, automatically applies your team's custom pronunciations to matching words in the input text. Defaults to false.
+              required:
+              - voice_uuid
+              - data
+  /stream:
+    post:
+      operationId: stream-synthesize
+      summary: Streaming text-to-speech synthesis (HTTP)
+      description: Stream audio as it's generated. Returns chunked WAV data for progressive playback.
+      tags:
+      - subpackage_textToSpeech
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Streaming audio response (chunked WAV)
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voice_uuid:
+                  type: string
+                  description: Voice UUID to use for synthesis
+                data:
+                  type: string
+                  description: Text or SSML to synthesize (max 2000 characters)
+                project_uuid:
+                  type: string
+                  description: Optional project UUID to store the clip
+                model:
+                  type: string
+                  description: Model to use for synthesis. Pass `chatterbox-turbo` to use the Turbo model for lower latency and paralinguistic tag support. If not specified, defaults to Chatterbox or Chatterbox Multilingual based on the voice. Note - Chatterbox-Turbo is supported by all Rapid English voices and Pre Built Library voices.
+                precision:
+                  $ref: '#/components/schemas/StreamPostRequestBodyContentApplicationJsonSchemaPrecision'
+                  description: Audio precision
+                sample_rate:
+                  $ref: '#/components/schemas/StreamPostRequestBodyContentApplicationJsonSchemaSampleRate'
+                  description: Audio sample rate in Hz
+                use_hd:
+                  type: boolean
+                  default: false
+                  description: Enable HD synthesis with small latency trade-off
+                apply_custom_pronunciations:
+                  type: boolean
+                  default: false
+                  description: When true, automatically applies your team's custom pronunciations to matching words in the input text. Defaults to false.
+              required:
+              - voice_uuid
+              - data
+components:
+  schemas:
+    AudioTimestamps:
+      type: object
+      properties:
+        graph_chars:
+          type: array
+          items:
+            type: string
+          description: Grapheme characters
+        graph_times:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+          description: Grapheme timestamps [start, end] in seconds
+        phon_chars:
+          type: array
+          items:
+            type: string
+          description: Phoneme characters
+        phon_times:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+          description: Phoneme timestamps [start, end] in seconds
+      title: AudioTimestamps
+    Text-to-Speech_synthesize_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        audio_content:
+          type: string
+          format: byte
+          description: Base64-encoded audio bytes
+        audio_timestamps:
+          $ref: '#/components/schemas/AudioTimestamps'
+        duration:
+          type: number
+          format: double
+          description: Audio duration in seconds
+        synth_duration:
+          type: number
+          format: double
+          description: Raw synthesis time
+        output_format:
+          type: string
+        sample_rate:
+          type: integer
+        title:
+          type: string
+        issues:
+          type: array
+          items:
+            type: string
+      title: Text-to-Speech_synthesize_Response_200
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
+    SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
+      type: string
+      enum:
+      - wav
+      - mp3
+      default: wav
+      description: Audio output format
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
+    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
+    StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
+      type: string
+      enum:
+      - MULAW
+      - PCM_16
+      - PCM_24
+      - PCM_32
+      default: PCM_32
+      description: Audio precision
+      title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
+    SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision:
+      type: string
+      enum:
+      - MULAW
+      - PCM_16
+      - PCM_24
+      - PCM_32
+      default: PCM_32
+      description: Audio precision for WAV output
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

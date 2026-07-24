@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_account
+paths:
+  /account:
+    get:
+      operationId: get-account
+      summary: Get account
+      description: Get account information
+      tags:
+      - subpackage_account
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account_getAccount_Response_200'
+  /account/teams:
+    get:
+      operationId: get-teams
+      summary: Get teams
+      description: Get team information
+      tags:
+      - subpackage_account
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account_getTeams_Response_200'
+  /account/teams/{team_uuid}:
+    get:
+      operationId: get-team
+      summary: Get team
+      description: Get specific team information
+      tags:
+      - subpackage_account
+      parameters:
+      - name: team_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account_getTeam_Response_200'
+  /account/billing_usage:
+    get:
+      operationId: get-billing-usage
+      summary: Get billing usage
+      description: Get billing and usage information
+      tags:
+      - subpackage_account
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Billing information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account_getBillingUsage_Response_200'
+components:
+  schemas:
+    Account_getTeam_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getTeam_Response_200
+    Account_getTeams_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Account_getTeams_Response_200
+    AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        plan:
+          type: string
+        voice_limit:
+          type: integer
+        units:
+          type: string
+        rate:
+          type: number
+          format: double
+        current_usage:
+          type: integer
+      title: AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem
+    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
+    Account_getAccount_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getAccount_Response_200
+    Account_getBillingUsage_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getBillingUsage_Response_200
+    AccountGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AccountGetResponsesContentApplicationJsonSchemaItem
+    AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

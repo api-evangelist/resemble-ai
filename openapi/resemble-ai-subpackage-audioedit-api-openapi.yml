@@ -1,0 +1,183 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_audioEdit API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_audioEdit
+paths:
+  /edit:
+    get:
+      operationId: list-audio-edits
+      summary: List audio edits
+      description: Retrieve paginated list of audio edits
+      tags:
+      - subpackage_audioEdit
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of audio edits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Edit_listAudioEdits_Response_200'
+    post:
+      operationId: create-audio-edit
+      summary: Create audio edit
+      description: Edit audio segments using voice synthesis
+      tags:
+      - subpackage_audioEdit
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Edit job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Edit_createAudioEdit_Response_200'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                input_audio:
+                  type: string
+                  format: binary
+                  description: WAV, MP3, M4A, or WMA file (< 20 seconds)
+                original_transcript:
+                  type: string
+                  description: Accurate transcript of the uploaded audio
+                target_transcript:
+                  type: string
+                  description: Desired replacement text
+                voice_uuid:
+                  type: string
+                  description: Voice used to render the edited segment
+              required:
+              - input_audio
+              - original_transcript
+              - target_transcript
+              - voice_uuid
+  /edit/{audio_edit_uuid}:
+    get:
+      operationId: get-audio-edit
+      summary: Get audio edit
+      description: Get status and result of an audio edit
+      tags:
+      - subpackage_audioEdit
+      parameters:
+      - name: audio_edit_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Audio edit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Edit_getAudioEdit_Response_200'
+components:
+  schemas:
+    EditPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        voice_uuid:
+          type: string
+        original_transcript:
+          type: string
+        target_transcript:
+          type: string
+        input_audio_url:
+          type: string
+          format: uri
+      title: EditPostResponsesContentApplicationJsonSchemaItem
+    Audio Edit_listAudioEdits_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EditGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Audio Edit_listAudioEdits_Response_200
+    Audio Edit_getAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_getAudioEdit_Response_200
+    EditGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: EditGetResponsesContentApplicationJsonSchemaItemsItems
+    EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        voice_uuid:
+          type: string
+        original_transcript:
+          type: string
+        target_transcript:
+          type: string
+        input_audio_url:
+          type: string
+          format: uri
+        result_audio_url:
+          type: string
+          format: uri
+      title: EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem
+    Audio Edit_createAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditPostResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_createAudioEdit_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

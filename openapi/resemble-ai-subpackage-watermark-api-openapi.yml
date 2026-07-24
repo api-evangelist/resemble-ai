@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_watermark API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_watermark
+paths:
+  /watermark/apply:
+    post:
+      operationId: apply-watermark
+      summary: Apply watermark
+      description: 'Apply a watermark to an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing.'
+      tags:
+      - subpackage_watermark
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      - name: Prefer
+        in: header
+        description: When set to "wait", the API processes synchronously and returns the completed result.
+        required: false
+        schema:
+          $ref: '#/components/schemas/WatermarkApplyPostParametersPrefer'
+      responses:
+        '200':
+          description: Watermark job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watermark_applyWatermark_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: HTTPS URL to the media file (audio, image, or video).
+                strength:
+                  type: number
+                  format: double
+                  default: 0.2
+                  description: Watermark strength for image/video. Ignored for audio.
+                custom_message:
+                  type: string
+                  default: resembleai
+                  description: Custom message to embed for image/video. Ignored for audio.
+              required:
+              - url
+  /watermark/apply/{uuid}/result:
+    get:
+      operationId: get-watermark-apply-result
+      summary: Get watermark apply result
+      description: Retrieve the result of a watermark apply job.
+      tags:
+      - subpackage_watermark
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Apply result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watermark_getWatermarkApplyResult_Response_200'
+  /watermark/detect:
+    post:
+      operationId: detect-watermark
+      summary: Detect watermark
+      description: 'Detect a watermark in an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing.'
+      tags:
+      - subpackage_watermark
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      - name: Prefer
+        in: header
+        description: When set to "wait", the API processes synchronously and returns the completed result with metrics.
+        required: false
+        schema:
+          $ref: '#/components/schemas/WatermarkDetectPostParametersPrefer'
+      responses:
+        '200':
+          description: Detection job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watermark_detectWatermark_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: HTTPS URL to the media file (audio, image, or video).
+                custom_message:
+                  type: string
+                  default: resembleai
+                  description: Custom message used during encoding for image/video. Ignored for audio.
+              required:
+              - url
+  /watermark/detect/{uuid}/result:
+    get:
+      operationId: get-watermark-detection-result
+      summary: Get watermark detection result
+      description: Retrieve the result of a watermark detection.
+      tags:
+      - subpackage_watermark
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Detection result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watermark_getWatermarkDetectionResult_Response_200'
+components:
+  schemas:
+    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType'
+        source_media_url:
+          type: string
+          format: uri
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Signed URL to the watermarked file. Null while processing.
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
+    WatermarkDetectPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType'
+        source_media_url:
+          type: string
+          format: uri
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+          description: Detection results. Null while processing.
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItem
+    WatermarkApplyPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType'
+          description: Detected media type of the source file.
+        source_media_url:
+          type: string
+          format: uri
+          description: The original source URL provided in the request.
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Signed URL to the watermarked file. Populated when processing is complete.
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItem
+    WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties: {}
+      description: Detection results. Null while processing.
+      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics
+    Watermark_detectWatermark_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_detectWatermark_Response_200
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark:
+      oneOf:
+      - type: object
+        additionalProperties:
+          type: boolean
+      - type: boolean
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark
+    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
+    Watermark_applyWatermark_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkApplyPostResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_applyWatermark_Response_200
+    WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType
+    WatermarkDetectPostParametersPrefer:
+      type: string
+      enum:
+      - wait
+      title: WatermarkDetectPostParametersPrefer
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType'
+        source_media_url:
+          type: string
+          format: uri
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+          description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem
+    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties: {}
+      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics
+    Watermark_getWatermarkDetectionResult_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_getWatermarkDetectionResult_Response_200
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties:
+        has_watermark:
+          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark'
+      description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
+    WatermarkApplyPostParametersPrefer:
+      type: string
+      enum:
+      - wait
+      title: WatermarkApplyPostParametersPrefer
+    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties: {}
+      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
+    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      description: Detected media type of the source file.
+      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType
+    Watermark_getWatermarkApplyResult_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_getWatermarkApplyResult_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_agentTools API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_agentTools
+paths:
+  /agents/{agent_uuid}/tools:
+    get:
+      operationId: list-agent-tools
+      summary: List agent tools
+      description: List all tools for an agent
+      tags:
+      - subpackage_agentTools
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Tools_listAgentTools_Response_200'
+    post:
+      operationId: create-agent-tool
+      summary: Create agent tool
+      description: Create a new tool for an agent
+      tags:
+      - subpackage_agentTools
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tool created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Tools_createAgentTool_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                tool_type:
+                  $ref: '#/components/schemas/AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType'
+                tool_config:
+                  $ref: '#/components/schemas/AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig'
+              required:
+              - name
+              - description
+              - tool_type
+              - tool_config
+  /agents/{agent_uuid}/tools/{tool_uuid}:
+    get:
+      operationId: get-agent-tool
+      summary: Get agent tool
+      description: Get details of a specific tool
+      tags:
+      - subpackage_agentTools
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tool_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tool details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Tools_getAgentTool_Response_200'
+    delete:
+      operationId: delete-agent-tool
+      summary: Delete agent tool
+      description: Delete a tool
+      tags:
+      - subpackage_agentTools
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tool_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tool deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Tools_deleteAgentTool_Response_200'
+    patch:
+      operationId: update-agent-tool
+      summary: Update agent tool
+      description: Update an existing tool
+      tags:
+      - subpackage_agentTools
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tool_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tool updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Tools_updateAgentTool_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                tool_config:
+                  $ref: '#/components/schemas/AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig'
+components:
+  schemas:
+    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig
+    AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem
+    Agent Tools_getAgentTool_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Tools_getAgentTool_Response_200
+    Agent Tools_listAgentTools_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agent Tools_listAgentTools_Response_200
+    Agent Tools_createAgentTool_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Tools_createAgentTool_Response_200
+    Agent Tools_deleteAgentTool_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Tools_deleteAgentTool_Response_200
+    Agent Tools_updateAgentTool_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Tools_updateAgentTool_Response_200
+    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType:
+      type: string
+      enum:
+      - webhook
+      - client
+      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType
+    AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

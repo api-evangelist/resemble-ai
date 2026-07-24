@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_customPronunciations API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_customPronunciations
+paths:
+  /pronunciations:
+    get:
+      operationId: list-pronunciations
+      summary: List custom pronunciations
+      description: Retrieve all custom pronunciations for your team, with optional filters.
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: language
+        in: query
+        description: Filter by language (e.g., en-us)
+        required: false
+        schema:
+          type: string
+      - name: domain
+        in: query
+        description: Filter by domain (e.g., medical)
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by processing status
+        required: false
+        schema:
+          $ref: '#/components/schemas/PronunciationsGetParametersStatus'
+      - name: active
+        in: query
+        description: Filter by active state
+        required: false
+        schema:
+          type: boolean
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of custom pronunciations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_listPronunciations_Response_200'
+    post:
+      operationId: create-pronunciation
+      summary: Create custom pronunciation
+      description: Upload a single pronunciation with a reference audio file.
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Pronunciation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_createPronunciation_Response_201'
+        '422':
+          description: Validation error (e.g., duplicate word)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: The word or phrase (2-100 characters). Letters, accented characters, apostrophes, hyphens, and spaces only.
+                audio:
+                  type: string
+                  format: binary
+                  description: Reference audio file (wav, flac, mp3, m4a, ogg, webm, aac). Duration 200ms-10s. Max 10MB.
+              required:
+              - word
+              - audio
+  /pronunciations/bulk:
+    post:
+      operationId: bulk-create-pronunciations
+      summary: Bulk create pronunciations from ZIP
+      description: Upload multiple pronunciations at once. Each audio file in the ZIP becomes a pronunciation — the filename (without extension) is used as the word.
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Bulk creation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_bulkCreatePronunciations_Response_201'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                zip:
+                  type: string
+                  format: binary
+                  description: ZIP file containing audio files. Max 50 files, max 100MB total.
+              required:
+              - zip
+  /pronunciations/{uuid}:
+    get:
+      operationId: get-pronunciation
+      summary: Get custom pronunciation
+      description: Retrieve a single custom pronunciation by UUID
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pronunciation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_getPronunciation_Response_200'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: delete-pronunciation
+      summary: Delete custom pronunciation
+      description: Permanently remove a custom pronunciation. Takes effect immediately.
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pronunciation deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_deletePronunciation_Response_200'
+    patch:
+      operationId: update-pronunciation
+      summary: Toggle pronunciation active status
+      description: Enable or disable a pronunciation without deleting it. Inactive pronunciations are not used during synthesis.
+      tags:
+      - subpackage_customPronunciations
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pronunciation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Custom Pronunciations_updatePronunciation_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                  description: Set to false to disable, true to re-enable
+              required:
+              - active
+components:
+  schemas:
+    CustomPronunciation:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Unique identifier for the pronunciation
+        word:
+          type: string
+          description: The word or phrase this pronunciation applies to
+        status:
+          $ref: '#/components/schemas/CustomPronunciationStatus'
+          description: Processing status. Only "ready" pronunciations are applied during synthesis.
+        active:
+          type: boolean
+          description: Whether this pronunciation is active and will be applied during synthesis
+        audio_url:
+          type: string
+          format: uri
+          description: URL to the uploaded reference audio
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: CustomPronunciation
+    Custom Pronunciations_updatePronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_updatePronunciation_Response_200
+    Custom Pronunciations_bulkCreatePronunciations_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        total_created:
+          type: integer
+          description: Number of pronunciations successfully created
+        total_errors:
+          type: integer
+          description: Number of files that failed validation
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomPronunciation'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems'
+      title: Custom Pronunciations_bulkCreatePronunciations_Response_201
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems:
+      type: object
+      properties: {}
+      title: PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems
+    Custom Pronunciations_deletePronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Custom Pronunciations_deletePronunciation_Response_200
+    CustomPronunciationStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - failed
+      description: Processing status. Only "ready" pronunciations are applied during synthesis.
+      title: CustomPronunciationStatus
+    Custom Pronunciations_getPronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_getPronunciation_Response_200
+    Custom Pronunciations_createPronunciation_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_createPronunciation_Response_201
+    PronunciationsGetParametersStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - failed
+      title: PronunciationsGetParametersStatus
+    Custom Pronunciations_listPronunciations_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_listPronunciations_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

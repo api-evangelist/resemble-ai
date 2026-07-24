@@ -1,0 +1,320 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_audioEnhancement API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_audioEnhancement
+paths:
+  /audio_enhancements:
+    get:
+      operationId: list-audio-enhancements
+      summary: List audio enhancements
+      description: Returns a paginated list of all audio enhancements for your team, ordered by most recent first.
+      tags:
+      - subpackage_audioEnhancement
+      parameters:
+      - name: page
+        in: query
+        description: Page number (starting from 1).
+        required: true
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: Items per page (10 to 1000). Default 10.
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of enhancements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Enhancement_listAudioEnhancements_Response_200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAudioEnhancementsRequestBadRequestError'
+    post:
+      operationId: create-audio-enhancement
+      summary: Create audio enhancement
+      description: 'Submit an audio file for enhancement. Processing happens asynchronously in the background.
+
+        The API defaults to the v2 enhancement engine. The v1 engine is legacy and will be sunset in a future release.
+
+        '
+      tags:
+      - subpackage_audioEnhancement
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Enhancement job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Enhancement_createAudioEnhancement_Response_202'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAudioEnhancementRequestBadRequestError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAudioEnhancementRequestForbiddenError'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio_file:
+                  type: string
+                  format: binary
+                  description: Audio file to enhance (WAV, MP3, M4A, MP4, OGG, AAC, FLAC). Max 150 MB.
+                enhancement_engine:
+                  $ref: '#/components/schemas/AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine'
+                  description: Enhancement engine to use. Default is v2.
+                remove_noise:
+                  type: boolean
+                  default: true
+                  description: Remove background noise. Engine v2 only.
+                normalize:
+                  type: boolean
+                  default: true
+                  description: Normalize audio levels. Engine v2 only.
+                studio_sound:
+                  type: boolean
+                  default: true
+                  description: Apply studio-quality enhancement. Engine v2 only.
+                enhancement_level:
+                  type: number
+                  format: double
+                  description: Enhancement intensity (0.0 to 1.0). Engine v1 only (legacy).
+                loudness_target_level:
+                  type: integer
+                  default: -14
+                  description: Target loudness in LUFS. Engine v1 only (legacy).
+                loudness_peak_limit:
+                  type: integer
+                  default: -1
+                  description: Peak limit in dBTP. Engine v1 only (legacy).
+              required:
+              - audio_file
+  /audio_enhancements/{enhancement_uuid}:
+    get:
+      operationId: get-audio-enhancement
+      summary: Get audio enhancement
+      description: Poll this endpoint to check the status of an enhancement job and retrieve the download URL when complete.
+      tags:
+      - subpackage_audioEnhancement
+      parameters:
+      - name: enhancement_uuid
+        in: path
+        description: The UUID returned from the create endpoint.
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Enhancement details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Enhancement_getAudioEnhancement_Response_200'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAudioEnhancementRequestNotFoundError'
+components:
+  schemas:
+    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine:
+      type: string
+      enum:
+      - v1
+      - v2
+      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine
+    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus
+    AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus
+    Audio Enhancement_getAudioEnhancement_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        uuid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus'
+        enhanced_audio_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Download URL. Only present when status is completed. This is a temporary signed URL.
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Human-readable error. Only present when status is failed.
+      title: Audio Enhancement_getAudioEnhancement_Response_200
+    Audio Enhancement_createAudioEnhancement_Response_202:
+      type: object
+      properties:
+        success:
+          type: boolean
+        uuid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus'
+      title: Audio Enhancement_createAudioEnhancement_Response_202
+    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus'
+        enhancement_engine:
+          $ref: '#/components/schemas/AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine'
+        error_message:
+          type:
+          - string
+          - 'null'
+        remove_noise:
+          type: boolean
+          description: Engine v2 only.
+        normalize:
+          type: boolean
+          description: Engine v2 only.
+        studio_sound:
+          type: boolean
+          description: Engine v2 only.
+        loudness_target_level:
+          type: integer
+          description: Engine v1 only.
+        loudness_peak_limit:
+          type: integer
+          description: Engine v1 only.
+        enhancement_level:
+          type: number
+          format: double
+          description: Engine v1 only.
+        original_audio_url:
+          type: string
+          format: uri
+        enhanced_audio_url:
+          type: string
+          format: uri
+      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems
+    AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine:
+      type: string
+      enum:
+      - v1
+      - v2
+      default: v2
+      description: Enhancement engine to use. Default is v2.
+      title: AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine
+    ListAudioEnhancementsRequestBadRequestError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: ListAudioEnhancementsRequestBadRequestError
+    CreateAudioEnhancementRequestForbiddenError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: CreateAudioEnhancementRequestForbiddenError
+    GetAudioEnhancementRequestNotFoundError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: GetAudioEnhancementRequestNotFoundError
+    AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      title: AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus
+    CreateAudioEnhancementRequestBadRequestError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: CreateAudioEnhancementRequestBadRequestError
+    Audio Enhancement_listAudioEnhancements_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        total_count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Audio Enhancement_listAudioEnhancements_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

@@ -1,0 +1,463 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_speechToText API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_speechToText
+paths:
+  /speech-to-text:
+    get:
+      operationId: list-transcripts
+      summary: List transcripts
+      description: Retrieve paginated list of transcript jobs
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of transcripts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_listTranscripts_Response_200'
+    post:
+      operationId: create-transcript
+      summary: Create transcript job
+      description: Submit audio or video for transcription
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transcript job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_createTranscript_Response_200'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Audio or video file (max 500 MB, 20 minutes)
+                query:
+                  type: string
+                  description: Optional intelligence question to evaluate after transcription
+  /speech-to-text/{uuid}:
+    get:
+      operationId: get-transcript
+      summary: Get transcript
+      description: Retrieve transcript status, text, and timestamps
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transcript details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_getTranscript_Response_200'
+  /speech-to-text/{uuid}/ask:
+    post:
+      operationId: ask-transcript-question
+      summary: Ask intelligence question
+      description: Submit a question about a completed transcript
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Question submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_askTranscriptQuestion_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: Question to ask about the transcript
+              required:
+              - query
+  /speech-to-text/{uuid}/questions:
+    get:
+      operationId: list-transcript-questions
+      summary: List intelligence questions
+      description: List all questions asked about a transcript
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 25
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of questions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_listTranscriptQuestions_Response_200'
+  /speech-to-text/{uuid}/questions/{question_uuid}:
+    get:
+      operationId: get-transcript-question
+      summary: Get intelligence question status
+      description: Check the status of a specific question
+      tags:
+      - subpackage_speechToText
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: question_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Question details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech-to-Text_getTranscriptQuestion_Response_200'
+components:
+  schemas:
+    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta:
+      type: object
+      properties: {}
+      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta
+    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    Speech-to-Text_askTranscriptQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_askTranscriptQuestion_Response_200
+    SpeechToTextPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/SpeechToTextPostResponsesContentApplicationJsonSchemaItemStatus'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: SpeechToTextPostResponsesContentApplicationJsonSchemaItem
+    SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        status:
+          type: string
+        duration_seconds:
+          type: number
+          format: double
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems
+    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems:
+      type: object
+      properties:
+        text:
+          type: string
+        start_time:
+          type: number
+          format: double
+        end_time:
+          type: number
+          format: double
+        speaker_id:
+          type: string
+      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems
+    SpeechToTextGetResponsesContentApplicationJsonSchemaMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_pages:
+          type: integer
+        total_items:
+          type: integer
+      title: SpeechToTextGetResponsesContentApplicationJsonSchemaMeta
+    Speech-to-Text_getTranscript_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_getTranscript_Response_200
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    Speech-to-Text_listTranscripts_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems'
+        meta:
+          $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaMeta'
+      title: Speech-to-Text_listTranscripts_Response_200
+    Speech-to-Text_getTranscriptQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_getTranscriptQuestion_Response_200
+    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus'
+        text:
+          type: string
+        words:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems'
+        duration_seconds:
+          type: number
+          format: double
+        file_url:
+          type: string
+          format: uri
+        query:
+          type: string
+        answer:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem
+    SpeechToTextPostResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: SpeechToTextPostResponsesContentApplicationJsonSchemaItemStatus
+    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        query:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems
+    Speech-to-Text_listTranscriptQuestions_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems'
+        meta:
+          $ref: '#/components/schemas/SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta'
+      title: Speech-to-Text_listTranscriptQuestions_Response_200
+    SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        transcript_uuid:
+          type: string
+          format: uuid
+        query:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem
+    Speech-to-Text_createTranscript_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextPostResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_createTranscript_Response_200
+    SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        transcript_uuid:
+          type: string
+          format: uuid
+        query:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

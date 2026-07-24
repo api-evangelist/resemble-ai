@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_clips API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_clips
+paths:
+  /projects/{project_uuid}/clips:
+    get:
+      operationId: list-clips
+      summary: List clips
+      description: List clips in a project
+      tags:
+      - subpackage_clips
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of clips
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clips_listClips_Response_200'
+  /projects/{project_uuid}/clips/{clip_uuid}:
+    get:
+      operationId: get-clip
+      summary: Get clip
+      description: Get clip details
+      tags:
+      - subpackage_clips
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Clip details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clips_getClip_Response_200'
+    delete:
+      operationId: delete-clip
+      summary: Delete clip
+      description: Delete a clip
+      tags:
+      - subpackage_clips
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Clip deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clips_deleteClip_Response_200'
+    patch:
+      operationId: update-clip
+      summary: Update clip
+      description: Update a clip
+      tags:
+      - subpackage_clips
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Clip updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clips_updateClip_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                is_archived:
+                  type: boolean
+components:
+  schemas:
+    Clips_updateClip_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem'
+      title: Clips_updateClip_Response_200
+    ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem
+    Clips_getClip_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Clips_getClip_Response_200
+    Clips_listClips_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Clips_listClips_Response_200
+    ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems
+    Clips_deleteClip_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Clips_deleteClip_Response_200
+    ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

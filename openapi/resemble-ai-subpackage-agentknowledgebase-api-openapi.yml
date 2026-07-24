@@ -1,0 +1,624 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_agentKnowledgeBase API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_agentKnowledgeBase
+paths:
+  /knowledge_items:
+    get:
+      operationId: list-knowledge-items
+      summary: List knowledge items
+      description: List all knowledge items belonging to the authenticated user's team
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: status
+        in: query
+        description: Filter by status
+        required: false
+        schema:
+          $ref: '#/components/schemas/KnowledgeItemsGetParametersStatus'
+      - name: source_type
+        in: query
+        description: Filter by source type
+        required: false
+        schema:
+          $ref: '#/components/schemas/KnowledgeItemsGetParametersSourceType'
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Items per page
+        required: false
+        schema:
+          type: integer
+          default: 20
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of knowledge items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_listKnowledgeItems_Response_200'
+    post:
+      operationId: create-knowledge-item
+      summary: Create knowledge item
+      description: Creates a new knowledge item and queues it for ingestion processing
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Knowledge item created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_createKnowledgeItem_Response_201'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the knowledge item
+                description:
+                  type: string
+                  description: Description of the knowledge item
+                source_type:
+                  $ref: '#/components/schemas/KnowledgeItemsPostRequestBodyContentApplicationJsonSchemaSourceType'
+                  description: Type of knowledge source
+                url:
+                  type: string
+                  description: Required when source_type is url
+                raw_text:
+                  type: string
+                  description: Required when source_type is text
+              required:
+              - title
+              - description
+              - source_type
+  /knowledge_items/{uuid}:
+    get:
+      operationId: get-knowledge-item
+      summary: Get knowledge item
+      description: Retrieves a single knowledge item with detailed information including attached agents
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: uuid
+        in: path
+        description: The UUID of the knowledge item
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Knowledge item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_getKnowledgeItem_Response_200'
+        '404':
+          description: Knowledge item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: delete-knowledge-item
+      summary: Delete knowledge item
+      description: Deletes a knowledge item and cleans up associated data
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: uuid
+        in: path
+        description: The UUID of the knowledge item
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Knowledge item deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_deleteKnowledgeItem_Response_200'
+        '404':
+          description: Knowledge item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /knowledge_items/{uuid}/reingest:
+    post:
+      operationId: reingest-knowledge-item
+      summary: Re-ingest knowledge item
+      description: Re-runs the ingestion pipeline for an existing knowledge item
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: uuid
+        in: path
+        description: The UUID of the knowledge item
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Re-ingestion queued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_reingestKnowledgeItem_Response_200'
+        '422':
+          description: Cannot reingest (already processing or rate limited)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /agents/{agent_uuid}/knowledge_items:
+    get:
+      operationId: list-agent-knowledge-items
+      summary: List agent's knowledge items
+      description: Lists all knowledge items attached to a specific agent
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: agent_uuid
+        in: path
+        description: The UUID of the agent
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of knowledge items attached to agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_listAgentKnowledgeItems_Response_200'
+        '404':
+          description: Agent not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: attach-knowledge-item-to-agent
+      summary: Attach knowledge item to agent
+      description: Attaches an existing knowledge item to an agent
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: agent_uuid
+        in: path
+        description: The UUID of the agent
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Knowledge item attached successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_attachKnowledgeItemToAgent_Response_201'
+        '422':
+          description: Validation error (not ready, already attached, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                knowledge_item_uuid:
+                  type: string
+                  format: uuid
+                  description: The UUID of the knowledge item to attach
+              required:
+              - knowledge_item_uuid
+  /agents/{agent_uuid}/knowledge_items/{knowledge_item_uuid}:
+    delete:
+      operationId: detach-knowledge-item-from-agent
+      summary: Detach knowledge item from agent
+      description: Removes a knowledge item from an agent
+      tags:
+      - subpackage_agentKnowledgeBase
+      parameters:
+      - name: agent_uuid
+        in: path
+        description: The UUID of the agent
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: knowledge_item_uuid
+        in: path
+        description: The UUID of the knowledge item to detach
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Knowledge item detached successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Knowledge Base_detachKnowledgeItemFromAgent_Response_200'
+        '404':
+          description: Agent or knowledge item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Knowledge item not attached to agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_count:
+          type: integer
+        total_pages:
+          type: integer
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination
+    AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems
+    Agent Knowledge Base_detachKnowledgeItemFromAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems'
+        message:
+          type: string
+      title: Agent Knowledge Base_detachKnowledgeItemFromAgent_Response_200
+    Agent Knowledge Base_listAgentKnowledgeItems_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
+        count:
+          type: integer
+      title: Agent Knowledge Base_listAgentKnowledgeItems_Response_200
+    Agent Knowledge Base_createKnowledgeItem_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Knowledge Base_createKnowledgeItem_Response_201
+    KnowledgeItemsGetParametersStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - ready
+      - failed
+      title: KnowledgeItemsGetParametersStatus
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemAgentsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemAgentsItems
+    Agent Knowledge Base_attachKnowledgeItemToAgent_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems'
+        message:
+          type: string
+      title: Agent Knowledge Base_attachKnowledgeItemToAgent_Response_201
+    Agent Knowledge Base_deleteKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Knowledge Base_deleteKnowledgeItem_Response_200
+    Agent Knowledge Base_listKnowledgeItems_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
+        pagination:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination'
+      title: Agent Knowledge Base_listKnowledgeItems_Response_200
+    KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType
+    AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        source_type:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType'
+        status:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus'
+        error_message:
+          type:
+          - string
+          - 'null'
+        chunk_count:
+          type:
+          - integer
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        document_url:
+          type:
+          - string
+          - 'null'
+        document_filename:
+          type:
+          - string
+          - 'null'
+        agent_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
+    Agent Knowledge Base_getKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Knowledge Base_getKnowledgeItem_Response_200
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        source_type:
+          $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType'
+        status:
+          $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus'
+        error_message:
+          type:
+          - string
+          - 'null'
+        chunk_count:
+          type:
+          - integer
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        document_url:
+          type:
+          - string
+          - 'null'
+        document_filename:
+          type:
+          - string
+          - 'null'
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemAgentsItems'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem
+    KnowledgeItemsPostRequestBodyContentApplicationJsonSchemaSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      description: Type of knowledge source
+      title: KnowledgeItemsPostRequestBodyContentApplicationJsonSchemaSourceType
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - ready
+      - failed
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    KnowledgeItemsGetParametersSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsGetParametersSourceType
+    KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - ready
+      - failed
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus
+    AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems
+    Agent Knowledge Base_reingestKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Knowledge Base_reingestKnowledgeItem_Response_200
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

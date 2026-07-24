@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_voiceDesign API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_voiceDesign
+paths:
+  /voice-design:
+    post:
+      operationId: generate-voice-design
+      summary: Generate voice candidates
+      description: Generate three voice candidates from a text prompt
+      tags:
+      - subpackage_voiceDesign
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice candidates generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Design_generateVoiceDesign_Response_200'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_prompt:
+                  type: string
+                  description: Description of desired voice
+              required:
+              - user_prompt
+  /voice-design/create:
+    post:
+      operationId: create-voice-from-candidate
+      summary: Create voice from candidate
+      description: Create a voice from a voice design candidate
+      tags:
+      - subpackage_voiceDesign
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Design_createVoiceFromCandidate_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                voice_sample_index:
+                  type: integer
+                name:
+                  type: string
+              required:
+              - uuid
+              - voice_sample_index
+              - name
+components:
+  schemas:
+    Voice Design_createVoiceFromCandidate_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        voice_uuid:
+          type: string
+      title: Voice Design_createVoiceFromCandidate_Response_200
+    Voice Design_generateVoiceDesign_Response_200:
+      type: object
+      properties:
+        voice_candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems'
+      title: Voice Design_generateVoiceDesign_Response_200
+    VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          format: uri
+        voice_sample_index:
+          type: integer
+        uuid:
+          type: string
+      title: VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

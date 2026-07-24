@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_audioSourceTracing API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_audioSourceTracing
+paths:
+  /audio_source_tracings:
+    get:
+      operationId: list-audio-source-tracings
+      summary: List audio source tracings
+      description: Retrieve a paginated list of all source tracing reports for the authenticated user's team
+      tags:
+      - subpackage_audioSourceTracing
+      parameters:
+      - name: page
+        in: query
+        description: Page number (must be >= 1)
+        required: true
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: Number of items per page (10-1000)
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of source tracing reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Source Tracing_listAudioSourceTracings_Response_200'
+  /audio_source_tracings/{uuid}:
+    get:
+      operationId: get-audio-source-tracing
+      summary: Get audio source tracing
+      description: Retrieve a single source tracing report by its UUID
+      tags:
+      - subpackage_audioSourceTracing
+      parameters:
+      - name: uuid
+        in: path
+        description: The UUID of the source tracing report
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Source tracing report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Audio Source Tracing_getAudioSourceTracing_Response_200'
+        '404':
+          description: Source tracing report not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Audio Source Tracing_listAudioSourceTracings_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        total_count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Audio Source Tracing_listAudioSourceTracings_Response_200
+    AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
+        error_message:
+          type:
+          - string
+          - 'null'
+      title: AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+        results:
+          $ref: '#/components/schemas/AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults'
+        created_at:
+          type: string
+          format: date-time
+        detect_uuid:
+          type: string
+          description: UUID of the associated detect object
+      title: AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems
+    Audio Source Tracing_getAudioSourceTracing_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Audio Source Tracing_getAudioSourceTracing_Response_200
+    AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
+        error_message:
+          type:
+          - string
+          - 'null'
+      title: AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults
+    AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        results:
+          $ref: '#/components/schemas/AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults'
+        created_at:
+          type: string
+          format: date-time
+        detect_uuid:
+          type: string
+          description: UUID of the associated detect object
+      title: AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

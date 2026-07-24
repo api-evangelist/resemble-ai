@@ -1,0 +1,347 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_duets API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_duets
+paths:
+  /duet_voices:
+    get:
+      operationId: list-duet-voices
+      summary: List duet voices
+      description: Returns default and custom duet voices
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of duet voices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_listDuetVoices_Response_200'
+    post:
+      operationId: create-duet-voice
+      summary: Create custom duet voice
+      description: Create a custom voice for duet generation
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Duet voice created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_createDuetVoice_Response_200'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Voice name
+                style_prompt:
+                  type: string
+                  description: Optional style prompt
+                audio:
+                  type: string
+                  format: binary
+                  description: Audio file (MP3/WAV/M4A/OGG/AAC/FLAC max 10 MB)
+              required:
+              - name
+              - audio
+  /duet_voices/{id}:
+    put:
+      operationId: update-duet-voice
+      summary: Update duet voice
+      description: Update a custom duet voice (default voices cannot be modified)
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Duet voice updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_updateDuetVoice_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                style_prompt:
+                  type: string
+    delete:
+      operationId: delete-duet-voice
+      summary: Delete duet voice
+      description: Delete a custom duet voice (default voices cannot be deleted)
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Duet voice deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_deleteDuetVoice_Response_200'
+  /duet_voice_pairs:
+    get:
+      operationId: list-duet-voice-pairs
+      summary: List duet voice pairs
+      description: List all voice pairs for duet generation
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of voice pairs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_listDuetVoicePairs_Response_200'
+    post:
+      operationId: create-duet-voice-pair
+      summary: Create duet voice pair
+      description: Create a voice pair for duet generation
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice pair created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_createDuetVoicePair_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voice_1_id:
+                  type: integer
+                  description: ID of first voice
+                voice_2_id:
+                  type: integer
+                  description: ID of second voice
+                name:
+                  type: string
+                  description: Optional pair name
+              required:
+              - voice_1_id
+              - voice_2_id
+  /duet:
+    post:
+      operationId: generate-duet
+      summary: Generate duet
+      description: Generate conversational audio with two speakers
+      tags:
+      - subpackage_duets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Duet generation job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Duets_generateDuet_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voice_pair_id:
+                  type: integer
+                  description: Voice pair ID to use
+                script:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/DuetPostRequestBodyContentApplicationJsonSchemaScriptItems'
+                title:
+                  type: string
+                  description: Optional title for the duet
+                callback_uri:
+                  type: string
+                  format: uri
+                  description: Webhook URL for completion notification
+              required:
+              - voice_pair_id
+              - script
+components:
+  schemas:
+    Duets_updateDuetVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem'
+      title: Duets_updateDuetVoice_Response_200
+    DuetVoicesPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: DuetVoicesPostResponsesContentApplicationJsonSchemaItem
+    Duets_createDuetVoicePair_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem'
+      title: Duets_createDuetVoicePair_Response_200
+    Duets_listDuetVoices_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Duets_listDuetVoices_Response_200
+    DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem
+    DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem
+    DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems
+    Duets_deleteDuetVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Duets_deleteDuetVoice_Response_200
+    DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems
+    DuetPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        status:
+          type: string
+      title: DuetPostResponsesContentApplicationJsonSchemaItem
+    Duets_generateDuet_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetPostResponsesContentApplicationJsonSchemaItem'
+      title: Duets_generateDuet_Response_200
+    Duets_listDuetVoicePairs_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Duets_listDuetVoicePairs_Response_200
+    DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker:
+      type: string
+      enum:
+      - '0'
+      - '1'
+      description: Speaker index (0 or 1)
+      title: DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker
+    Duets_createDuetVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetVoicesPostResponsesContentApplicationJsonSchemaItem'
+      title: Duets_createDuetVoice_Response_200
+    DuetPostRequestBodyContentApplicationJsonSchemaScriptItems:
+      type: object
+      properties:
+        speaker:
+          $ref: '#/components/schemas/DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker'
+          description: Speaker index (0 or 1)
+        text:
+          type: string
+          description: Text for this speaker
+      required:
+      - speaker
+      - text
+      title: DuetPostRequestBodyContentApplicationJsonSchemaScriptItems
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

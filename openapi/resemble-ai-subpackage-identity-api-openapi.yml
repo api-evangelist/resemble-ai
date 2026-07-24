@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_identity API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_identity
+paths:
+  /identity:
+    get:
+      operationId: list-identities
+      summary: List identities
+      description: List all speaker identities
+      tags:
+      - subpackage_identity
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of identities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity_listIdentities_Response_200'
+    post:
+      operationId: create-identity
+      summary: Create identity
+      description: Create a new speaker identity
+      tags:
+      - subpackage_identity
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Identity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity_createIdentity_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                audio_url:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+              required:
+              - audio_url
+  /identity/search:
+    post:
+      operationId: search-identities
+      summary: Search identities
+      description: Search for matching speaker identities
+      tags:
+      - subpackage_identity
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity_searchIdentities_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                audio_url:
+                  type: string
+                  format: uri
+              required:
+              - audio_url
+components:
+  schemas:
+    IdentityGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: IdentityGetResponsesContentApplicationJsonSchemaItemsItems
+    Identity_listIdentities_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Identity_listIdentities_Response_200
+    Identity_searchIdentities_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems'
+      title: Identity_searchIdentities_Response_200
+    Identity_createIdentity_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/IdentityPostResponsesContentApplicationJsonSchemaItem'
+      title: Identity_createIdentity_Response_200
+    IdentityPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: IdentityPostResponsesContentApplicationJsonSchemaItem
+    IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems:
+      type: object
+      properties: {}
+      title: IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

@@ -1,0 +1,248 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_voices API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_voices
+paths:
+  /voices:
+    get:
+      operationId: list-voices
+      summary: List voices
+      description: Retrieve voice metadata
+      tags:
+      - subpackage_voices
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: advanced
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of voices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voices_listVoices_Response_200'
+    post:
+      operationId: create-voice
+      summary: Create voice
+      description: Create a new voice
+      tags:
+      - subpackage_voices
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voices_createVoice_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                voice_type:
+                  $ref: '#/components/schemas/VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType'
+                dataset_url:
+                  type: string
+                  format: uri
+                callback_uri:
+                  type: string
+                  format: uri
+                language:
+                  type: string
+                  default: en-US
+              required:
+              - name
+  /voices/{voice_uuid}:
+    get:
+      operationId: get-voice
+      summary: Get voice
+      description: Get voice details
+      tags:
+      - subpackage_voices
+      parameters:
+      - name: voice_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voices_getVoice_Response_200'
+    delete:
+      operationId: delete-voice
+      summary: Delete voice
+      description: Delete a voice
+      tags:
+      - subpackage_voices
+      parameters:
+      - name: voice_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Voice deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voices_deleteVoice_Response_200'
+  /voices/{voice_uuid}/build:
+    post:
+      operationId: build-voice
+      summary: Build voice
+      description: Start voice training
+      tags:
+      - subpackage_voices
+      parameters:
+      - name: voice_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Build started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voices_buildVoice_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fill:
+                  type: boolean
+                  default: false
+components:
+  schemas:
+    Voices_deleteVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Voices_deleteVoice_Response_200
+    Voices_createVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/VoicesPostResponsesContentApplicationJsonSchemaItem'
+      title: Voices_createVoice_Response_200
+    VoicesPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesPostResponsesContentApplicationJsonSchemaItem
+    Voices_getVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Voices_getVoice_Response_200
+    Voices_listVoices_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoicesGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Voices_listVoices_Response_200
+    VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType:
+      type: string
+      enum:
+      - rapid
+      - professional
+      default: professional
+      title: VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType
+    VoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: VoicesGetResponsesContentApplicationJsonSchemaItemsItems
+    VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem
+    Voices_buildVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Voices_buildVoice_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

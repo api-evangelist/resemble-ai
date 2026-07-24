@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_agentWebhooks API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_agentWebhooks
+paths:
+  /agents/{agent_uuid}/webhooks:
+    get:
+      operationId: list-agent-webhooks
+      summary: List agent webhooks
+      description: List all webhooks for an agent
+      tags:
+      - subpackage_agentWebhooks
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Webhooks_listAgentWebhooks_Response_200'
+    post:
+      operationId: create-agent-webhook
+      summary: Create agent webhook
+      description: Create a new webhook for an agent
+      tags:
+      - subpackage_agentWebhooks
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Webhooks_createAgentWebhook_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_type:
+                  $ref: '#/components/schemas/AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType'
+                webhook_config:
+                  $ref: '#/components/schemas/AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig'
+              required:
+              - webhook_type
+              - webhook_config
+  /agents/{agent_uuid}/webhooks/{webhook_uuid}:
+    get:
+      operationId: get-agent-webhook
+      summary: Get agent webhook
+      description: Get details of a specific webhook
+      tags:
+      - subpackage_agentWebhooks
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhook_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Webhooks_getAgentWebhook_Response_200'
+    delete:
+      operationId: delete-agent-webhook
+      summary: Delete agent webhook
+      description: Delete a webhook
+      tags:
+      - subpackage_agentWebhooks
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhook_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Webhooks_deleteAgentWebhook_Response_200'
+    patch:
+      operationId: update-agent-webhook
+      summary: Update agent webhook
+      description: Update an existing webhook
+      tags:
+      - subpackage_agentWebhooks
+      parameters:
+      - name: agent_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhook_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent Webhooks_updateAgentWebhook_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_config:
+                  $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig'
+components:
+  schemas:
+    AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig
+    AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems
+    Agent Webhooks_listAgentWebhooks_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agent Webhooks_listAgentWebhooks_Response_200
+    Agent Webhooks_deleteAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Webhooks_deleteAgentWebhook_Response_200
+    AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem
+    Agent Webhooks_getAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Webhooks_getAgentWebhook_Response_200
+    AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType:
+      type: string
+      enum:
+      - pre_call
+      - post_call
+      title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType
+    AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig
+    Agent Webhooks_createAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Webhooks_createAgentWebhook_Response_200
+    AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem
+    Agent Webhooks_updateAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Webhooks_updateAgentWebhook_Response_200
+    AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

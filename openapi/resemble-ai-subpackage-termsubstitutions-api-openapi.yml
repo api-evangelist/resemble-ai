@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_termSubstitutions API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_termSubstitutions
+paths:
+  /term_substitutions:
+    get:
+      operationId: list-term-substitutions
+      summary: List term substitutions
+      description: List all term substitutions
+      tags:
+      - subpackage_termSubstitutions
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of term substitutions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term Substitutions_listTermSubstitutions_Response_200'
+    post:
+      operationId: create-term-substitution
+      summary: Create term substitution
+      description: Create a new pronunciation substitution
+      tags:
+      - subpackage_termSubstitutions
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Term substitution created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term Substitutions_createTermSubstitution_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                original_text:
+                  type: string
+                  description: Original text to substitute
+                replacement_text:
+                  type: string
+                  description: Replacement pronunciation
+              required:
+              - original_text
+              - replacement_text
+  /term_substitutions/{id}:
+    get:
+      operationId: get-term-substitution
+      summary: Get term substitution
+      description: Get term substitution details
+      tags:
+      - subpackage_termSubstitutions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Term substitution details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term Substitutions_getTermSubstitution_Response_200'
+    delete:
+      operationId: delete-term-substitution
+      summary: Delete term substitution
+      description: Delete a term substitution
+      tags:
+      - subpackage_termSubstitutions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Term substitution deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term Substitutions_deleteTermSubstitution_Response_200'
+components:
+  schemas:
+    Term Substitutions_listTermSubstitutions_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Term Substitutions_listTermSubstitutions_Response_200
+    TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem
+    TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem
+    Term Substitutions_getTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem'
+      title: Term Substitutions_getTermSubstitution_Response_200
+    Term Substitutions_deleteTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Term Substitutions_deleteTermSubstitution_Response_200
+    Term Substitutions_createTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem'
+      title: Term Substitutions_createTermSubstitution_Response_200
+    TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

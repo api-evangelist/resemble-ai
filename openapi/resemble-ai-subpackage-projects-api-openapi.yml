@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_projects API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_projects
+paths:
+  /projects:
+    get:
+      operationId: list-projects
+      summary: List projects
+      description: List all projects
+      tags:
+      - subpackage_projects
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects_listProjects_Response_200'
+    post:
+      operationId: create-project
+      summary: Create project
+      description: Create a new project
+      tags:
+      - subpackage_projects
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects_createProject_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                is_collaborative:
+                  type: boolean
+                is_archived:
+                  type: boolean
+              required:
+              - name
+              - description
+              - is_collaborative
+              - is_archived
+  /projects/{project_uuid}:
+    get:
+      operationId: get-project
+      summary: Get project
+      description: Get project details
+      tags:
+      - subpackage_projects
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects_getProject_Response_200'
+    put:
+      operationId: update-project
+      summary: Update project
+      description: Update a project
+      tags:
+      - subpackage_projects
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects_updateProject_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                is_collaborative:
+                  type: boolean
+                is_archived:
+                  type: boolean
+    delete:
+      operationId: delete-project
+      summary: Delete project
+      description: Delete a project
+      tags:
+      - subpackage_projects
+      parameters:
+      - name: project_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects_deleteProject_Response_200'
+components:
+  schemas:
+    Projects_listProjects_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Projects_listProjects_Response_200
+    ProjectsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsPostResponsesContentApplicationJsonSchemaItem
+    Projects_updateProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem'
+      title: Projects_updateProject_Response_200
+    Projects_getProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Projects_getProject_Response_200
+    ProjectsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: ProjectsGetResponsesContentApplicationJsonSchemaItemsItems
+    Projects_deleteProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Projects_deleteProject_Response_200
+    ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem
+    ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem
+    Projects_createProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsPostResponsesContentApplicationJsonSchemaItem'
+      title: Projects_createProject_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

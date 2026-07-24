@@ -1,0 +1,255 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_voiceSettingsPresets API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_voiceSettingsPresets
+paths:
+  /voice_settings_presets:
+    get:
+      operationId: list-voice-settings-presets
+      summary: List voice settings presets
+      description: List all voice settings presets
+      tags:
+      - subpackage_voiceSettingsPresets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of presets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Settings Presets_listVoiceSettingsPresets_Response_200'
+    post:
+      operationId: create-voice-settings-preset
+      summary: Create voice settings preset
+      description: Create a new voice settings preset (max 5 per user)
+      tags:
+      - subpackage_voiceSettingsPresets
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Preset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Settings Presets_createVoiceSettingsPreset_Response_201'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Preset name (unique, max 30 characters)
+                pace:
+                  type: number
+                  format: double
+                  default: 1
+                  description: Speech pace/speed
+                temperature:
+                  type: number
+                  format: double
+                  default: 0.8
+                  description: Voice variation
+                pitch:
+                  type: number
+                  format: double
+                  default: 0
+                  description: Voice pitch adjustment
+                useHd:
+                  type: boolean
+                  default: false
+                  description: Use HD quality
+                exaggeration:
+                  type: number
+                  format: double
+                  default: 0.5
+                  description: Emotional exaggeration
+                description:
+                  type: string
+                  default: ''
+                  description: Voice style prompt
+              required:
+              - name
+  /voice_settings_presets/{uuid}:
+    get:
+      operationId: get-voice-settings-preset
+      summary: Get voice settings preset
+      description: Get preset details
+      tags:
+      - subpackage_voiceSettingsPresets
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Settings Presets_getVoiceSettingsPreset_Response_200'
+    delete:
+      operationId: delete-voice-settings-preset
+      summary: Delete voice settings preset
+      description: Delete a preset
+      tags:
+      - subpackage_voiceSettingsPresets
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preset deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Settings Presets_deleteVoiceSettingsPreset_Response_200'
+    patch:
+      operationId: update-voice-settings-preset
+      summary: Update voice settings preset
+      description: Update a preset
+      tags:
+      - subpackage_voiceSettingsPresets
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preset updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice Settings Presets_updateVoiceSettingsPreset_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                pace:
+                  type: number
+                  format: double
+                temperature:
+                  type: number
+                  format: double
+                pitch:
+                  type: number
+                  format: double
+                useHd:
+                  type: boolean
+                exaggeration:
+                  type: number
+                  format: double
+                description:
+                  type: string
+components:
+  schemas:
+    VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData
+    Voice Settings Presets_getVoiceSettingsPreset_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData'
+      title: Voice Settings Presets_getVoiceSettingsPreset_Response_200
+    Voice Settings Presets_deleteVoiceSettingsPreset_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Voice Settings Presets_deleteVoiceSettingsPreset_Response_200
+    VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData
+    VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems
+    VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData
+    Voice Settings Presets_updateVoiceSettingsPreset_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData'
+      title: Voice Settings Presets_updateVoiceSettingsPreset_Response_200
+    Voice Settings Presets_createVoiceSettingsPreset_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData'
+        message:
+          type: string
+      title: Voice Settings Presets_createVoiceSettingsPreset_Response_201
+    Voice Settings Presets_listVoiceSettingsPresets_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Voice Settings Presets_listVoiceSettingsPresets_Response_200
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

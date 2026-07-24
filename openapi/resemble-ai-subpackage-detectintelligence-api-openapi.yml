@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_detectIntelligence API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_detectIntelligence
+paths:
+  /detects/{uuid}/intelligence:
+    post:
+      operationId: ask-detect-intelligence-question
+      summary: Ask a question about a detection
+      description: Submit a natural-language question about a completed detection report. Returns 202 Accepted while the answer is generated in the background.
+      tags:
+      - subpackage_detectIntelligence
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the completed detection report
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Question accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Detect Intelligence_askDetectIntelligenceQuestion_Response_202'
+        '400':
+          description: Bad request (missing query)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Detection not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Detection not completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The natural-language question to ask about the detection
+              required:
+              - query
+  /detects/{uuid}/intelligence/{question_uuid}:
+    get:
+      operationId: get-detect-intelligence-question
+      summary: Get answer to a detection question
+      description: Retrieve the status and answer for a previously submitted question. Poll until status is completed or failed.
+      tags:
+      - subpackage_detectIntelligence
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the detection report
+        required: true
+        schema:
+          type: string
+      - name: question_uuid
+        in: path
+        description: UUID of the question
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Question status and answer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Detect Intelligence_getDetectIntelligenceQuestion_Response_200'
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID of the question
+        detect_uuid:
+          type: string
+          description: UUID of the associated detection report
+        query:
+          type: string
+          description: The submitted question
+        answer:
+          type:
+          - string
+          - 'null'
+          description: The generated answer (null until completed)
+        status:
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus'
+          description: Current status of the question
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error details when status is failed
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    Detect Intelligence_getDetectIntelligenceQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID of the question
+        detect_uuid:
+          type: string
+          description: UUID of the associated detection report
+        query:
+          type: string
+          description: The submitted question
+        answer:
+          type:
+          - string
+          - 'null'
+          description: The generated answer (null until completed)
+        status:
+          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus'
+          description: Current status of the question
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error details when status is failed
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem
+    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
+    Detect Intelligence_askDetectIntelligenceQuestion_Response_202:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api

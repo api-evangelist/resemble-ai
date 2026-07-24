@@ -1,0 +1,592 @@
+openapi: 3.1.0
+info:
+  title: API Reference subpackage_account subpackage_agents API
+  version: 1.0.0
+servers:
+- url: https://f.cluster.resemble.ai
+- url: https://app.resemble.ai/api/v2
+tags:
+- name: subpackage_agents
+paths:
+  /agents:
+    get:
+      operationId: list-agents
+      summary: List agents
+      description: Retrieve all agents for the authenticated team
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: phone_number
+        in: query
+        description: Filter by associated phone number
+        required: false
+        schema:
+          type: string
+      - name: advanced
+        in: query
+        description: Include detailed configuration
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of agents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_listAgents_Response_200'
+    post:
+      operationId: create-agent
+      summary: Create agent
+      description: Create a new voice agent
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_createAgent_Response_200'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                voice_uuid:
+                  type: string
+                phone_number_id:
+                  type: integer
+                languages:
+                  type: array
+                  items:
+                    type: string
+                dynamic_variables:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables'
+                asr:
+                  $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaAsr'
+                turn:
+                  $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaTurn'
+                llm:
+                  $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaLlm'
+                search_mode:
+                  $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode'
+                  description: RAG search strategy - speed (faster) or accuracy (more thorough)
+                max_chunks_per_query:
+                  type: integer
+                  default: 8
+                  description: Number of relevant chunks to retrieve per query for RAG
+                webhooks:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems'
+                system_tools:
+                  $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools'
+              required:
+              - name
+              - voice_uuid
+  /agents/{uuid}:
+    get:
+      operationId: get-agent
+      summary: Get agent
+      description: Retrieve a specific agent's details
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: advanced
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_getAgent_Response_200'
+    delete:
+      operationId: delete-agent
+      summary: Delete agent
+      description: Delete an agent and all its configurations
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_deleteAgent_Response_200'
+    patch:
+      operationId: update-agent
+      summary: Update agent
+      description: Update an existing agent's configuration
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_updateAgent_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                voice_uuid:
+                  type: string
+                phone_number_id:
+                  type: integer
+                languages:
+                  type: array
+                  items:
+                    type: string
+                dynamic_variables:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables'
+                asr:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr'
+                turn:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn'
+                llm:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm'
+                search_mode:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode'
+                  description: RAG search strategy
+                max_chunks_per_query:
+                  type: integer
+                  description: Number of chunks to retrieve per query for RAG
+                webhooks:
+                  type: array
+                  items:
+                    description: Any type
+                system_tools:
+                  $ref: '#/components/schemas/AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools'
+  /agents/{uuid}/dispatch:
+    post:
+      operationId: dispatch-agent
+      summary: Dispatch agent
+      description: Make an outbound call with an agent
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Call dispatched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_dispatchAgent_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  description: Destination phone number
+                dynamic_variables:
+                  $ref: '#/components/schemas/AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables'
+                  description: Runtime variable overrides
+              required:
+              - phone_number
+  /agents/capabilities:
+    get:
+      operationId: get-agent-capabilities
+      summary: Get capabilities
+      description: List supported ASR and LLM providers and models
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent capabilities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_getAgentCapabilities_Response_200'
+  /agents/system-tools:
+    get:
+      operationId: get-system-tools
+      summary: Get system tools
+      description: List available system tools
+      tags:
+      - subpackage_agents
+      parameters:
+      - name: Authorization
+        in: header
+        description: API token from https://app.resemble.ai/account/api
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: System tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agents_getSystemTools_Response_200'
+components:
+  schemas:
+    Agents_dispatchAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        call_id:
+          type: string
+      title: Agents_dispatchAgent_Response_200
+    Agents_getAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agents_getAgent_Response_200
+    AgentsUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchResponsesContentApplicationJsonSchemaItem
+    AgentsUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsUuidGetResponsesContentApplicationJsonSchemaItem
+    AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools
+    AgentsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsPostResponsesContentApplicationJsonSchemaItem
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables
+    AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsPostRequestBodyContentApplicationJsonSchemaLlm:
+      type: object
+      properties:
+        prompt:
+          type: string
+        provider:
+          type: string
+        model:
+          type: string
+        reasoning_effort:
+          type:
+          - string
+          - 'null'
+        temperature:
+          type: number
+          format: double
+        timezone:
+          type:
+          - string
+          - 'null'
+        built_in_tools:
+          $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools'
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaLlm
+    Agents_listAgents_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsGetResponsesContentApplicationJsonSchemaItemsItems'
+        count:
+          type: integer
+      title: Agents_listAgents_Response_200
+    AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      - type: boolean
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables
+    AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode:
+      type: string
+      enum:
+      - speed
+      - accuracy
+      description: RAG search strategy
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode
+    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: LLM provider name (e.g., "openai", "anthropic")
+        model:
+          type: string
+          description: Model identifier (e.g., "gpt-4o", "claude-3-5-sonnet-20241022")
+        description:
+          type: string
+          description: Human-readable description of the capability
+      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems
+    AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    AgentsPostRequestBodyContentApplicationJsonSchemaAsr:
+      type: object
+      properties:
+        model:
+          type: string
+        provider:
+          type: string
+          default: deepgram
+        user_input_audio_format:
+          $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat'
+        keywords:
+          type: array
+          items:
+            type: string
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaAsr
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr
+    AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat:
+      type: string
+      enum:
+      - pcm_8000
+      - pcm_16000
+      - pcm_22050
+      - pcm_24000
+      - pcm_44100
+      - pcm_48000
+      - ulaw_8000
+      default: pcm_16000
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat
+    AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      type: object
+      properties: {}
+      description: Runtime variable overrides
+      title: AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools
+    AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode:
+      type: string
+      enum:
+      - speed
+      - accuracy
+      default: accuracy
+      description: RAG search strategy - speed (faster) or accuracy (more thorough)
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode
+    Agents_getAgentCapabilities_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        asr_capabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems'
+        llm_capabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems'
+      title: Agents_getAgentCapabilities_Response_200
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm
+    Agents_createAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agents_createAgent_Response_200
+    Agents_deleteAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agents_deleteAgent_Response_200
+    Agents_getSystemTools_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agents_getSystemTools_Response_200
+    AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode:
+      type: string
+      enum:
+      - silence
+      default: silence
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode
+    Agents_updateAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsUuidPatchResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agents_updateAgent_Response_200
+    AgentsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn
+    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: ASR provider name (e.g., "deepgram")
+        model:
+          type: string
+          description: Model identifier (e.g., "nova-2")
+        description:
+          type: string
+          description: Human-readable description of the capability
+      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems
+    AgentsPostRequestBodyContentApplicationJsonSchemaTurn:
+      type: object
+      properties:
+        turn_timeout:
+          type: integer
+          default: 7
+        silence_end_call_timeout:
+          type: integer
+          default: -1
+        mode:
+          $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode'
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurn
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from https://app.resemble.ai/account/api
