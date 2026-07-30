@@ -7,7 +7,20 @@ description: >-
   https://api.resemble.ai exposes synchronous synthesis, HTTP streaming, WebSocket streaming, voice
   creation/cloning/design, speech-to-speech conversion, speech-to-text, audio editing, deepfake detection/watermarking,
   and AI agents with knowledge bases. Public OpenAPI 3.1 published.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/resemble-ai.png
 tags:
   - AI
   - Voice
@@ -20,32 +33,439 @@ created: '2026-05-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: resemble-ai:platform
-    name: Resemble AI Platform API
-    description: >-
-      REST API for TTS (synchronous, HTTP streaming, WebSocket streaming), voice creation, cloning, design,
-      speech-to-speech, speech-to-text, audio editing, deepfake detection, and AI agents. Base URL
-      https://api.resemble.ai. OpenAPI at https://docs.resemble.ai/openapi.yaml.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.resemble.ai/
-    baseURL: https://api.resemble.ai
-    tags:
-      - TTS
-      - Voice Cloning
-      - Speech-to-Speech
-      - Speech-to-Text
-      - Streaming
-      - Detection
-      - Voice Agents
-    properties:
-      - type: Documentation
-        url: https://docs.resemble.ai/
-      - type: OpenAPI
-        url: openapi/resemble-ai-openapi.yml
-      - type: Signup
-        url: https://app.resemble.ai/
-      - type: Pricing
-        url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-account-api
+  name: Resemble AI subpackage_account API
+  description: The subpackage_account API from Resemble AI — 4 operation(s) for subpackage_account.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_account
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-agentknowledgebase-api
+  name: Resemble AI subpackage_agentKnowledgeBase API
+  description: >-
+    The subpackage_agentKnowledgeBase API from Resemble AI — 5 operation(s) for subpackage_agentknowledgebase.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_agentKnowledgeBase
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-agentknowledgebase-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-agentphonenumbers-api
+  name: Resemble AI subpackage_agentPhoneNumbers API
+  description: >-
+    The subpackage_agentPhoneNumbers API from Resemble AI — 3 operation(s) for subpackage_agentphonenumbers.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_agentPhoneNumbers
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-agentphonenumbers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-agents-api
+  name: Resemble AI subpackage_agents API
+  description: The subpackage_agents API from Resemble AI — 5 operation(s) for subpackage_agents.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_agents
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-agents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-agenttools-api
+  name: Resemble AI subpackage_agentTools API
+  description: >-
+    The subpackage_agentTools API from Resemble AI — 2 operation(s) for subpackage_agenttools.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_agentTools
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-agenttools-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-agentwebhooks-api
+  name: Resemble AI subpackage_agentWebhooks API
+  description: >-
+    The subpackage_agentWebhooks API from Resemble AI — 2 operation(s) for subpackage_agentwebhooks.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_agentWebhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-agentwebhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-audioedit-api
+  name: Resemble AI subpackage_audioEdit API
+  description: The subpackage_audioEdit API from Resemble AI — 2 operation(s) for subpackage_audioedit.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_audioEdit
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-audioedit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-audioenhancement-api
+  name: Resemble AI subpackage_audioEnhancement API
+  description: >-
+    The subpackage_audioEnhancement API from Resemble AI — 2 operation(s) for subpackage_audioenhancement.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_audioEnhancement
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-audioenhancement-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-audiosourcetracing-api
+  name: Resemble AI subpackage_audioSourceTracing API
+  description: >-
+    The subpackage_audioSourceTracing API from Resemble AI — 2 operation(s) for subpackage_audiosourcetracing.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_audioSourceTracing
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-audiosourcetracing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-clips-api
+  name: Resemble AI subpackage_clips API
+  description: The subpackage_clips API from Resemble AI — 2 operation(s) for subpackage_clips.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_clips
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-clips-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-custompronunciations-api
+  name: Resemble AI subpackage_customPronunciations API
+  description: >-
+    The subpackage_customPronunciations API from Resemble AI — 3 operation(s) for subpackage_custompronunciations.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_customPronunciations
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-custompronunciations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-deepfakedetection-api
+  name: Resemble AI subpackage_deepfakeDetection API
+  description: >-
+    The subpackage_deepfakeDetection API from Resemble AI — 4 operation(s) for subpackage_deepfakedetection.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_deepfakeDetection
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-deepfakedetection-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-detectintelligence-api
+  name: Resemble AI subpackage_detectIntelligence API
+  description: >-
+    The subpackage_detectIntelligence API from Resemble AI — 2 operation(s) for subpackage_detectintelligence.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_detectIntelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-detectintelligence-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-duets-api
+  name: Resemble AI subpackage_duets API
+  description: The subpackage_duets API from Resemble AI — 4 operation(s) for subpackage_duets.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_duets
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-duets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-identity-api
+  name: Resemble AI subpackage_identity API
+  description: The subpackage_identity API from Resemble AI — 2 operation(s) for subpackage_identity.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_identity
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-identity-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-intelligence-api
+  name: Resemble AI subpackage_intelligence API
+  description: >-
+    The subpackage_intelligence API from Resemble AI — 3 operation(s) for subpackage_intelligence.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_intelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-intelligence-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-projects-api
+  name: Resemble AI subpackage_projects API
+  description: The subpackage_projects API from Resemble AI — 2 operation(s) for subpackage_projects.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_projects
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-recordings-api
+  name: Resemble AI subpackage_recordings API
+  description: >-
+    The subpackage_recordings API from Resemble AI — 2 operation(s) for subpackage_recordings.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-secureuploads-api
+  name: Resemble AI subpackage_secureUploads API
+  description: >-
+    The subpackage_secureUploads API from Resemble AI — 1 operation(s) for subpackage_secureuploads.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_secureUploads
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-secureuploads-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-speechtotext-api
+  name: Resemble AI subpackage_speechToText API
+  description: >-
+    The subpackage_speechToText API from Resemble AI — 5 operation(s) for subpackage_speechtotext.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_speechToText
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-speechtotext-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-termsubstitutions-api
+  name: Resemble AI subpackage_termSubstitutions API
+  description: >-
+    The subpackage_termSubstitutions API from Resemble AI — 2 operation(s) for subpackage_termsubstitutions.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_termSubstitutions
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-termsubstitutions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-texttospeech-api
+  name: Resemble AI subpackage_textToSpeech API
+  description: >-
+    The subpackage_textToSpeech API from Resemble AI — 2 operation(s) for subpackage_texttospeech.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_textToSpeech
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-texttospeech-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-voicedesign-api
+  name: Resemble AI subpackage_voiceDesign API
+  description: >-
+    The subpackage_voiceDesign API from Resemble AI — 2 operation(s) for subpackage_voicedesign.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_voiceDesign
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-voicedesign-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-voices-api
+  name: Resemble AI subpackage_voices API
+  description: The subpackage_voices API from Resemble AI — 3 operation(s) for subpackage_voices.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_voices
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-voices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-voicesettingspresets-api
+  name: Resemble AI subpackage_voiceSettingsPresets API
+  description: >-
+    The subpackage_voiceSettingsPresets API from Resemble AI — 2 operation(s) for subpackage_voicesettingspresets.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_voiceSettingsPresets
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-voicesettingspresets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
+- aid: resemble-ai:resemble-ai-subpackage-watermark-api
+  name: Resemble AI subpackage_watermark API
+  description: The subpackage_watermark API from Resemble AI — 4 operation(s) for subpackage_watermark.
+  humanURL: https://docs.resemble.ai/
+  baseURL: https://api.resemble.ai
+  tags:
+  - subpackage_watermark
+  properties:
+  - type: OpenAPI
+    url: openapi/resemble-ai-subpackage-watermark-api-openapi.yml
+  - type: Documentation
+    url: https://docs.resemble.ai/
+  - type: Signup
+    url: https://app.resemble.ai/
+  - type: Pricing
+    url: https://www.resemble.ai/pricing/
 common:
   - type: AgenticAccess
     url: agentic-access/resemble-ai-agentic-access.yml
