@@ -484,7 +484,7 @@ common:
   - type: Documentation
     url: https://docs.resemble.ai/
   - type: OpenAPI
-    url: openapi/resemble-ai-openapi.yml
+    url: openapi/_original/resemble-ai-openapi.yml
   - type: Plans
     url: plans/resemble-ai-plans-pricing.yml
   - type: RateLimits
