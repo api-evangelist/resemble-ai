@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_clips API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_clips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List clips in a project"
+        },
+        {
+          "info": {
+            "name": "Get clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get clip details"
+        },
+        {
+          "info": {
+            "name": "Update clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a clip"
+        },
+        {
+          "info": {
+            "name": "Delete clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/projects/:project_uuid/clips/:clip_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a clip"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

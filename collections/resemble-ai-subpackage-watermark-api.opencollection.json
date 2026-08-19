@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_watermark API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_watermark",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apply watermark",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/watermark/apply",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply a watermark to an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing."
+        },
+        {
+          "info": {
+            "name": "Get watermark apply result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/watermark/apply/:uuid/result",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the result of a watermark apply job."
+        },
+        {
+          "info": {
+            "name": "Detect watermark",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/watermark/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detect a watermark in an audio, image, or video file. The media type is automatically detected from the file content. Use the `Prefer: wait` header for synchronous processing."
+        },
+        {
+          "info": {
+            "name": "Get watermark detection result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/watermark/detect/:uuid/result",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the result of a watermark detection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

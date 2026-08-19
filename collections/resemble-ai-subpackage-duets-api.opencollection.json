@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_duets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_duets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List duet voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/duet_voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns default and custom duet voices"
+        },
+        {
+          "info": {
+            "name": "Create custom duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet_voices",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "style_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a custom voice for duet generation"
+        },
+        {
+          "info": {
+            "name": "Update duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://f.cluster.resemble.ai/duet_voices/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom duet voice (default voices cannot be modified)"
+        },
+        {
+          "info": {
+            "name": "Delete duet voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/duet_voices/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom duet voice (default voices cannot be deleted)"
+        },
+        {
+          "info": {
+            "name": "List duet voice pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/duet_voice_pairs",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all voice pairs for duet generation"
+        },
+        {
+          "info": {
+            "name": "Create duet voice pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet_voice_pairs",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a voice pair for duet generation"
+        },
+        {
+          "info": {
+            "name": "Generate duet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/duet",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate conversational audio with two speakers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

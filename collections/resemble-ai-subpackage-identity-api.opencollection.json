@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_identity API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/identity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all speaker identities"
+        },
+        {
+          "info": {
+            "name": "Create identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/identity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new speaker identity"
+        },
+        {
+          "info": {
+            "name": "Search identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/identity/search",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for matching speaker identities"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_intelligence API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run intelligence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/intelligence",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Analyze audio, image, or video for comprehensive insights. Optionally reference an existing detect to associate."
+        },
+        {
+          "info": {
+            "name": "List intelligences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/intelligences",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all intelligence reports for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Get intelligence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/intelligences/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the intelligence report"
+              }
+            ]
+          },
+          "docs": "Retrieve a single intelligence report by its UUID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

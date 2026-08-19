@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_deepfakeDetection API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_deepfakeDetection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all detects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all detect objects for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Create deepfake detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detect",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "callback_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "visualize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_length",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "max_video_secs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_types",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "intelligence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_source_tracing",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_reverse_search",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_ood_detector",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zero_retention_mode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Analyze audio, image, and video for deepfake detection.\n\nSupply media via one of three intake methods:\n\n- **Direct file upload** — `multipart/form-data` with the file attached as `file`. Files must be 150 MB or smaller and use one of the supported audio/video/image extensions. For larger files, use the secure upload flow.\n- **Public URL** — `application/json` with a `url` field. The API fetches the URL itself.\n- **Secure upload token** — `application/json` with a `media_token` field obtained fro"
+        },
+        {
+          "info": {
+            "name": "Get deepfake detection result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the detect object"
+              }
+            ]
+          },
+          "docs": "Get deepfake detection result by UUID"
+        },
+        {
+          "info": {
+            "name": "Create a batch deepfake detection job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detect/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files[]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "callback_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "intelligence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "search_identity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "visualize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_source_tracing_enabled",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_length",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_region",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "max_video_secs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_llm",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zero_retention_mode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit up to 50 files in a single request and process them as a single logical\ngroup. Returns HTTP 202 with a batch UUID; each file is analyzed in the\nbackground and individual results are available via `GET /detect/{uuid}` for\neach entry in `detect_uuids`.\n\nTwo intake methods:\n\n- **Multiple media files** — repeated `files[]` form fields.\n- **Single zip archive** — a single `file` form field whose value is a `.zip`\n  containing the media files. Non-media entries are skipped.\n\nProvide one of `fil"
+        },
+        {
+          "info": {
+            "name": "Get batch status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detect/batch/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Batch UUID returned by `POST /detect/batch`."
+              }
+            ]
+          },
+          "docs": "Retrieve the latest aggregate status for a batch. The response shape mirrors\nthe create response — `status`, `completed_count`, and `failed_count` update\nas child detects progress. Use the `detect_uuids` array to fetch per-file\nresults via `GET /detect/{uuid}`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

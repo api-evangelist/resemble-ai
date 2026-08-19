@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "22e70e00-17db-410d-b177-3cace0ca7237",
+      "name": "subpackage_audioEdit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b2ce6ff-a626-4323-b7d1-f884fa1cbd9a",
+          "name": "List audio edits",
+          "request": {
+            "name": "List audio edits",
+            "description": {
+              "content": "Retrieve paginated list of audio edits",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "282143a3-d3e2-41fa-8685-0d928d798997",
+              "name": "List of audio edits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"page\": 5168,\n  \"num_pages\": 2554,\n  \"page_size\": 105\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4bd1d28-b78a-4d78-8f90-4da0d1e5ce50",
+          "name": "Create audio edit",
+          "request": {
+            "name": "Create audio edit",
+            "description": {
+              "content": "Edit audio segments using voice synthesis",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "input_audio",
+                  "type": "file",
+                  "description": "(Required) WAV, MP3, M4A, or WMA file (< 20 seconds)"
+                },
+                {
+                  "key": "original_transcript",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Accurate transcript of the uploaded audio"
+                },
+                {
+                  "key": "target_transcript",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Desired replacement text"
+                },
+                {
+                  "key": "voice_uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Voice used to render the edited segment"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5d5b1d9-7106-41fe-a929-b2967d558b8b",
+              "name": "Edit job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) WAV, MP3, M4A, or WMA file (< 20 seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Accurate transcript of the uploaded audio",
+                        "type": "text/plain"
+                      },
+                      "key": "original_transcript",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Desired replacement text",
+                        "type": "text/plain"
+                      },
+                      "key": "target_transcript",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Voice used to render the edited segment",
+                        "type": "text/plain"
+                      },
+                      "key": "voice_uuid",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"voice_uuid\": \"string\",\n    \"original_transcript\": \"string\",\n    \"target_transcript\": \"string\",\n    \"input_audio_url\": \"https://HKavMTEBalGuoKNaMccXdhXfRvPjh.onpdWDrR,pdrh1lfAuN3CYFFMTU-UOzsyElAZpGFXedPNgaQ\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3aafab4-de79-4c7f-9029-28f97fb0a64b",
+          "name": "Get audio edit",
+          "request": {
+            "name": "Get audio edit",
+            "description": {
+              "content": "Get status and result of an audio edit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                ":audio_edit_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audio_edit_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3e520d1-5d40-43aa-88e1-e0911094702b",
+              "name": "Audio edit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    ":audio_edit_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audio_edit_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"voice_uuid\": \"string\",\n    \"original_transcript\": \"string\",\n    \"target_transcript\": \"string\",\n    \"input_audio_url\": \"https://ERameAKGFUKizMdNUalYcoYtgKR.mbatfO1GxwelVd,8.,QoUhF8ijVKhfx1HFMWc2PBt,jZRZopCNYfCUAXxn+2DcLE1TwBiP\",\n    \"result_audio_url\": \"https://aRSknhWvcyzToDwiNmC.doeoWgKgP,AkkgX0i0wn.C\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ef8d88b-ce97-4c57-94c3-7120ff55206e",
+    "name": "API Reference subpackage_account subpackage_audioEdit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

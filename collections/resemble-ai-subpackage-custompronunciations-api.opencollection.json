@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_customPronunciations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_customPronunciations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List custom pronunciations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/pronunciations",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language (e.g., en-us)"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter by domain (e.g., medical)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by processing status"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Filter by active state"
+              }
+            ]
+          },
+          "docs": "Retrieve all custom pronunciations for your team, with optional filters."
+        },
+        {
+          "info": {
+            "name": "Create custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/pronunciations",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "word",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a single pronunciation with a reference audio file."
+        },
+        {
+          "info": {
+            "name": "Bulk create pronunciations from ZIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/pronunciations/bulk",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "zip",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload multiple pronunciations at once. Each audio file in the ZIP becomes a pronunciation — the filename (without extension) is used as the word."
+        },
+        {
+          "info": {
+            "name": "Get custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single custom pronunciation by UUID"
+        },
+        {
+          "info": {
+            "name": "Toggle pronunciation active status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable a pronunciation without deleting it. Inactive pronunciations are not used during synthesis."
+        },
+        {
+          "info": {
+            "name": "Delete custom pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/pronunciations/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently remove a custom pronunciation. Takes effect immediately."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

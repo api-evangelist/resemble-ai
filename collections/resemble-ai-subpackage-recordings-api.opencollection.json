@@ -1,0 +1,202 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_recordings API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all recordings for a voice"
+        },
+        {
+          "info": {
+            "name": "Create recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "is_active",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fill",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a new recording for voice training"
+        },
+        {
+          "info": {
+            "name": "Get recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get recording details"
+        },
+        {
+          "info": {
+            "name": "Update recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a recording"
+        },
+        {
+          "info": {
+            "name": "Delete recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/voices/:voice_uuid/recordings/:recording_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a recording"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

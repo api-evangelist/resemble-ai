@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_audioSourceTracing API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_audioSourceTracing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio source tracings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_source_tracings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (must be >= 1)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (10-1000)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all source tracing reports for the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Get audio source tracing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_source_tracings/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the source tracing report"
+              }
+            ]
+          },
+          "docs": "Retrieve a single source tracing report by its UUID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_voiceSettingsPresets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_voiceSettingsPresets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voice settings presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all voice settings presets"
+        },
+        {
+          "info": {
+            "name": "Create voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new voice settings preset (max 5 per user)"
+        },
+        {
+          "info": {
+            "name": "Get voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get preset details"
+        },
+        {
+          "info": {
+            "name": "Update voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a preset"
+        },
+        {
+          "info": {
+            "name": "Delete voice settings preset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/voice_settings_presets/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a preset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

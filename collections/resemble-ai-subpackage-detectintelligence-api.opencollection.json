@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_detectIntelligence API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_detectIntelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ask a question about a detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/detects/:uuid/intelligence",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the completed detection report"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a natural-language question about a completed detection report. Returns 202 Accepted while the answer is generated in the background."
+        },
+        {
+          "info": {
+            "name": "Get answer to a detection question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/detects/:uuid/intelligence/:question_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the detection report"
+              },
+              {
+                "name": "question_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the question"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and answer for a previously submitted question. Poll until status is completed or failed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

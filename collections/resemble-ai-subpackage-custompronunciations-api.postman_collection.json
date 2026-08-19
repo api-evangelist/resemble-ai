@@ -1,0 +1,789 @@
+{
+  "item": [
+    {
+      "id": "21abf987-d9a2-44e7-8684-04cac865ac21",
+      "name": "subpackage_customPronunciations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "944758fe-2a3e-419e-bf88-c2b4928bb0fe",
+          "name": "List custom pronunciations",
+          "request": {
+            "name": "List custom pronunciations",
+            "description": {
+              "content": "Retrieve all custom pronunciations for your team, with optional filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Filter by language (e.g., en-us)"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Filter by domain (e.g., medical)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by processing status"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>",
+                  "description": "Filter by active state"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84cd4a00-2820-4eb5-bda2-0fee55af1f12",
+              "name": "List of custom pronunciations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "pending"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"items\": [\n    {\n      \"uuid\": \"25956005-f058-4619-7106-46301ad4e96e\",\n      \"word\": \"string\",\n      \"status\": \"pending\",\n      \"active\": true,\n      \"audio_url\": \"https://wBAVNsbHXNuUPA.edbnFiZdBmBW0tQm8IXhNlgXKaD7NwWuGM1umhUYyoB\",\n      \"created_at\": \"2008-04-18T17:57:57.764Z\",\n      \"updated_at\": \"1958-07-17T21:32:30.989Z\"\n    },\n    {\n      \"uuid\": \"f7127151-8077-9ccd-035f-0c452379d1bb\",\n      \"word\": \"string\",\n      \"status\": \"pending\",\n      \"active\": false,\n      \"audio_url\": \"http://pEitR.nisQnW3oBd3zYz3w\",\n      \"created_at\": \"2025-02-24T04:19:16.339Z\",\n      \"updated_at\": \"1976-04-20T17:09:23.048Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ed68cde-2a86-4843-be5d-c9ec9fc4a61a",
+          "name": "Create custom pronunciation",
+          "request": {
+            "name": "Create custom pronunciation",
+            "description": {
+              "content": "Upload a single pronunciation with a reference audio file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "word",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The word or phrase (2-100 characters). Letters, accented characters, apostrophes, hyphens, and spaces only."
+                },
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "description": "(Required) Reference audio file (wav, flac, mp3, m4a, ogg, webm, aac). Duration 200ms-10s. Max 10MB."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cdf460ba-978b-4510-a8fa-caa14d09a0a0",
+              "name": "Pronunciation created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The word or phrase (2-100 characters). Letters, accented characters, apostrophes, hyphens, and spaces only.",
+                        "type": "text/plain"
+                      },
+                      "key": "word",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Reference audio file (wav, flac, mp3, m4a, ogg, webm, aac). Duration 200ms-10s. Max 10MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"7f95d848-558f-8b93-df8d-4fdeb5f13d00\",\n    \"word\": \"string\",\n    \"status\": \"failed\",\n    \"active\": true,\n    \"audio_url\": \"https://NYTPaETxJReA.nxuzJHlg\",\n    \"created_at\": \"1995-05-16T21:45:51.003Z\",\n    \"updated_at\": \"2026-08-09T10:13:26.040Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e316c41-ddf9-494a-b108-0ed45dae9be5",
+              "name": "Validation error (e.g., duplicate word)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The word or phrase (2-100 characters). Letters, accented characters, apostrophes, hyphens, and spaces only.",
+                        "type": "text/plain"
+                      },
+                      "key": "word",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Reference audio file (wav, flac, mp3, m4a, ogg, webm, aac). Duration 200ms-10s. Max 10MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd208605-44c4-4c6c-b9b3-89146c2254dc",
+          "name": "Bulk create pronunciations from ZIP",
+          "request": {
+            "name": "Bulk create pronunciations from ZIP",
+            "description": {
+              "content": "Upload multiple pronunciations at once. Each audio file in the ZIP becomes a pronunciation — the filename (without extension) is used as the word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "zip",
+                  "type": "file",
+                  "description": "(Required) ZIP file containing audio files. Max 50 files, max 100MB total."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "51a4b9e2-d4d8-4d07-86b4-1682c2aa4db2",
+              "name": "Bulk creation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ZIP file containing audio files. Max 50 files, max 100MB total.",
+                        "type": "text/plain"
+                      },
+                      "key": "zip",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"total_created\": 5043,\n  \"total_errors\": 3989,\n  \"items\": [\n    {\n      \"uuid\": \"eb44fe29-3a26-f3dd-9145-702c27310259\",\n      \"word\": \"string\",\n      \"status\": \"ready\",\n      \"active\": true,\n      \"audio_url\": \"https://KrJsMToFAAMxLZIJZMUfBOzihpqe.pdcueetCXZdE+GP,H+sTfmjayzdDqDhzOa\",\n      \"created_at\": \"1998-08-17T15:34:52.598Z\",\n      \"updated_at\": \"1993-03-11T17:09:29.036Z\"\n    },\n    {\n      \"uuid\": \"3c9f573d-9f3a-8b2a-233a-c57f5981adb3\",\n      \"word\": \"string\",\n      \"status\": \"ready\",\n      \"active\": false,\n      \"audio_url\": \"https://rgmezt.gtxFxQJIKBKCa5CYr0Sf,KDsf6la8xq2ET9dqe4bsvsr7BxY4HamI\",\n      \"created_at\": \"2017-02-16T01:30:33.576Z\",\n      \"updated_at\": \"1955-04-08T08:21:14.376Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "463d9f5a-2cd0-4af6-9056-5d62df85841b",
+          "name": "Get custom pronunciation",
+          "request": {
+            "name": "Get custom pronunciation",
+            "description": {
+              "content": "Retrieve a single custom pronunciation by UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa5c33ce-5896-4a36-b945-2589299860f5",
+              "name": "Pronunciation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"item\": {\n    \"uuid\": \"fd077fca-57e4-c2c7-bebc-34766c4feecc\",\n    \"word\": \"string\",\n    \"status\": \"pending\",\n    \"active\": true,\n    \"audio_url\": \"https://gkqcuT.rqBweHQ.F3t4TC+43KNpgVHkPOCi92hKipCfgKXrmV-llj7ybM6,TnWWUqaYoj9x-J2lvOkNnQH5pFu67SSmp7sxLMO5a0\",\n    \"created_at\": \"1983-12-29T21:30:07.807Z\",\n    \"updated_at\": \"1988-02-18T04:56:52.346Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff0f2815-9f89-43aa-a41f-41bc65b7322a",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73e1a7fd-8cce-495a-a8b0-d360d71b4714",
+          "name": "Delete custom pronunciation",
+          "request": {
+            "name": "Delete custom pronunciation",
+            "description": {
+              "content": "Permanently remove a custom pronunciation. Takes effect immediately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1c13567-f562-42ed-bbfc-33de5affdf4b",
+              "name": "Pronunciation deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51a19ad1-19c3-448a-86e6-efbbba3eb888",
+          "name": "Toggle pronunciation active status",
+          "request": {
+            "name": "Toggle pronunciation active status",
+            "description": {
+              "content": "Enable or disable a pronunciation without deleting it. Inactive pronunciations are not used during synthesis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pronunciations",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c43c3750-0b4e-4b6e-a7fb-908df5731ca6",
+              "name": "Pronunciation updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pronunciations",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"item\": {\n    \"uuid\": \"58f67cc7-c48b-bf15-3333-ab770ead8fe7\",\n    \"word\": \"string\",\n    \"status\": \"failed\",\n    \"active\": true,\n    \"audio_url\": \"https://iZBfNvZpIqE.egboB0oPT2GKNAWud2411-+Jk1OmheY4-CSL1z8hUJ0-M\",\n    \"created_at\": \"2017-07-03T20:26:28.125Z\",\n    \"updated_at\": \"1953-08-16T19:21:58.543Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a68588c1-7c6a-4d9b-af36-af76872bfd20",
+    "name": "API Reference subpackage_account subpackage_customPronunciations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

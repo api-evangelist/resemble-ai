@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_audioEnhancement API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_audioEnhancement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio enhancements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (starting from 1)."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Items per page (10 to 1000). Default 10."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all audio enhancements for your team, ordered by most recent first."
+        },
+        {
+          "info": {
+            "name": "Create audio enhancement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "audio_file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhancement_engine",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "remove_noise",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "normalize",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "studio_sound",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhancement_level",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "loudness_target_level",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "loudness_peak_limit",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit an audio file for enhancement. Processing happens asynchronously in the background.\nThe API defaults to the v2 enhancement engine. The v1 engine is legacy and will be sunset in a future release.\n"
+        },
+        {
+          "info": {
+            "name": "Get audio enhancement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/audio_enhancements/:enhancement_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enhancement_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID returned from the create endpoint."
+              }
+            ]
+          },
+          "docs": "Poll this endpoint to check the status of an enhancement job and retrieve the download URL when complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

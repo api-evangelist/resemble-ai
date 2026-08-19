@@ -1,0 +1,371 @@
+{
+  "item": [
+    {
+      "id": "154d2b16-9236-4abc-94d3-2fc77cb89c83",
+      "name": "subpackage_intelligence",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "affd4b4f-b6ff-43fc-b9ad-7a2d546063ec",
+          "name": "Run intelligence",
+          "request": {
+            "name": "Run intelligence",
+            "description": {
+              "content": "Analyze audio, image, or video for comprehensive insights. Optionally reference an existing detect to associate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "intelligence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"media_token\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"detect_id\": \"<uuid>\",\n  \"media_type\": \"<string>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f83c111c-6658-4316-a05f-720be72c7982",
+              "name": "Intelligence analysis",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "intelligence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"media_token\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"detect_id\": \"<uuid>\",\n  \"media_type\": \"video\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"created_at\": \"2012-07-20T03:52:05.045Z\",\n    \"detect_uuid\": \"string\",\n    \"media_type\": \"image\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adf62060-8a63-4be0-a238-eadee3390bc8",
+          "name": "List intelligences",
+          "request": {
+            "name": "List intelligences",
+            "description": {
+              "content": "Retrieve a paginated list of all intelligence reports for the authenticated user's team",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "intelligences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number (must be >= 1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Number of items per page (10-1000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d896434-5ad4-43b8-a6ce-265ff4898e74",
+              "name": "List of intelligence reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "intelligences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"page\": 2174,\n  \"num_pages\": 3491,\n  \"page_size\": 9360,\n  \"total_count\": 9109,\n  \"items\": [\n    {\n      \"uuid\": \"string\",\n      \"description\": {\n        \"speaker_info\": \"string\",\n        \"language\": \"string\",\n        \"dialect\": \"string\",\n        \"emotion\": \"string\",\n        \"speaking_style\": \"string\",\n        \"context\": \"string\",\n        \"message\": \"string\",\n        \"abnormalities\": \"string\",\n        \"transcription\": \"string\",\n        \"translation\": \"string\",\n        \"misinformation\": \"string\",\n        \"fraud\": {\n          \"type\": \"none\",\n          \"confidence\": 2352.219617186285,\n          \"reasoning\": \"string\"\n        },\n        \"liveness\": {\n          \"assessment\": \"inconclusive\",\n          \"confidence\": 7185.606108414417,\n          \"indicators\": \"string\"\n        },\n        \"digitally_altered\": {\n          \"detected\": true,\n          \"confidence\": 394.9520814980423,\n          \"alterations\": \"string\"\n        }\n      },\n      \"created_at\": \"2002-01-22T15:31:42.338Z\",\n      \"detect_uuid\": \"string\",\n      \"media_type\": \"image\"\n    },\n    {\n      \"uuid\": \"string\",\n      \"description\": {\n        \"speaker_info\": \"string\",\n        \"language\": \"string\",\n        \"dialect\": \"string\",\n        \"emotion\": \"string\",\n        \"speaking_style\": \"string\",\n        \"context\": \"string\",\n        \"message\": \"string\",\n        \"abnormalities\": \"string\",\n        \"transcription\": \"string\",\n        \"translation\": \"string\",\n        \"misinformation\": \"string\",\n        \"fraud\": {\n          \"type\": \"romance_scam\",\n          \"confidence\": 5110.814931806435,\n          \"reasoning\": \"string\"\n        },\n        \"liveness\": {\n          \"assessment\": \"not_real_person\",\n          \"confidence\": 9434.168746933032,\n          \"indicators\": \"string\"\n        },\n        \"digitally_altered\": {\n          \"detected\": true,\n          \"confidence\": 4543.043290544098,\n          \"alterations\": \"string\"\n        }\n      },\n      \"created_at\": \"1993-09-26T20:27:36.134Z\",\n      \"detect_uuid\": \"string\",\n      \"media_type\": \"audio\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bca6adc-d7f3-4cd7-bb96-e2f4c5a9e861",
+          "name": "Get intelligence",
+          "request": {
+            "name": "Get intelligence",
+            "description": {
+              "content": "Retrieve a single intelligence report by its UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "intelligences",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the intelligence report"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8d6272b-de26-484a-a6bc-ac865ab5df69",
+              "name": "Intelligence report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "intelligences",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the intelligence report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"description\": {\n      \"speaker_info\": \"string\",\n      \"language\": \"string\",\n      \"dialect\": \"string\",\n      \"emotion\": \"string\",\n      \"speaking_style\": \"string\",\n      \"context\": \"string\",\n      \"message\": \"string\",\n      \"abnormalities\": \"string\",\n      \"transcription\": \"string\",\n      \"translation\": \"string\",\n      \"misinformation\": \"string\",\n      \"fraud\": {\n        \"type\": \"insurance_fraud\",\n        \"confidence\": 8119.094644894964,\n        \"reasoning\": \"string\"\n      },\n      \"liveness\": {\n        \"assessment\": \"inconclusive\",\n        \"confidence\": 6907.994513990827,\n        \"indicators\": \"string\"\n      },\n      \"digitally_altered\": {\n        \"detected\": true,\n        \"confidence\": 3295.811030757424,\n        \"alterations\": \"string\"\n      }\n    },\n    \"created_at\": \"2002-12-06T10:55:55.217Z\",\n    \"detect_uuid\": \"string\",\n    \"media_type\": \"image\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96e5195f-7f29-4f8c-a99f-130807d70c0c",
+              "name": "Intelligence not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "intelligences",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the intelligence report"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bffb8258-c9c2-434a-b9f1-a5a385b38da5",
+    "name": "API Reference subpackage_account subpackage_intelligence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_audioEdit API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_audioEdit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio edits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/edit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve paginated list of audio edits"
+        },
+        {
+          "info": {
+            "name": "Create audio edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/edit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "input_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "original_transcript",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "target_transcript",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_uuid",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Edit audio segments using voice synthesis"
+        },
+        {
+          "info": {
+            "name": "Get audio edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/edit/:audio_edit_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "audio_edit_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get status and result of an audio edit"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,863 @@
+{
+  "item": [
+    {
+      "id": "55b2b557-021e-43c9-860d-fbfecef04993",
+      "name": "subpackage_agents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "701eef59-32cb-45aa-aea8-df5b8c3c73ef",
+          "name": "List agents",
+          "request": {
+            "name": "List agents",
+            "description": {
+              "content": "Retrieve all agents for the authenticated team",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "phone_number",
+                  "value": "<string>",
+                  "description": "Filter by associated phone number"
+                },
+                {
+                  "disabled": false,
+                  "key": "advanced",
+                  "value": "false",
+                  "description": "Include detailed configuration"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37367675-8df6-4a78-b5dc-07e2425169eb",
+              "name": "List of agents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "advanced",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"count\": 6771\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7dd0e5a-244c-4985-a1a9-0386bd2dcc05",
+          "name": "Create agent",
+          "request": {
+            "name": "Create agent",
+            "description": {
+              "content": "Create a new voice agent",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"voice_uuid\": \"<string>\",\n  \"phone_number_id\": \"<integer>\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamic_variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"asr\": {\n    \"model\": \"<string>\",\n    \"provider\": \"deepgram\",\n    \"user_input_audio_format\": \"pcm_16000\",\n    \"keywords\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"turn\": {\n    \"turn_timeout\": 7,\n    \"silence_end_call_timeout\": -1,\n    \"mode\": \"silence\"\n  },\n  \"llm\": {\n    \"prompt\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"model\": \"<string>\",\n    \"reasoning_effort\": \"<string,null>\",\n    \"temperature\": \"<double>\",\n    \"timezone\": \"<string,null>\",\n    \"built_in_tools\": {}\n  },\n  \"search_mode\": \"accuracy\",\n  \"max_chunks_per_query\": 8,\n  \"system_tools\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73b596f2-04ca-4607-ad7d-5793e926ede4",
+              "name": "Agent created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"voice_uuid\": \"<string>\",\n  \"phone_number_id\": \"<integer>\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamic_variables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"asr\": {\n    \"model\": \"string\",\n    \"provider\": \"deepgram\",\n    \"user_input_audio_format\": \"pcm_16000\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"turn\": {\n    \"turn_timeout\": 7,\n    \"silence_end_call_timeout\": -1,\n    \"mode\": \"silence\"\n  },\n  \"llm\": {\n    \"prompt\": \"string\",\n    \"provider\": \"string\",\n    \"model\": \"string\",\n    \"reasoning_effort\": \"string\",\n    \"temperature\": 1311.411900399404,\n    \"timezone\": \"string\",\n    \"built_in_tools\": {}\n  },\n  \"search_mode\": \"accuracy\",\n  \"max_chunks_per_query\": 8,\n  \"system_tools\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "877a91ea-908f-463f-9020-1497df8d0a19",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"voice_uuid\": \"<string>\",\n  \"phone_number_id\": \"<integer>\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamic_variables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"asr\": {\n    \"model\": \"string\",\n    \"provider\": \"deepgram\",\n    \"user_input_audio_format\": \"pcm_16000\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"turn\": {\n    \"turn_timeout\": 7,\n    \"silence_end_call_timeout\": -1,\n    \"mode\": \"silence\"\n  },\n  \"llm\": {\n    \"prompt\": \"string\",\n    \"provider\": \"string\",\n    \"model\": \"string\",\n    \"reasoning_effort\": \"string\",\n    \"temperature\": 1311.411900399404,\n    \"timezone\": \"string\",\n    \"built_in_tools\": {}\n  },\n  \"search_mode\": \"accuracy\",\n  \"max_chunks_per_query\": 8,\n  \"system_tools\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50fad94d-d84a-4281-ad8c-e9a0e38e133f",
+          "name": "Get agent",
+          "request": {
+            "name": "Get agent",
+            "description": {
+              "content": "Retrieve a specific agent's details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "advanced",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7abf74d-260a-4a04-b9fa-2b579a9f6857",
+              "name": "Agent details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "advanced",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf8cf4d7-87c4-4ade-a25b-4f1c9c434fd7",
+          "name": "Delete agent",
+          "request": {
+            "name": "Delete agent",
+            "description": {
+              "content": "Delete an agent and all its configurations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b08e77af-2b87-4147-ae69-07e62a6fa594",
+              "name": "Agent deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "974c3da5-9e31-425d-85b6-7f45fd512644",
+          "name": "Update agent",
+          "request": {
+            "name": "Update agent",
+            "description": {
+              "content": "Update an existing agent's configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"voice_uuid\": \"<string>\",\n  \"phone_number_id\": \"<integer>\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamic_variables\": {},\n  \"asr\": {},\n  \"turn\": {},\n  \"llm\": {},\n  \"search_mode\": \"<string>\",\n  \"max_chunks_per_query\": \"<integer>\",\n  \"system_tools\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e5cba92-c097-4d14-9f93-d1d69f52187e",
+              "name": "Agent updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"voice_uuid\": \"<string>\",\n  \"phone_number_id\": \"<integer>\",\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamic_variables\": {},\n  \"asr\": {},\n  \"turn\": {},\n  \"llm\": {},\n  \"search_mode\": \"accuracy\",\n  \"max_chunks_per_query\": \"<integer>\",\n  \"system_tools\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "182c1b44-eebe-4401-8c02-79502c3c42ac",
+          "name": "Dispatch agent",
+          "request": {
+            "name": "Dispatch agent",
+            "description": {
+              "content": "Make an outbound call with an agent",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                ":uuid",
+                "dispatch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone_number\": \"<string>\",\n  \"dynamic_variables\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fac8cd2d-3862-4b29-9012-081832a69967",
+              "name": "Call dispatched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    ":uuid",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone_number\": \"<string>\",\n  \"dynamic_variables\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"call_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9143d9b5-ae38-48c8-bd62-97af3d501ee6",
+          "name": "Get capabilities",
+          "request": {
+            "name": "Get capabilities",
+            "description": {
+              "content": "List supported ASR and LLM providers and models",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                "capabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2804b58e-6aec-4ac7-9cc4-ed9452a0b557",
+              "name": "Agent capabilities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    "capabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"asr_capabilities\": [\n    {\n      \"provider\": \"string\",\n      \"model\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"provider\": \"string\",\n      \"model\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"llm_capabilities\": [\n    {\n      \"provider\": \"string\",\n      \"model\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"provider\": \"string\",\n      \"model\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddd48516-42db-484a-9a41-0989cbab97a8",
+          "name": "Get system tools",
+          "request": {
+            "name": "Get system tools",
+            "description": {
+              "content": "List available system tools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agents",
+                "system-tools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8e01279-a228-43c3-a191-0835fe8f10a5",
+              "name": "System tools",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agents",
+                    "system-tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b6453ab0-622b-4046-9a86-07859675b4fa",
+    "name": "API Reference subpackage_account subpackage_agents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

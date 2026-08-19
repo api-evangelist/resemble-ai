@@ -1,0 +1,242 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_agentKnowledgeBase API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_agentKnowledgeBase",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List knowledge items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              },
+              {
+                "name": "source_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ]
+          },
+          "docs": "List all knowledge items belonging to the authenticated user's team"
+        },
+        {
+          "info": {
+            "name": "Create knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new knowledge item and queues it for ingestion processing"
+        },
+        {
+          "info": {
+            "name": "Get knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Retrieves a single knowledge item with detailed information including attached agents"
+        },
+        {
+          "info": {
+            "name": "Delete knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Deletes a knowledge item and cleans up associated data"
+        },
+        {
+          "info": {
+            "name": "Re-ingest knowledge item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/knowledge_items/:uuid/reingest",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item"
+              }
+            ]
+          },
+          "docs": "Re-runs the ingestion pipeline for an existing knowledge item"
+        },
+        {
+          "info": {
+            "name": "List agent's knowledge items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              }
+            ]
+          },
+          "docs": "Lists all knowledge items attached to a specific agent"
+        },
+        {
+          "info": {
+            "name": "Attach knowledge item to agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attaches an existing knowledge item to an agent"
+        },
+        {
+          "info": {
+            "name": "Detach knowledge item from agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/knowledge_items/:knowledge_item_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the agent"
+              },
+              {
+                "name": "knowledge_item_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the knowledge item to detach"
+              }
+            ]
+          },
+          "docs": "Removes a knowledge item from an agent"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

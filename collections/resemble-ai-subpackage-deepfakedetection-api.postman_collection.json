@@ -1,0 +1,1478 @@
+{
+  "item": [
+    {
+      "id": "dee7133e-f3a2-430f-86e5-03209b7a068f",
+      "name": "subpackage_deepfakeDetection",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afc2128d-414d-462b-aa82-6bf1e147d950",
+          "name": "List all detects",
+          "request": {
+            "name": "List all detects",
+            "description": {
+              "content": "Retrieve a paginated list of all detect objects for the authenticated user's team",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number (must be >= 1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Number of items per page (10-1000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8357e5cf-0ec4-4ae7-aad9-887640785fc1",
+              "name": "List of detects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"page\": 6952,\n  \"num_pages\": 6009,\n  \"page_size\": 5054,\n  \"total_count\": 8792,\n  \"items\": [\n    {\n      \"uuid\": \"string\",\n      \"media_type\": \"image\",\n      \"status\": \"failed\",\n      \"metrics\": {\n        \"label\": \"string\",\n        \"score\": [\n          \"string\",\n          \"string\"\n        ],\n        \"consistency\": \"string\",\n        \"aggregated_score\": \"string\",\n        \"image\": \"string\"\n      },\n      \"image_metrics\": {\n        \"type\": \"string\",\n        \"label\": \"string\",\n        \"image\": \"string\",\n        \"score\": 5094.8524525956755,\n        \"children\": []\n      },\n      \"video_metrics\": {\n        \"label\": \"string\",\n        \"score\": 1288.1393797527496,\n        \"certainty\": 5097.997285904225,\n        \"children\": [\n          {\n            \"type\": \"string\",\n            \"conclusion\": \"string\",\n            \"score\": 4787.035320102401,\n            \"certainty\": 4591.676086640514,\n            \"certainty (%)\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"string\",\n            \"conclusion\": \"string\",\n            \"score\": 8228.725971849975,\n            \"certainty\": 8361.148958052294,\n            \"certainty (%)\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"treeview\": \"string\"\n      },\n      \"audio_source_tracing\": {\n        \"label\": \"string\",\n        \"error_message\": \"string\"\n      },\n      \"intelligence\": {},\n      \"url\": \"string\",\n      \"audio_url\": \"string\",\n      \"filename\": \"string\",\n      \"duration\": 7704.3408293034745,\n      \"zero_retention_mode\": true,\n      \"file_deleted_at\": \"1970-07-09T16:28:27.062Z\",\n      \"visualize\": true,\n      \"audio_source_tracing_enabled\": false,\n      \"use_ood_detector\": true,\n      \"pipeline\": \"string\",\n      \"extra_params\": {},\n      \"error_message\": \"string\",\n      \"created_at\": \"1980-06-29T14:32:44.126Z\",\n      \"updated_at\": \"1962-12-21T09:11:18.428Z\"\n    },\n    {\n      \"uuid\": \"string\",\n      \"media_type\": \"video\",\n      \"status\": \"failed\",\n      \"metrics\": {\n        \"label\": \"string\",\n        \"score\": [\n          \"string\",\n          \"string\"\n        ],\n        \"consistency\": \"string\",\n        \"aggregated_score\": \"string\",\n        \"image\": \"string\"\n      },\n      \"image_metrics\": {\n        \"type\": \"string\",\n        \"label\": \"string\",\n        \"image\": \"string\",\n        \"score\": 9370.045947099681,\n        \"children\": []\n      },\n      \"video_metrics\": {\n        \"label\": \"string\",\n        \"score\": 785.8313198633792,\n        \"certainty\": 117.30615295889035,\n        \"children\": [\n          {\n            \"type\": \"string\",\n            \"conclusion\": \"string\",\n            \"score\": 8531.235536594824,\n            \"certainty\": 6955.760089231666,\n            \"certainty (%)\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"string\",\n            \"conclusion\": \"string\",\n            \"score\": 1365.775804624435,\n            \"certainty\": 7632.852918563591,\n            \"certainty (%)\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"treeview\": \"string\"\n      },\n      \"audio_source_tracing\": {\n        \"label\": \"string\",\n        \"error_message\": \"string\"\n      },\n      \"intelligence\": {},\n      \"url\": \"string\",\n      \"audio_url\": \"string\",\n      \"filename\": \"string\",\n      \"duration\": 3489.5066049297075,\n      \"zero_retention_mode\": true,\n      \"file_deleted_at\": \"2013-01-19T02:46:52.322Z\",\n      \"visualize\": true,\n      \"audio_source_tracing_enabled\": true,\n      \"use_ood_detector\": true,\n      \"pipeline\": \"string\",\n      \"extra_params\": {},\n      \"error_message\": \"string\",\n      \"created_at\": \"1975-08-26T13:14:08.180Z\",\n      \"updated_at\": \"2014-01-10T12:54:12.080Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a6f7b43-8de8-4bf7-887e-f645018c1b7a",
+          "name": "Create deepfake detection",
+          "request": {
+            "name": "Create deepfake detection",
+            "description": {
+              "content": "Analyze audio, image, and video for deepfake detection.\n\nSupply media via one of three intake methods:\n\n- **Direct file upload** — `multipart/form-data` with the file attached as `file`. Files must be 150 MB or smaller and use one of the supported audio/video/image extensions. For larger files, use the secure upload flow.\n- **Public URL** — `application/json` with a `url` field. The API fetches the URL itself.\n- **Secure upload token** — `application/json` with a `media_token` field obtained from `POST /secure_uploads`.\n\nExactly one of `file`, `url`, or `media_token` must be provided per request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The media file to analyze (audio, video, or image). Must be 150 MB or smaller."
+                },
+                {
+                  "key": "callback_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "POST destination when analysis completes"
+                },
+                {
+                  "key": "visualize",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Generate visualization artifacts"
+                },
+                {
+                  "key": "frame_length",
+                  "value": "2",
+                  "type": "text",
+                  "description": "Window size in seconds (audio/video)"
+                },
+                {
+                  "key": "start_region",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "Start of segment to analyze (seconds)"
+                },
+                {
+                  "key": "end_region",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "End of segment to analyze (seconds)"
+                },
+                {
+                  "key": "max_video_secs",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "Cap processed duration"
+                },
+                {
+                  "key": "model_types",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Use talking_head for face-swaps"
+                },
+                {
+                  "key": "intelligence",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Run multimodal intelligence analysis on the media"
+                },
+                {
+                  "key": "audio_source_tracing",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable audio source tracing to identify synthetic audio origin"
+                },
+                {
+                  "key": "use_reverse_search",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable reverse image search to improve detection accuracy for image files. Only applies to image detections."
+                },
+                {
+                  "key": "use_ood_detector",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable out-of-distribution detection"
+                },
+                {
+                  "key": "zero_retention_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable Zero Retention Mode to automatically delete submitted media after detection completes."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a063b45b-6b5e-4ede-9306-e734a5aec561",
+              "name": "Detection job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The media file to analyze (audio, video, or image). Must be 150 MB or smaller.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "POST destination when analysis completes",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Generate visualization artifacts",
+                        "type": "text/plain"
+                      },
+                      "key": "visualize",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Window size in seconds (audio/video)",
+                        "type": "text/plain"
+                      },
+                      "key": "frame_length",
+                      "value": "2",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Start of segment to analyze (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "start_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "End of segment to analyze (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "end_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Cap processed duration",
+                        "type": "text/plain"
+                      },
+                      "key": "max_video_secs",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use talking_head for face-swaps",
+                        "type": "text/plain"
+                      },
+                      "key": "model_types",
+                      "value": "image",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run multimodal intelligence analysis on the media",
+                        "type": "text/plain"
+                      },
+                      "key": "intelligence",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable audio source tracing to identify synthetic audio origin",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_source_tracing",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable reverse image search to improve detection accuracy for image files. Only applies to image detections.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_reverse_search",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable out-of-distribution detection",
+                        "type": "text/plain"
+                      },
+                      "key": "use_ood_detector",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable Zero Retention Mode to automatically delete submitted media after detection completes.",
+                        "type": "text/plain"
+                      },
+                      "key": "zero_retention_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"status\": \"string\",\n    \"zero_retention_mode\": true,\n    \"file_deleted_at\": \"2009-05-03T19:48:06.320Z\",\n    \"url\": \"string\",\n    \"audio_url\": \"string\",\n    \"filename\": \"string\",\n    \"intelligence\": {\n      \"description\": \"string\",\n      \"created_at\": \"1987-03-10T17:00:49.288Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61a373ac-e6e9-467e-a596-8b729f16a787",
+          "name": "Get deepfake detection result",
+          "request": {
+            "name": "Get deepfake detection result",
+            "description": {
+              "content": "Get deepfake detection result by UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the detect object"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72387548-6f1a-47f0-9f8f-74f883a1bf2a",
+              "name": "Detection result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the detect object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"media_type\": \"audio\",\n    \"status\": \"processing\",\n    \"metrics\": {\n      \"label\": \"string\",\n      \"score\": [\n        \"string\",\n        \"string\"\n      ],\n      \"consistency\": \"string\",\n      \"aggregated_score\": \"string\",\n      \"image\": \"string\"\n    },\n    \"image_metrics\": {\n      \"type\": \"string\",\n      \"label\": \"string\",\n      \"image\": \"string\",\n      \"score\": 9914.094520048438,\n      \"children\": []\n    },\n    \"video_metrics\": {\n      \"label\": \"string\",\n      \"score\": 7972.341998916241,\n      \"certainty\": 9918.277695322211,\n      \"children\": [\n        {\n          \"type\": \"string\",\n          \"conclusion\": \"string\",\n          \"score\": 6611.86664921545,\n          \"certainty\": 8430.63504905378,\n          \"certainty (%)\": \"string\",\n          \"children\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"conclusion\": \"string\",\n          \"score\": 8420.595885625537,\n          \"certainty\": 3560.4071084453435,\n          \"certainty (%)\": \"string\",\n          \"children\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"treeview\": \"string\"\n    },\n    \"audio_source_tracing\": {\n      \"label\": \"string\",\n      \"error_message\": \"string\"\n    },\n    \"intelligence\": {\n      \"uuid\": \"string\",\n      \"description\": \"string\",\n      \"created_at\": \"1961-06-24T17:20:06.470Z\"\n    },\n    \"url\": \"string\",\n    \"audio_url\": \"string\",\n    \"filename\": \"string\",\n    \"duration\": 4545.483761028753,\n    \"zero_retention_mode\": true,\n    \"file_deleted_at\": \"1997-05-21T18:31:03.744Z\",\n    \"created_at\": \"2021-12-19T20:16:48.301Z\",\n    \"updated_at\": \"1950-02-27T05:14:13.873Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e200f1c5-25e2-458f-8eb6-9f255565bef1",
+              "name": "Detect not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the detect object"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a69f65d-f41c-481b-86ef-a94b6c5f7e29",
+          "name": "Create a batch deepfake detection job",
+          "request": {
+            "name": "Create a batch deepfake detection job",
+            "description": {
+              "content": "Submit up to 50 files in a single request and process them as a single logical\ngroup. Returns HTTP 202 with a batch UUID; each file is analyzed in the\nbackground and individual results are available via `GET /detect/{uuid}` for\neach entry in `detect_uuids`.\n\nTwo intake methods:\n\n- **Multiple media files** — repeated `files[]` form fields.\n- **Single zip archive** — a single `file` form field whose value is a `.zip`\n  containing the media files. Non-media entries are skipped.\n\nProvide one of `files[]` or `file=<...>.zip` per request. Synchronous mode\n(`Prefer: wait`) is not supported and returns 400 if sent.\n\nConstraints:\n\n- Maximum 50 files per batch.\n- Maximum 500 MB total upload size across all files.\n- Allowed file types match `POST /detect`'s direct-upload allowlist.\n- All-or-nothing billing: if the team's wallet cannot cover the projected cost\n  for every file, the request is rejected with 402 and no detects are created.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "files[]",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "One or more media files. Repeat the `files[]` field for each file. Mutually exclusive with `file`."
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "A single `.zip` archive containing media files. Mutually exclusive with `files[]`."
+                },
+                {
+                  "key": "callback_url",
+                  "value": "<uri>",
+                  "type": "text",
+                  "description": "POST destination invoked when the batch reaches a terminal state."
+                },
+                {
+                  "key": "intelligence",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Run multimodal intelligence on every file in the batch."
+                },
+                {
+                  "key": "search_identity",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Run identity search against the team's saved identities (audio/video only)."
+                },
+                {
+                  "key": "visualize",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Generate visualization artifacts."
+                },
+                {
+                  "key": "audio_source_tracing_enabled",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable audio source tracing on each audio file."
+                },
+                {
+                  "key": "frame_length",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Window size in seconds (audio/video)."
+                },
+                {
+                  "key": "start_region",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "Start of segment to analyze (seconds)."
+                },
+                {
+                  "key": "end_region",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "End of segment to analyze (seconds)."
+                },
+                {
+                  "key": "max_video_secs",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "Cap processed video duration."
+                },
+                {
+                  "key": "use_llm",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Use LLM-assisted video analysis."
+                },
+                {
+                  "key": "zero_retention_mode",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Enable Zero Retention Mode for every file in the batch."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad3c3dc6-38db-4cd3-aba1-24791ccc48cf",
+              "name": "Batch accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "One or more media files. Repeat the `files[]` field for each file. Mutually exclusive with `file`.",
+                        "type": "text/plain"
+                      },
+                      "key": "files[]",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A single `.zip` archive containing media files. Mutually exclusive with `files[]`.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "POST destination invoked when the batch reaches a terminal state.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run multimodal intelligence on every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "intelligence",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run identity search against the team's saved identities (audio/video only).",
+                        "type": "text/plain"
+                      },
+                      "key": "search_identity",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Generate visualization artifacts.",
+                        "type": "text/plain"
+                      },
+                      "key": "visualize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable audio source tracing on each audio file.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_source_tracing_enabled",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Window size in seconds (audio/video).",
+                        "type": "text/plain"
+                      },
+                      "key": "frame_length",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Start of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "start_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "End of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "end_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Cap processed video duration.",
+                        "type": "text/plain"
+                      },
+                      "key": "max_video_secs",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use LLM-assisted video analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_llm",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable Zero Retention Mode for every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "zero_retention_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"status\": \"failed\",\n    \"total_files\": 8010,\n    \"completed_count\": 9741,\n    \"failed_count\": 6708,\n    \"created_at\": \"2001-09-30T08:18:31.413Z\",\n    \"detect_uuids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71d8ca02-e371-4566-87fb-caa5d9ae6c52",
+              "name": "Invalid batch request (missing files, both file and files[] supplied, file count or size exceeded, unsupported file type, or `Prefer: wait` header sent)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "One or more media files. Repeat the `files[]` field for each file. Mutually exclusive with `file`.",
+                        "type": "text/plain"
+                      },
+                      "key": "files[]",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A single `.zip` archive containing media files. Mutually exclusive with `files[]`.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "POST destination invoked when the batch reaches a terminal state.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run multimodal intelligence on every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "intelligence",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run identity search against the team's saved identities (audio/video only).",
+                        "type": "text/plain"
+                      },
+                      "key": "search_identity",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Generate visualization artifacts.",
+                        "type": "text/plain"
+                      },
+                      "key": "visualize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable audio source tracing on each audio file.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_source_tracing_enabled",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Window size in seconds (audio/video).",
+                        "type": "text/plain"
+                      },
+                      "key": "frame_length",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Start of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "start_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "End of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "end_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Cap processed video duration.",
+                        "type": "text/plain"
+                      },
+                      "key": "max_video_secs",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use LLM-assisted video analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_llm",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable Zero Retention Mode for every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "zero_retention_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2672e610-48df-4252-9017-e4fc5e9ceb7d",
+              "name": "Insufficient balance for the projected batch cost. Response `details` includes per-file estimates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "One or more media files. Repeat the `files[]` field for each file. Mutually exclusive with `file`.",
+                        "type": "text/plain"
+                      },
+                      "key": "files[]",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A single `.zip` archive containing media files. Mutually exclusive with `files[]`.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "POST destination invoked when the batch reaches a terminal state.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run multimodal intelligence on every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "intelligence",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run identity search against the team's saved identities (audio/video only).",
+                        "type": "text/plain"
+                      },
+                      "key": "search_identity",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Generate visualization artifacts.",
+                        "type": "text/plain"
+                      },
+                      "key": "visualize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable audio source tracing on each audio file.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_source_tracing_enabled",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Window size in seconds (audio/video).",
+                        "type": "text/plain"
+                      },
+                      "key": "frame_length",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Start of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "start_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "End of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "end_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Cap processed video duration.",
+                        "type": "text/plain"
+                      },
+                      "key": "max_video_secs",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use LLM-assisted video analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_llm",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable Zero Retention Mode for every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "zero_retention_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d46097b-957a-42c2-875a-a0a99292f018",
+              "name": "Intelligence detect limit reached (Default plan).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "One or more media files. Repeat the `files[]` field for each file. Mutually exclusive with `file`.",
+                        "type": "text/plain"
+                      },
+                      "key": "files[]",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A single `.zip` archive containing media files. Mutually exclusive with `files[]`.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "POST destination invoked when the batch reaches a terminal state.",
+                        "type": "text/plain"
+                      },
+                      "key": "callback_url",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run multimodal intelligence on every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "intelligence",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Run identity search against the team's saved identities (audio/video only).",
+                        "type": "text/plain"
+                      },
+                      "key": "search_identity",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Generate visualization artifacts.",
+                        "type": "text/plain"
+                      },
+                      "key": "visualize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable audio source tracing on each audio file.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_source_tracing_enabled",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Window size in seconds (audio/video).",
+                        "type": "text/plain"
+                      },
+                      "key": "frame_length",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Start of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "start_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "End of segment to analyze (seconds).",
+                        "type": "text/plain"
+                      },
+                      "key": "end_region",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Cap processed video duration.",
+                        "type": "text/plain"
+                      },
+                      "key": "max_video_secs",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Use LLM-assisted video analysis.",
+                        "type": "text/plain"
+                      },
+                      "key": "use_llm",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enable Zero Retention Mode for every file in the batch.",
+                        "type": "text/plain"
+                      },
+                      "key": "zero_retention_mode",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e27ed904-233c-489c-98ef-ff73a084aea9",
+          "name": "Get batch status",
+          "request": {
+            "name": "Get batch status",
+            "description": {
+              "content": "Retrieve the latest aggregate status for a batch. The response shape mirrors\nthe create response — `status`, `completed_count`, and `failed_count` update\nas child detects progress. Use the `detect_uuids` array to fetch per-file\nresults via `GET /detect/{uuid}`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "detect",
+                "batch",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Batch UUID returned by `POST /detect/batch`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31f7722f-c2db-4acd-89f7-d5e34edfc091",
+              "name": "Batch status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Batch UUID returned by `POST /detect/batch`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"string\",\n    \"status\": \"failed\",\n    \"total_files\": 2464,\n    \"completed_count\": 9339,\n    \"failed_count\": 7893,\n    \"created_at\": \"2024-08-11T12:54:57.145Z\",\n    \"detect_uuids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ea2cd7d-2b72-4517-bc8a-80d8027c8816",
+              "name": "Batch not found (or not accessible by the authenticated team).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "detect",
+                    "batch",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Batch UUID returned by `POST /detect/batch`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b1972a7e-f025-45ae-8d2f-6bc28b5cdada",
+    "name": "API Reference subpackage_account subpackage_deepfakeDetection API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_secureUploads API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_secureUploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload media securely",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/secure_uploads",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a media file and receive a short-lived token that can be passed to\ndownstream endpoints (such as `/detect` and `/intelligence`) in place of a\npublic URL. The returned token is a JWT that expires 1 hour after issuance.\n\nKeeping uploads private avoids exposing source media on the open internet and\nmeans you do not need to host files yourself for jobs that only need the API\nto read them once.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

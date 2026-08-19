@@ -1,0 +1,766 @@
+{
+  "item": [
+    {
+      "id": "d7918735-824d-4dc7-947c-fc75ead3caf2",
+      "name": "subpackage_audioEnhancement",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "407baca8-b8ad-4758-9cdf-43277fe3cb4c",
+          "name": "List audio enhancements",
+          "request": {
+            "name": "List audio enhancements",
+            "description": {
+              "content": "Returns a paginated list of all audio enhancements for your team, ordered by most recent first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audio_enhancements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number (starting from 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Items per page (10 to 1000). Default 10."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37139825-55ea-482f-8c26-2c65339b8612",
+              "name": "List of enhancements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"page\": 8769,\n  \"num_pages\": 7930,\n  \"page_size\": 6808,\n  \"total_count\": 4093,\n  \"items\": [\n    {\n      \"uuid\": \"string\",\n      \"status\": \"completed\",\n      \"enhancement_engine\": \"v2\",\n      \"error_message\": \"string\",\n      \"remove_noise\": true,\n      \"normalize\": false,\n      \"studio_sound\": false,\n      \"loudness_target_level\": 1707,\n      \"loudness_peak_limit\": 8049,\n      \"enhancement_level\": 3490.6620967511135,\n      \"original_audio_url\": \"http://XayaJeXwXbUwUcFCiGLsryTDBorL.scBJwwLgXpzeL8hrR8rAbRmkAvx\",\n      \"enhanced_audio_url\": \"https://IoEoOLdirIsxvoGEkRjjnjeXtkpdDqF.mwDqbN7mZfOQoV0xUjgqjpHCiJHjvVm3nDnBgtLSmbtwexe8pEKL,EasRqY8+.X8\"\n    },\n    {\n      \"uuid\": \"string\",\n      \"status\": \"completed\",\n      \"enhancement_engine\": \"v1\",\n      \"error_message\": \"string\",\n      \"remove_noise\": false,\n      \"normalize\": false,\n      \"studio_sound\": true,\n      \"loudness_target_level\": 1247,\n      \"loudness_peak_limit\": 869,\n      \"enhancement_level\": 7019.356046873225,\n      \"original_audio_url\": \"http://mxYeBAlkkDBvaYRVGItIkQEcx.omysJhymVCAGUAEvgH-mq,bPw\",\n      \"enhanced_audio_url\": \"https://xp.ocmhTWaUAR9a47S-z.tfEgw4rEhYWknKrIBbfPRh08xpg58SrkA4bikYWiC3YK-\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86a2905e-c262-4765-ab55-f2feedf37036",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81a4abea-8c06-42ca-8d73-19cfcb473fc3",
+          "name": "Create audio enhancement",
+          "request": {
+            "name": "Create audio enhancement",
+            "description": {
+              "content": "Submit an audio file for enhancement. Processing happens asynchronously in the background.\nThe API defaults to the v2 enhancement engine. The v1 engine is legacy and will be sunset in a future release.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audio_enhancements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio_file",
+                  "type": "file",
+                  "description": "(Required) Audio file to enhance (WAV, MP3, M4A, MP4, OGG, AAC, FLAC). Max 150 MB."
+                },
+                {
+                  "key": "enhancement_engine",
+                  "value": "v2",
+                  "type": "text",
+                  "description": "Enhancement engine to use. Default is v2."
+                },
+                {
+                  "key": "remove_noise",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Remove background noise. Engine v2 only."
+                },
+                {
+                  "key": "normalize",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Normalize audio levels. Engine v2 only."
+                },
+                {
+                  "key": "studio_sound",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Apply studio-quality enhancement. Engine v2 only."
+                },
+                {
+                  "key": "enhancement_level",
+                  "value": "<double>",
+                  "type": "text",
+                  "description": "Enhancement intensity (0.0 to 1.0). Engine v1 only (legacy)."
+                },
+                {
+                  "key": "loudness_target_level",
+                  "value": "-14",
+                  "type": "text",
+                  "description": "Target loudness in LUFS. Engine v1 only (legacy)."
+                },
+                {
+                  "key": "loudness_peak_limit",
+                  "value": "-1",
+                  "type": "text",
+                  "description": "Peak limit in dBTP. Engine v1 only (legacy)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4525dbd9-49be-4ab6-8442-83e5819fb98c",
+              "name": "Enhancement job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to enhance (WAV, MP3, M4A, MP4, OGG, AAC, FLAC). Max 150 MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement engine to use. Default is v2.",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_engine",
+                      "value": "v2",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Remove background noise. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "remove_noise",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Normalize audio levels. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "normalize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Apply studio-quality enhancement. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "studio_sound",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement intensity (0.0 to 1.0). Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_level",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target loudness in LUFS. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_target_level",
+                      "value": "-14",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Peak limit in dBTP. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_peak_limit",
+                      "value": "-1",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"uuid\": \"string\",\n  \"status\": \"pending\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "911a247d-7bb0-4003-8117-ae2f21871181",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to enhance (WAV, MP3, M4A, MP4, OGG, AAC, FLAC). Max 150 MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement engine to use. Default is v2.",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_engine",
+                      "value": "v2",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Remove background noise. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "remove_noise",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Normalize audio levels. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "normalize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Apply studio-quality enhancement. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "studio_sound",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement intensity (0.0 to 1.0). Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_level",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target loudness in LUFS. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_target_level",
+                      "value": "-14",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Peak limit in dBTP. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_peak_limit",
+                      "value": "-1",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53a89a6c-0f06-4460-9483-5737da78e357",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to enhance (WAV, MP3, M4A, MP4, OGG, AAC, FLAC). Max 150 MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement engine to use. Default is v2.",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_engine",
+                      "value": "v2",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Remove background noise. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "remove_noise",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Normalize audio levels. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "normalize",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Apply studio-quality enhancement. Engine v2 only.",
+                        "type": "text/plain"
+                      },
+                      "key": "studio_sound",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Enhancement intensity (0.0 to 1.0). Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "enhancement_level",
+                      "value": "<double>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target loudness in LUFS. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_target_level",
+                      "value": "-14",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Peak limit in dBTP. Engine v1 only (legacy).",
+                        "type": "text/plain"
+                      },
+                      "key": "loudness_peak_limit",
+                      "value": "-1",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93140719-512c-44fa-9ac8-83ab9c573c33",
+          "name": "Get audio enhancement",
+          "request": {
+            "name": "Get audio enhancement",
+            "description": {
+              "content": "Poll this endpoint to check the status of an enhancement job and retrieve the download URL when complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audio_enhancements",
+                ":enhancement_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enhancement_uuid",
+                  "description": "(Required) The UUID returned from the create endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d93c1a54-0d2c-408a-a018-ff82d6703b3b",
+              "name": "Enhancement details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements",
+                    ":enhancement_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enhancement_uuid",
+                      "description": "(Required) The UUID returned from the create endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"uuid\": \"string\",\n  \"status\": \"failed\",\n  \"enhanced_audio_url\": \"https://ButIhrYceGaqePAApIujqcHF.iyftZqGW1IJPQyvcZ-PQUIAf3UQhnYt0QtTMzUIhXkUE\",\n  \"error_message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eef003e7-d141-46f5-b299-08a7b9568f48",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio_enhancements",
+                    ":enhancement_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enhancement_uuid",
+                      "description": "(Required) The UUID returned from the create endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2f8044d7-82cb-4d61-9401-44746f665951",
+    "name": "API Reference subpackage_account subpackage_audioEnhancement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

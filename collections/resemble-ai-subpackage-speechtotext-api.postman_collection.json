@@ -1,0 +1,750 @@
+{
+  "item": [
+    {
+      "id": "d91475f1-037c-471a-97b1-3d15370db90d",
+      "name": "subpackage_speechToText",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "759d2aba-3e67-4d4d-87be-12655c047037",
+          "name": "List transcripts",
+          "request": {
+            "name": "List transcripts",
+            "description": {
+              "content": "Retrieve paginated list of transcript jobs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59fda3da-f286-46ec-8f7d-242f6abe5925",
+              "name": "List of transcripts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"items\": [\n    {\n      \"uuid\": \"b77ecfbf-76d8-ec4f-f031-782354f1f619\",\n      \"status\": \"string\",\n      \"duration_seconds\": 5171.302993613738,\n      \"created_at\": \"1975-10-01T21:07:22.023Z\",\n      \"updated_at\": \"1957-04-16T08:37:11.068Z\"\n    },\n    {\n      \"uuid\": \"14a78592-dfe3-8239-0229-ce88265e2a39\",\n      \"status\": \"string\",\n      \"duration_seconds\": 1626.6834598219793,\n      \"created_at\": \"1973-10-10T03:08:33.465Z\",\n      \"updated_at\": \"1968-01-02T20:18:13.448Z\"\n    }\n  ],\n  \"meta\": {\n    \"page\": 7303,\n    \"per_page\": 8417,\n    \"total_pages\": 3252,\n    \"total_items\": 3727\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d50265c2-bb47-4419-b736-c20baf7950c7",
+          "name": "Create transcript job",
+          "request": {
+            "name": "Create transcript job",
+            "description": {
+              "content": "Submit audio or video for transcription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Audio or video file (max 500 MB, 20 minutes)"
+                },
+                {
+                  "key": "query",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Optional intelligence question to evaluate after transcription"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab0ff724-40fc-4222-bcbe-28b088bf95e9",
+              "name": "Transcript job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Audio or video file (max 500 MB, 20 minutes)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional intelligence question to evaluate after transcription",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"item\": {\n    \"uuid\": \"0cdceec7-3fc7-5db4-51e5-71c806306626\",\n    \"status\": \"pending\",\n    \"created_at\": \"2019-03-19T08:20:51.988Z\",\n    \"updated_at\": \"1952-11-19T23:06:42.761Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "257afff1-ace5-43e8-965f-c6ebb57ccf8b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Audio or video file (max 500 MB, 20 minutes)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional intelligence question to evaluate after transcription",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a03506ee-812d-4af8-8236-a8b5ce6d9d13",
+          "name": "Get transcript",
+          "request": {
+            "name": "Get transcript",
+            "description": {
+              "content": "Retrieve transcript status, text, and timestamps",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53f6a52f-ca05-4d2d-832b-44ce62e040c8",
+              "name": "Transcript details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"1ed79575-c0bb-4e04-c4e3-934394d75183\",\n    \"status\": \"processing\",\n    \"text\": \"string\",\n    \"words\": [\n      {\n        \"text\": \"string\",\n        \"start_time\": 9715.65259181078,\n        \"end_time\": 5060.269514664126,\n        \"speaker_id\": \"string\"\n      },\n      {\n        \"text\": \"string\",\n        \"start_time\": 3392.1155763393463,\n        \"end_time\": 5985.71879634899,\n        \"speaker_id\": \"string\"\n      }\n    ],\n    \"duration_seconds\": 5471.738415276268,\n    \"file_url\": \"http://rfTmEgtCmCzlweyVleIfPiHX.ipfvW.x9JxDN976rR8G49\",\n    \"query\": \"string\",\n    \"answer\": \"string\",\n    \"created_at\": \"1992-07-24T03:39:41.581Z\",\n    \"updated_at\": \"1957-07-08T02:33:02.583Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fcdefa4-caff-40e7-b7f5-c2003c156b01",
+          "name": "Ask intelligence question",
+          "request": {
+            "name": "Ask intelligence question",
+            "description": {
+              "content": "Submit a question about a completed transcript",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text",
+                ":uuid",
+                "ask"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c507bd56-043b-41a4-93d9-2442dabf10a0",
+              "name": "Question submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text",
+                    ":uuid",
+                    "ask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"684aa640-2551-e337-f2e2-7b614f36bdd7\",\n    \"transcript_uuid\": \"d7a46f7b-fb13-7ed1-9fc4-fd0f48b12475\",\n    \"query\": \"string\",\n    \"status\": \"string\",\n    \"created_at\": \"1962-10-21T07:37:10.991Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf2e1019-7227-472f-9d78-925fe9290f01",
+          "name": "List intelligence questions",
+          "request": {
+            "name": "List intelligence questions",
+            "description": {
+              "content": "List all questions asked about a transcript",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text",
+                ":uuid",
+                "questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a5e50d9-7d58-4554-ab7e-e72e0904b79c",
+              "name": "List of questions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text",
+                    ":uuid",
+                    "questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"items\": [\n    {\n      \"uuid\": \"64d3de5c-8798-f8dc-85b3-423d6b149262\",\n      \"query\": \"string\",\n      \"answer\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"2015-05-16T22:37:55.520Z\"\n    },\n    {\n      \"uuid\": \"ffdc5172-3849-bbd6-2a99-b7cd3f145973\",\n      \"query\": \"string\",\n      \"answer\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"1975-10-27T16:33:05.753Z\"\n    }\n  ],\n  \"meta\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "138ec490-1baa-4077-a454-67910b8d7181",
+          "name": "Get intelligence question status",
+          "request": {
+            "name": "Get intelligence question status",
+            "description": {
+              "content": "Check the status of a specific question",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text",
+                ":uuid",
+                "questions",
+                ":question_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "question_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d127d7a-32e1-4849-9f34-cd815c8caff4",
+              "name": "Question details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text",
+                    ":uuid",
+                    "questions",
+                    ":question_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "question_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"item\": {\n    \"uuid\": \"e8fe2e4e-2446-ff14-a402-f0884d3b423b\",\n    \"transcript_uuid\": \"9cab209e-516d-e60e-8bbc-99f3b1d754b9\",\n    \"query\": \"string\",\n    \"answer\": \"string\",\n    \"status\": \"string\",\n    \"created_at\": \"1984-03-18T11:45:23.555Z\",\n    \"updated_at\": \"2014-04-14T18:41:47.425Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "615a3b9b-d8b0-42fc-a927-be9b117f8b8c",
+    "name": "API Reference subpackage_account subpackage_speechToText API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

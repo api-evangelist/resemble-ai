@@ -1,0 +1,373 @@
+{
+  "item": [
+    {
+      "id": "060f7d0a-40dc-4b54-bdf1-3b5fe7fba3bf",
+      "name": "subpackage_textToSpeech",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8806116a-6755-491a-96cc-2ea6edaaaf31",
+          "name": "Synchronous text-to-speech synthesis",
+          "request": {
+            "name": "Synchronous text-to-speech synthesis",
+            "description": {
+              "content": "Generate speech synchronously from text or SSML. Returns complete audio as base64.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "synthesize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"output_format\": \"wav\",\n  \"sample_rate\": \"<string>\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "465e730e-e46f-4556-9268-bb174469c76e",
+              "name": "Successful synthesis",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "synthesize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"output_format\": \"wav\",\n  \"sample_rate\": \"8000\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"audio_content\": \"string\",\n  \"audio_timestamps\": {\n    \"graph_chars\": [\n      \"string\",\n      \"string\"\n    ],\n    \"graph_times\": [\n      [\n        7729.352560759388,\n        8992.53306882072\n      ],\n      [\n        3825.0027132948017,\n        4321.166631352914\n      ]\n    ],\n    \"phon_chars\": [\n      \"string\",\n      \"string\"\n    ],\n    \"phon_times\": [\n      [\n        3431.779531873681,\n        4031.8453825739675\n      ],\n      [\n        4787.741947855484,\n        2799.5323768356984\n      ]\n    ]\n  },\n  \"duration\": 3830.5203349729677,\n  \"synth_duration\": 8395.032235254039,\n  \"output_format\": \"string\",\n  \"sample_rate\": 5100,\n  \"title\": \"string\",\n  \"issues\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81b071b7-00ba-40a2-bb57-a64fbffbd26a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "synthesize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"output_format\": \"wav\",\n  \"sample_rate\": \"8000\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95cb7586-1695-4483-8892-d284ab5cc8a7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "synthesize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"output_format\": \"wav\",\n  \"sample_rate\": \"8000\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27d98f81-edd9-496b-9e14-540665375656",
+          "name": "Streaming text-to-speech synthesis (HTTP)",
+          "request": {
+            "name": "Streaming text-to-speech synthesis (HTTP)",
+            "description": {
+              "content": "Stream audio as it's generated. Returns chunked WAV data for progressive playback.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"sample_rate\": \"<string>\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "874c4258-f453-494d-a809-aee76ccb5691",
+              "name": "Streaming audio response (chunked WAV)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"sample_rate\": \"32000\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "917bbda9-eb5d-4cba-83a5-dd127ec3fcc4",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) API token from https://app.resemble.ai/account/api",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"voice_uuid\": \"<string>\",\n  \"data\": \"<string>\",\n  \"project_uuid\": \"<string>\",\n  \"model\": \"<string>\",\n  \"precision\": \"PCM_32\",\n  \"sample_rate\": \"32000\",\n  \"use_hd\": false,\n  \"apply_custom_pronunciations\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://f.cluster.resemble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7201d3ba-e8e1-41b7-b835-52eba9179f73",
+    "name": "API Reference subpackage_account subpackage_textToSpeech API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

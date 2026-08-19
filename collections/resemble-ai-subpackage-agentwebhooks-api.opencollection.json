@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_agentWebhooks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_agentWebhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all webhooks for an agent"
+        },
+        {
+          "info": {
+            "name": "Create agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook for an agent"
+        },
+        {
+          "info": {
+            "name": "Get agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specific webhook"
+        },
+        {
+          "info": {
+            "name": "Update agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook"
+        },
+        {
+          "info": {
+            "name": "Delete agent webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://f.cluster.resemble.ai/agents/:agent_uuid/webhooks/:webhook_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

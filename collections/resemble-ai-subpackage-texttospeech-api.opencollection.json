@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference subpackage_account subpackage_textToSpeech API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subpackage_textToSpeech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Synchronous text-to-speech synthesis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/synthesize",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate speech synchronously from text or SSML. Returns complete audio as base64."
+        },
+        {
+          "info": {
+            "name": "Streaming text-to-speech synthesis (HTTP)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://f.cluster.resemble.ai/stream",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stream audio as it's generated. Returns chunked WAV data for progressive playback."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
