@@ -22,6 +22,14 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/resemble-ai.png
 tags:
+  - Artificial Intelligence
+  - Voice
+  - TTS
+  - Voice Cloning
+  - Voice Conversion
+  - Audio
+  - Detection
+tags_raw:
   - AI
   - Voice
   - TTS
@@ -38,7 +46,8 @@ apis:
   description: The subpackage_account API from Resemble AI — 4 operation(s) for subpackage_account.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_account
   properties:
   - type: OpenAPI
@@ -88,7 +97,8 @@ apis:
   description: The subpackage_agents API from Resemble AI — 5 operation(s) for subpackage_agents.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_agents
   properties:
   - type: OpenAPI
@@ -188,7 +198,8 @@ apis:
   description: The subpackage_clips API from Resemble AI — 2 operation(s) for subpackage_clips.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_clips
   properties:
   - type: OpenAPI
@@ -255,7 +266,8 @@ apis:
   description: The subpackage_duets API from Resemble AI — 4 operation(s) for subpackage_duets.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_duets
   properties:
   - type: OpenAPI
@@ -271,7 +283,8 @@ apis:
   description: The subpackage_identity API from Resemble AI — 2 operation(s) for subpackage_identity.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_identity
   properties:
   - type: OpenAPI
@@ -288,7 +301,8 @@ apis:
     The subpackage_intelligence API from Resemble AI — 3 operation(s) for subpackage_intelligence.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_intelligence
   properties:
   - type: OpenAPI
@@ -304,7 +318,8 @@ apis:
   description: The subpackage_projects API from Resemble AI — 2 operation(s) for subpackage_projects.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_projects
   properties:
   - type: OpenAPI
@@ -321,7 +336,8 @@ apis:
     The subpackage_recordings API from Resemble AI — 2 operation(s) for subpackage_recordings.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_recordings
   properties:
   - type: OpenAPI
@@ -422,7 +438,8 @@ apis:
   description: The subpackage_voices API from Resemble AI — 3 operation(s) for subpackage_voices.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_voices
   properties:
   - type: OpenAPI
@@ -455,7 +472,8 @@ apis:
   description: The subpackage_watermark API from Resemble AI — 4 operation(s) for subpackage_watermark.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
-  tags:
+  tags: []
+  tags_raw:
   - subpackage_watermark
   properties:
   - type: OpenAPI
