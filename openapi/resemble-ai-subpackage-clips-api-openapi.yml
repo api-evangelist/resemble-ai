@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_clips API
+  title: Reference Subpackage Clips API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -159,18 +159,6 @@ components:
         item:
           $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem'
       title: Clips_updateClip_Response_200
-    ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem
-    Clips_getClip_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Clips_getClip_Response_200
     Clips_listClips_Response_200:
       type: object
       properties:
@@ -181,20 +169,32 @@ components:
           items:
             $ref: '#/components/schemas/ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Clips_listClips_Response_200
-    ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems
     Clips_deleteClip_Response_200:
       type: object
       properties:
         success:
           type: boolean
       title: Clips_deleteClip_Response_200
+    ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem
     ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem
+    ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems
+    Clips_getClip_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Clips_getClip_Response_200
   securitySchemes:
     BearerAuth:
       type: http

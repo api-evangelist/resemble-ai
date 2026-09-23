@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_agentPhoneNumbers API
+  title: Reference Subpackage Agent Phone Numbers API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -28,7 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Phone Numbers_listPhoneNumbers_Response_200'
+                $ref: '#/components/schemas/Agent_Phone_Numbers_listPhoneNumbers_Response_200'
     post:
       operationId: create-phone-number
       summary: Create agent phone number
@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Phone Numbers_createPhoneNumber_Response_200'
+                $ref: '#/components/schemas/Agent_Phone_Numbers_createPhoneNumber_Response_200'
       requestBody:
         content:
           application/json:
@@ -104,7 +104,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Phone Numbers_getPhoneNumber_Response_200'
+                $ref: '#/components/schemas/Agent_Phone_Numbers_getPhoneNumber_Response_200'
     delete:
       operationId: delete-phone-number
       summary: Delete agent phone number
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Phone Numbers_deletePhoneNumber_Response_200'
+                $ref: '#/components/schemas/Agent_Phone_Numbers_deletePhoneNumber_Response_200'
   /phone_numbers/{id}/force:
     delete:
       operationId: force-delete-phone-number
@@ -155,36 +155,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Phone Numbers_forceDeletePhoneNumber_Response_200'
+                $ref: '#/components/schemas/Agent_Phone_Numbers_forceDeletePhoneNumber_Response_200'
 components:
   schemas:
-    Agent Phone Numbers_listPhoneNumbers_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Agent Phone Numbers_listPhoneNumbers_Response_200
     PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
       title: PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems
-    Agent Phone Numbers_getPhoneNumber_Response_200:
+    Agent_Phone_Numbers_forceDeletePhoneNumber_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        item:
-          $ref: '#/components/schemas/PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem'
-      title: Agent Phone Numbers_getPhoneNumber_Response_200
-    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk:
-      type: object
-      properties: {}
-      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk
-    Agent Phone Numbers_createPhoneNumber_Response_200:
+        message:
+          type: string
+      title: Agent Phone Numbers_forceDeletePhoneNumber_Response_200
+    Agent_Phone_Numbers_createPhoneNumber_Response_200:
       type: object
       properties:
         success:
@@ -194,19 +180,33 @@ components:
         message:
           type: string
       title: Agent Phone Numbers_createPhoneNumber_Response_200
-    PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem:
+    Agent_Phone_Numbers_getPhoneNumber_Response_200:
       type: object
-      properties: {}
-      title: PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Phone Numbers_getPhoneNumber_Response_200
     PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk:
       type: object
       properties: {}
       title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk
-    PhoneNumbersPostResponsesContentApplicationJsonSchemaItem:
+    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk:
       type: object
       properties: {}
-      title: PhoneNumbersPostResponsesContentApplicationJsonSchemaItem
-    Agent Phone Numbers_deletePhoneNumber_Response_200:
+      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk
+    Agent_Phone_Numbers_listPhoneNumbers_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agent Phone Numbers_listPhoneNumbers_Response_200
+    Agent_Phone_Numbers_deletePhoneNumber_Response_200:
       type: object
       properties:
         success:
@@ -219,14 +219,14 @@ components:
       enum:
       - twilio
       title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaProvider
-    Agent Phone Numbers_forceDeletePhoneNumber_Response_200:
+    PhoneNumbersPostResponsesContentApplicationJsonSchemaItem:
       type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agent Phone Numbers_forceDeletePhoneNumber_Response_200
+      properties: {}
+      title: PhoneNumbersPostResponsesContentApplicationJsonSchemaItem
+    PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

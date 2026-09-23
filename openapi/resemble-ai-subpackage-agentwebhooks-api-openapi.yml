@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_agentWebhooks API
+  title: Reference Subpackage Agent Webhooks API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -34,7 +34,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Webhooks_listAgentWebhooks_Response_200'
+                $ref: '#/components/schemas/Agent_Webhooks_listAgentWebhooks_Response_200'
     post:
       operationId: create-agent-webhook
       summary: Create agent webhook
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Webhooks_createAgentWebhook_Response_200'
+                $ref: '#/components/schemas/Agent_Webhooks_createAgentWebhook_Response_200'
       requestBody:
         content:
           application/json:
@@ -106,7 +106,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Webhooks_getAgentWebhook_Response_200'
+                $ref: '#/components/schemas/Agent_Webhooks_getAgentWebhook_Response_200'
     delete:
       operationId: delete-agent-webhook
       summary: Delete agent webhook
@@ -138,7 +138,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Webhooks_deleteAgentWebhook_Response_200'
+                $ref: '#/components/schemas/Agent_Webhooks_deleteAgentWebhook_Response_200'
     patch:
       operationId: update-agent-webhook
       summary: Update agent webhook
@@ -170,7 +170,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent Webhooks_updateAgentWebhook_Response_200'
+                $ref: '#/components/schemas/Agent_Webhooks_updateAgentWebhook_Response_200'
       requestBody:
         content:
           application/json:
@@ -185,51 +185,13 @@ components:
       type: object
       properties: {}
       title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig
-    AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems
-    Agent Webhooks_listAgentWebhooks_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Agent Webhooks_listAgentWebhooks_Response_200
-    Agent Webhooks_deleteAgentWebhook_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agent Webhooks_deleteAgentWebhook_Response_200
-    AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem
-    Agent Webhooks_getAgentWebhook_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Agent Webhooks_getAgentWebhook_Response_200
     AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType:
       type: string
       enum:
       - pre_call
       - post_call
       title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType
-    AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig
-    Agent Webhooks_createAgentWebhook_Response_200:
+    Agent_Webhooks_createAgentWebhook_Response_200:
       type: object
       properties:
         success:
@@ -239,11 +201,53 @@ components:
         message:
           type: string
       title: Agent Webhooks_createAgentWebhook_Response_200
+    Agent_Webhooks_listAgentWebhooks_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agent Webhooks_listAgentWebhooks_Response_200
+    AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig
+    Agent_Webhooks_deleteAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Webhooks_deleteAgentWebhook_Response_200
+    Agent_Webhooks_getAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Webhooks_getAgentWebhook_Response_200
     AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem
-    Agent Webhooks_updateAgentWebhook_Response_200:
+    AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem
+    Agent_Webhooks_updateAgentWebhook_Response_200:
       type: object
       properties:
         success:
@@ -253,10 +257,6 @@ components:
         message:
           type: string
       title: Agent Webhooks_updateAgentWebhook_Response_200
-    AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

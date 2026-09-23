@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_identity API
+  title: Reference Subpackage Identity API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -96,20 +96,22 @@ paths:
               - audio_url
 components:
   schemas:
-    IdentityGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: IdentityGetResponsesContentApplicationJsonSchemaItemsItems
-    Identity_listIdentities_Response_200:
+    Identity_createIdentity_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Identity_listIdentities_Response_200
+        item:
+          $ref: '#/components/schemas/IdentityPostResponsesContentApplicationJsonSchemaItem'
+      title: Identity_createIdentity_Response_200
+    IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems:
+      type: object
+      properties: {}
+      title: IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems
+    IdentityGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: IdentityGetResponsesContentApplicationJsonSchemaItemsItems
     Identity_searchIdentities_Response_200:
       type: object
       properties:
@@ -120,22 +122,20 @@ components:
           items:
             $ref: '#/components/schemas/IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems'
       title: Identity_searchIdentities_Response_200
-    Identity_createIdentity_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/IdentityPostResponsesContentApplicationJsonSchemaItem'
-      title: Identity_createIdentity_Response_200
     IdentityPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: IdentityPostResponsesContentApplicationJsonSchemaItem
-    IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems:
+    Identity_listIdentities_Response_200:
       type: object
-      properties: {}
-      title: IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Identity_listIdentities_Response_200
   securitySchemes:
     BearerAuth:
       type: http

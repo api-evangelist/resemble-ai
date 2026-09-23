@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account API
+  title: Reference Subpackage Account API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -100,14 +100,6 @@ paths:
                 $ref: '#/components/schemas/Account_getBillingUsage_Response_200'
 components:
   schemas:
-    Account_getTeam_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Account_getTeam_Response_200
     Account_getTeams_Response_200:
       type: object
       properties:
@@ -118,6 +110,14 @@ components:
           items:
             $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Account_getTeams_Response_200
+    Account_getAccount_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getAccount_Response_200
     AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -138,18 +138,14 @@ components:
         current_usage:
           type: integer
       title: AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem
-    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
-    Account_getAccount_Response_200:
+    Account_getTeam_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
-      title: Account_getAccount_Response_200
+          $ref: '#/components/schemas/AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getTeam_Response_200
     Account_getBillingUsage_Response_200:
       type: object
       properties:
@@ -158,14 +154,18 @@ components:
         item:
           $ref: '#/components/schemas/AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem'
       title: Account_getBillingUsage_Response_200
-    AccountGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AccountGetResponsesContentApplicationJsonSchemaItem
     AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem
+    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
+    AccountGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AccountGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

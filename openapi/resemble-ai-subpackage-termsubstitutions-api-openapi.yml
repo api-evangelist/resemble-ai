@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_termSubstitutions API
+  title: Reference Subpackage Term Substitutions API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Term Substitutions_listTermSubstitutions_Response_200'
+                $ref: '#/components/schemas/Term_Substitutions_listTermSubstitutions_Response_200'
     post:
       operationId: create-term-substitution
       summary: Create term substitution
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Term Substitutions_createTermSubstitution_Response_200'
+                $ref: '#/components/schemas/Term_Substitutions_createTermSubstitution_Response_200'
       requestBody:
         content:
           application/json:
@@ -101,7 +101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Term Substitutions_getTermSubstitution_Response_200'
+                $ref: '#/components/schemas/Term_Substitutions_getTermSubstitution_Response_200'
     delete:
       operationId: delete-term-substitution
       summary: Delete term substitution
@@ -126,10 +126,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Term Substitutions_deleteTermSubstitution_Response_200'
+                $ref: '#/components/schemas/Term_Substitutions_deleteTermSubstitution_Response_200'
 components:
   schemas:
-    Term Substitutions_listTermSubstitutions_Response_200:
+    TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem
+    Term_Substitutions_createTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem'
+      title: Term Substitutions_createTermSubstitution_Response_200
+    Term_Substitutions_listTermSubstitutions_Response_200:
       type: object
       properties:
         success:
@@ -139,15 +151,17 @@ components:
           items:
             $ref: '#/components/schemas/TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Term Substitutions_listTermSubstitutions_Response_200
-    TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem:
+    TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
-      title: TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem
-    TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem:
+      title: TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems
+    Term_Substitutions_deleteTermSubstitution_Response_200:
       type: object
-      properties: {}
-      title: TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem
-    Term Substitutions_getTermSubstitution_Response_200:
+      properties:
+        success:
+          type: boolean
+      title: Term Substitutions_deleteTermSubstitution_Response_200
+    Term_Substitutions_getTermSubstitution_Response_200:
       type: object
       properties:
         success:
@@ -155,24 +169,10 @@ components:
         item:
           $ref: '#/components/schemas/TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem'
       title: Term Substitutions_getTermSubstitution_Response_200
-    Term Substitutions_deleteTermSubstitution_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Term Substitutions_deleteTermSubstitution_Response_200
-    Term Substitutions_createTermSubstitution_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem'
-      title: Term Substitutions_createTermSubstitution_Response_200
-    TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems:
+    TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
-      title: TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems
+      title: TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

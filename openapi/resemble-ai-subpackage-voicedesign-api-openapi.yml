@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_voiceDesign API
+  title: Reference Subpackage Voice Design API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -28,7 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Voice Design_generateVoiceDesign_Response_200'
+                $ref: '#/components/schemas/Voice_Design_generateVoiceDesign_Response_200'
       requestBody:
         content:
           multipart/form-data:
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Voice Design_createVoiceFromCandidate_Response_200'
+                $ref: '#/components/schemas/Voice_Design_createVoiceFromCandidate_Response_200'
       requestBody:
         content:
           application/json:
@@ -79,22 +79,6 @@ paths:
               - name
 components:
   schemas:
-    Voice Design_createVoiceFromCandidate_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        voice_uuid:
-          type: string
-      title: Voice Design_createVoiceFromCandidate_Response_200
-    Voice Design_generateVoiceDesign_Response_200:
-      type: object
-      properties:
-        voice_candidates:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems'
-      title: Voice Design_generateVoiceDesign_Response_200
     VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems:
       type: object
       properties:
@@ -106,6 +90,22 @@ components:
         uuid:
           type: string
       title: VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems
+    Voice_Design_createVoiceFromCandidate_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        voice_uuid:
+          type: string
+      title: Voice Design_createVoiceFromCandidate_Response_200
+    Voice_Design_generateVoiceDesign_Response_200:
+      type: object
+      properties:
+        voice_candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems'
+      title: Voice Design_generateVoiceDesign_Response_200
   securitySchemes:
     BearerAuth:
       type: http

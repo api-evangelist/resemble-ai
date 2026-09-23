@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_recordings API
+  title: Reference Subpackage Recordings API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -209,6 +209,42 @@ paths:
                   type: boolean
 components:
   schemas:
+    VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem
+    Recordings_deleteRecording_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Recordings_deleteRecording_Response_200
+    Recordings_listRecordings_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Recordings_listRecordings_Response_200
+    VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems
+    VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem
+    Recordings_updateRecording_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem'
+      title: Recordings_updateRecording_Response_200
     Recordings_createRecording_Response_200:
       type: object
       properties:
@@ -225,46 +261,10 @@ components:
         item:
           $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem'
       title: Recordings_getRecording_Response_200
-    VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem
     VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem
-    Recordings_updateRecording_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem'
-      title: Recordings_updateRecording_Response_200
-    Recordings_deleteRecording_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Recordings_deleteRecording_Response_200
-    VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems
-    VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem
-    Recordings_listRecordings_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Recordings_listRecordings_Response_200
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_textToSpeech API
+  title: Reference Subpackage Text To Speech API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -147,6 +147,16 @@ paths:
               - data
 components:
   schemas:
+    StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
+      type: string
+      enum:
+      - MULAW
+      - PCM_16
+      - PCM_24
+      - PCM_32
+      default: PCM_32
+      description: Audio precision
+      title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
     AudioTimestamps:
       type: object
       properties:
@@ -177,6 +187,62 @@ components:
               format: double
           description: Phoneme timestamps [start, end] in seconds
       title: AudioTimestamps
+    SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision:
+      type: string
+      enum:
+      - MULAW
+      - PCM_16
+      - PCM_24
+      - PCM_32
+      default: PCM_32
+      description: Audio precision for WAV output
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision
+    SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
+      type: string
+      enum:
+      - wav
+      - mp3
+      default: wav
+      description: Audio output format
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
+    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
     Text-to-Speech_synthesize_Response_200:
       type: object
       properties:
@@ -207,72 +273,6 @@ components:
           items:
             type: string
       title: Text-to-Speech_synthesize_Response_200
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
-    SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
-      type: string
-      enum:
-      - wav
-      - mp3
-      default: wav
-      description: Audio output format
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
-    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
-    StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
-      type: string
-      enum:
-      - MULAW
-      - PCM_16
-      - PCM_24
-      - PCM_32
-      default: PCM_32
-      description: Audio precision
-      title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
-    SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision:
-      type: string
-      enum:
-      - MULAW
-      - PCM_16
-      - PCM_24
-      - PCM_32
-      default: PCM_32
-      description: Audio precision for WAV output
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision
   securitySchemes:
     BearerAuth:
       type: http

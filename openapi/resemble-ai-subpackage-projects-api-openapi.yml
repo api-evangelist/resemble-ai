@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_projects API
+  title: Reference Subpackage Projects API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -172,28 +172,6 @@ paths:
                 $ref: '#/components/schemas/Projects_deleteProject_Response_200'
 components:
   schemas:
-    Projects_listProjects_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Projects_listProjects_Response_200
-    ProjectsPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsPostResponsesContentApplicationJsonSchemaItem
-    Projects_updateProject_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem'
-      title: Projects_updateProject_Response_200
     Projects_getProject_Response_200:
       type: object
       properties:
@@ -206,20 +184,14 @@ components:
       type: object
       properties: {}
       title: ProjectsGetResponsesContentApplicationJsonSchemaItemsItems
-    Projects_deleteProject_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Projects_deleteProject_Response_200
     ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem
-    ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem:
+    ProjectsPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
-      title: ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem
+      title: ProjectsPostResponsesContentApplicationJsonSchemaItem
     Projects_createProject_Response_200:
       type: object
       properties:
@@ -228,6 +200,34 @@ components:
         item:
           $ref: '#/components/schemas/ProjectsPostResponsesContentApplicationJsonSchemaItem'
       title: Projects_createProject_Response_200
+    Projects_listProjects_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Projects_listProjects_Response_200
+    Projects_deleteProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Projects_deleteProject_Response_200
+    ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem
+    Projects_updateProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem'
+      title: Projects_updateProject_Response_200
   securitySchemes:
     BearerAuth:
       type: http

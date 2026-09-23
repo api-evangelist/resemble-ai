@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_detectIntelligence API
+  title: Reference Subpackage Detect Intelligence API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -34,7 +34,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Detect Intelligence_askDetectIntelligenceQuestion_Response_202'
+                $ref: '#/components/schemas/Detect_Intelligence_askDetectIntelligenceQuestion_Response_202'
         '400':
           description: Bad request (missing query)
           content:
@@ -96,7 +96,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Detect Intelligence_getDetectIntelligenceQuestion_Response_200'
+                $ref: '#/components/schemas/Detect_Intelligence_getDetectIntelligenceQuestion_Response_200'
         '404':
           description: Question not found
           content:
@@ -105,15 +105,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Current status of the question
-      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
     DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -146,6 +137,15 @@ components:
           type: string
           format: date-time
       title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem
+    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
     Error:
       type: object
       properties:
@@ -162,14 +162,14 @@ components:
         message:
           type: string
       title: Error
-    Detect Intelligence_getDetectIntelligenceQuestion_Response_200:
+    Detect_Intelligence_askDetectIntelligenceQuestion_Response_202:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
     DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -202,7 +202,15 @@ components:
           type: string
           format: date-time
       title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem
-    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
+    Detect_Intelligence_getDetectIntelligenceQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
       type: string
       enum:
       - pending
@@ -210,15 +218,7 @@ components:
       - completed
       - failed
       description: Current status of the question
-      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
-    Detect Intelligence_askDetectIntelligenceQuestion_Response_202:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
-      title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
+      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_voices API
+  title: Reference Subpackage Voices API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -176,24 +176,13 @@ paths:
                   default: false
 components:
   schemas:
-    Voices_deleteVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Voices_deleteVoice_Response_200
-    Voices_createVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/VoicesPostResponsesContentApplicationJsonSchemaItem'
-      title: Voices_createVoice_Response_200
-    VoicesPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesPostResponsesContentApplicationJsonSchemaItem
+    VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType:
+      type: string
+      enum:
+      - rapid
+      - professional
+      default: professional
+      title: VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType
     Voices_getVoice_Response_200:
       type: object
       properties:
@@ -202,6 +191,40 @@ components:
         item:
           $ref: '#/components/schemas/VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem'
       title: Voices_getVoice_Response_200
+    VoicesPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesPostResponsesContentApplicationJsonSchemaItem
+    Voices_createVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/VoicesPostResponsesContentApplicationJsonSchemaItem'
+      title: Voices_createVoice_Response_200
+    VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem
+    Voices_buildVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Voices_buildVoice_Response_200
+    Voices_deleteVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Voices_deleteVoice_Response_200
+    VoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: VoicesGetResponsesContentApplicationJsonSchemaItemsItems
     Voices_listVoices_Response_200:
       type: object
       properties:
@@ -218,29 +241,6 @@ components:
           items:
             $ref: '#/components/schemas/VoicesGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Voices_listVoices_Response_200
-    VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType:
-      type: string
-      enum:
-      - rapid
-      - professional
-      default: professional
-      title: VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType
-    VoicesGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: VoicesGetResponsesContentApplicationJsonSchemaItemsItems
-    VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem
-    Voices_buildVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Voices_buildVoice_Response_200
   securitySchemes:
     BearerAuth:
       type: http

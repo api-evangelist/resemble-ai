@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference subpackage_account subpackage_intelligence API
+  title: Reference Subpackage Intelligence API
   version: 1.0.0
 servers:
 - url: https://f.cluster.resemble.ai
@@ -138,49 +138,6 @@ components:
       - employment_fraud
       - other
       title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraudType
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescription:
-      type: object
-      properties:
-        speaker_info:
-          type: string
-        language:
-          type: string
-        dialect:
-          type: string
-        emotion:
-          type: string
-        speaking_style:
-          type: string
-        context:
-          type: string
-        message:
-          type: string
-        abnormalities:
-          type: string
-        transcription:
-          type: string
-        translation:
-          type:
-          - string
-          - 'null'
-        misinformation:
-          type: string
-        fraud:
-          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud'
-        liveness:
-          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness'
-        digitally_altered:
-          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered'
-      description: Structured intelligence analysis
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescription
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemMediaType:
-      type: string
-      enum:
-      - audio
-      - video
-      - image
-      description: Type of media analyzed
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemMediaType
     IntelligencesUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -199,136 +156,6 @@ components:
           $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemMediaType'
           description: Type of media analyzed
       title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItem
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness:
-      type: object
-      properties:
-        assessment:
-          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment'
-        confidence:
-          type: number
-          format: double
-        indicators:
-          type: string
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraudType'
-        confidence:
-          type: number
-          format: double
-        reasoning:
-          type: string
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud
-    IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType:
-      type: string
-      enum:
-      - audio
-      - video
-      - image
-      description: Type of media analyzed
-      title: IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType
-    Intelligence_runIntelligence_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/IntelligencePostResponsesContentApplicationJsonSchemaItem'
-      title: Intelligence_runIntelligence_Response_200
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment:
-      type: string
-      enum:
-      - real_person
-      - not_real_person
-      - inconclusive
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraud:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType'
-        confidence:
-          type: number
-          format: double
-        reasoning:
-          type: string
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraud
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType:
-      type: string
-      enum:
-      - none
-      - vishing
-      - impersonation
-      - romance_scam
-      - tech_support_scam
-      - financial_fraud
-      - extortion
-      - political_manipulation
-      - synthetic_media_fraud
-      - insurance_fraud
-      - employment_fraud
-      - other
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType
-    Intelligence_getIntelligence_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Intelligence_getIntelligence_Response_200
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    IntelligencePostRequestBodyContentApplicationJsonSchemaMediaType:
-      type: string
-      enum:
-      - audio
-      - video
-      - image
-      description: Explicit media type (auto-detected if not provided)
-      title: IntelligencePostRequestBodyContentApplicationJsonSchemaMediaType
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLiveness:
-      type: object
-      properties:
-        assessment:
-          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment'
-        confidence:
-          type: number
-          format: double
-        indicators:
-          type: string
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLiveness
-    IntelligencePostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        detect_uuid:
-          type: string
-          description: UUID of the associated detect object
-        media_type:
-          $ref: '#/components/schemas/IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType'
-          description: Type of media analyzed
-      title: IntelligencePostResponsesContentApplicationJsonSchemaItem
     IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescription:
       type: object
       properties:
@@ -364,6 +191,58 @@ components:
           $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionDigitallyAltered'
       description: Structured intelligence analysis
       title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescription
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment:
+      type: string
+      enum:
+      - real_person
+      - not_real_person
+      - inconclusive
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - video
+      - image
+      description: Type of media analyzed
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemMediaType
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment'
+        confidence:
+          type: number
+          format: double
+        indicators:
+          type: string
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered:
+      type: object
+      properties:
+        detected:
+          type: boolean
+        confidence:
+          type: number
+          format: double
+        alterations:
+          type: string
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment:
+      type: string
+      enum:
+      - real_person
+      - not_real_person
+      - inconclusive
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsMediaType:
+      type: string
+      enum:
+      - audio
+      - video
+      - image
+      description: Type of media analyzed
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsMediaType
     IntelligencesGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties:
@@ -382,14 +261,71 @@ components:
           $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsMediaType'
           description: Type of media analyzed
       title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItems
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsMediaType:
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLiveness:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLivenessAssessment'
+        confidence:
+          type: number
+          format: double
+        indicators:
+          type: string
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionLiveness
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType:
+      type: string
+      enum:
+      - none
+      - vishing
+      - impersonation
+      - romance_scam
+      - tech_support_scam
+      - financial_fraud
+      - extortion
+      - political_manipulation
+      - synthetic_media_fraud
+      - insurance_fraud
+      - employment_fraud
+      - other
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraudType'
+        confidence:
+          type: number
+          format: double
+        reasoning:
+          type: string
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud
+    Intelligence_getIntelligence_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Intelligence_getIntelligence_Response_200
+    IntelligencePostRequestBodyContentApplicationJsonSchemaMediaType:
       type: string
       enum:
       - audio
       - video
       - image
-      description: Type of media analyzed
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsMediaType
+      description: Explicit media type (auto-detected if not provided)
+      title: IntelligencePostRequestBodyContentApplicationJsonSchemaMediaType
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionDigitallyAltered:
+      type: object
+      properties:
+        detected:
+          type: boolean
+        confidence:
+          type: number
+          format: double
+        alterations:
+          type: string
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionDigitallyAltered
     Intelligence_listIntelligences_Response_200:
       type: object
       properties:
@@ -408,35 +344,99 @@ components:
           items:
             $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Intelligence_listIntelligences_Response_200
-    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionDigitallyAltered:
+    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescription:
       type: object
       properties:
-        detected:
+        speaker_info:
+          type: string
+        language:
+          type: string
+        dialect:
+          type: string
+        emotion:
+          type: string
+        speaking_style:
+          type: string
+        context:
+          type: string
+        message:
+          type: string
+        abnormalities:
+          type: string
+        transcription:
+          type: string
+        translation:
+          type:
+          - string
+          - 'null'
+        misinformation:
+          type: string
+        fraud:
+          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionFraud'
+        liveness:
+          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLiveness'
+        digitally_altered:
+          $ref: '#/components/schemas/IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered'
+      description: Structured intelligence analysis
+      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescription
+    Intelligence_runIntelligence_Response_200:
+      type: object
+      properties:
+        success:
           type: boolean
+        item:
+          $ref: '#/components/schemas/IntelligencePostResponsesContentApplicationJsonSchemaItem'
+      title: Intelligence_runIntelligence_Response_200
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    IntelligencePostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        detect_uuid:
+          type: string
+          description: UUID of the associated detect object
+        media_type:
+          $ref: '#/components/schemas/IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType'
+          description: Type of media analyzed
+      title: IntelligencePostResponsesContentApplicationJsonSchemaItem
+    IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraud:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraudType'
         confidence:
           type: number
           format: double
-        alterations:
+        reasoning:
           type: string
-      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionDigitallyAltered
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered:
-      type: object
-      properties:
-        detected:
-          type: boolean
-        confidence:
-          type: number
-          format: double
-        alterations:
-          type: string
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionDigitallyAltered
-    IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment:
+      title: IntelligencesUuidGetResponsesContentApplicationJsonSchemaItemDescriptionFraud
+    IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType:
       type: string
       enum:
-      - real_person
-      - not_real_person
-      - inconclusive
-      title: IntelligencesGetResponsesContentApplicationJsonSchemaItemsItemsDescriptionLivenessAssessment
+      - audio
+      - video
+      - image
+      description: Type of media analyzed
+      title: IntelligencePostResponsesContentApplicationJsonSchemaItemMediaType
   securitySchemes:
     BearerAuth:
       type: http

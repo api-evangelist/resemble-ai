@@ -1,0 +1,29 @@
+# Front Door AI Index — resemble-ai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: resemble-ai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.resemble.ai
+  final_host: www.resemble.ai
+  ownership: own
+  owner: resemble-ai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 91
+  host_score: 91
+  density: 23.92
+  words: 3804
+  tiers:
+    agentic: 2
+    core: 83
+    model: 6
+  ambiguous: 1
+  top_terms:
+    AI: 83
+    ChatGPT: 4
+    OpenAI: 2
+    chatbot: 2
+    intelligence: 1
