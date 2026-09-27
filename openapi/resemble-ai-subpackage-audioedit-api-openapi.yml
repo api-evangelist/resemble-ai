@@ -129,22 +129,6 @@ components:
       type: object
       properties: {}
       title: EditGetResponsesContentApplicationJsonSchemaItemsItems
-    Audio_Edit_getAudioEdit_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Audio Edit_getAudioEdit_Response_200
-    Audio_Edit_createAudioEdit_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/EditPostResponsesContentApplicationJsonSchemaItem'
-      title: Audio Edit_createAudioEdit_Response_200
     EditPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -176,6 +160,22 @@ components:
           items:
             $ref: '#/components/schemas/EditGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Audio Edit_listAudioEdits_Response_200
+    Audio_Edit_getAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_getAudioEdit_Response_200
+    Audio_Edit_createAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditPostResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_createAudioEdit_Response_200
   securitySchemes:
     BearerAuth:
       type: http

@@ -66,15 +66,6 @@ paths:
               - file
 components:
   schemas:
-    Secure_Uploads_createSecureUpload_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        token:
-          type: string
-          description: JWT referencing the uploaded file. Valid for 1 hour. Pass this value as `media_token` on downstream requests.
-      title: Secure Uploads_createSecureUpload_Response_200
     Error:
       type: object
       properties:
@@ -91,6 +82,15 @@ components:
         message:
           type: string
       title: Error
+    Secure_Uploads_createSecureUpload_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        token:
+          type: string
+          description: JWT referencing the uploaded file. Valid for 1 hour. Pass this value as `media_token` on downstream requests.
+      title: Secure Uploads_createSecureUpload_Response_200
   securitySchemes:
     BearerAuth:
       type: http

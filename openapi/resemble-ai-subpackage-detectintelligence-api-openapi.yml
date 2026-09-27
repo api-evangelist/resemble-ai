@@ -105,47 +105,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: UUID of the question
-        detect_uuid:
-          type: string
-          description: UUID of the associated detection report
-        query:
-          type: string
-          description: The submitted question
-        answer:
-          type:
-          - string
-          - 'null'
-          description: The generated answer (null until completed)
-        status:
-          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus'
-          description: Current status of the question
-        error_message:
-          type:
-          - string
-          - 'null'
-          description: Error details when status is failed
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem
-    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Current status of the question
-      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
     Error:
       type: object
       properties:
@@ -162,14 +121,23 @@ components:
         message:
           type: string
       title: Error
-    Detect_Intelligence_askDetectIntelligenceQuestion_Response_202:
+    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
+    Detect_Intelligence_getDetectIntelligenceQuestion_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
-      title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
     DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -202,14 +170,38 @@ components:
           type: string
           format: date-time
       title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem
-    Detect_Intelligence_getDetectIntelligenceQuestion_Response_200:
+    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+        uuid:
+          type: string
+          description: UUID of the question
+        detect_uuid:
+          type: string
+          description: UUID of the associated detection report
+        query:
+          type: string
+          description: The submitted question
+        answer:
+          type:
+          - string
+          - 'null'
+          description: The generated answer (null until completed)
+        status:
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus'
+          description: Current status of the question
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Error details when status is failed
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem
     DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
       type: string
       enum:
@@ -219,6 +211,14 @@ components:
       - failed
       description: Current status of the question
       title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    Detect_Intelligence_askDetectIntelligenceQuestion_Response_202:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
   securitySchemes:
     BearerAuth:
       type: http

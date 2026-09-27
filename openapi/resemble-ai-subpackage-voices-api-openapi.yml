@@ -176,37 +176,6 @@ paths:
                   default: false
 components:
   schemas:
-    VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType:
-      type: string
-      enum:
-      - rapid
-      - professional
-      default: professional
-      title: VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType
-    Voices_getVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Voices_getVoice_Response_200
-    VoicesPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesPostResponsesContentApplicationJsonSchemaItem
-    Voices_createVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/VoicesPostResponsesContentApplicationJsonSchemaItem'
-      title: Voices_createVoice_Response_200
-    VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem
     Voices_buildVoice_Response_200:
       type: object
       properties:
@@ -215,16 +184,14 @@ components:
         message:
           type: string
       title: Voices_buildVoice_Response_200
-    Voices_deleteVoice_Response_200:
+    Voices_getVoice_Response_200:
       type: object
       properties:
         success:
           type: boolean
-      title: Voices_deleteVoice_Response_200
-    VoicesGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: VoicesGetResponsesContentApplicationJsonSchemaItemsItems
+        item:
+          $ref: '#/components/schemas/VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Voices_getVoice_Response_200
     Voices_listVoices_Response_200:
       type: object
       properties:
@@ -241,6 +208,39 @@ components:
           items:
             $ref: '#/components/schemas/VoicesGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Voices_listVoices_Response_200
+    VoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: VoicesGetResponsesContentApplicationJsonSchemaItemsItems
+    VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidGetResponsesContentApplicationJsonSchemaItem
+    Voices_createVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/VoicesPostResponsesContentApplicationJsonSchemaItem'
+      title: Voices_createVoice_Response_200
+    VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType:
+      type: string
+      enum:
+      - rapid
+      - professional
+      default: professional
+      title: VoicesPostRequestBodyContentApplicationJsonSchemaVoiceType
+    Voices_deleteVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Voices_deleteVoice_Response_200
+    VoicesPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesPostResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

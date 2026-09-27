@@ -158,18 +158,6 @@ paths:
                 $ref: '#/components/schemas/Agent_Phone_Numbers_forceDeletePhoneNumber_Response_200'
 components:
   schemas:
-    PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems
-    Agent_Phone_Numbers_forceDeletePhoneNumber_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agent Phone Numbers_forceDeletePhoneNumber_Response_200
     Agent_Phone_Numbers_createPhoneNumber_Response_200:
       type: object
       properties:
@@ -180,22 +168,11 @@ components:
         message:
           type: string
       title: Agent Phone Numbers_createPhoneNumber_Response_200
-    Agent_Phone_Numbers_getPhoneNumber_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem'
-      title: Agent Phone Numbers_getPhoneNumber_Response_200
-    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk:
-      type: object
-      properties: {}
-      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk
-    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk:
-      type: object
-      properties: {}
-      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk
+    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaProvider:
+      type: string
+      enum:
+      - twilio
+      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaProvider
     Agent_Phone_Numbers_listPhoneNumbers_Response_200:
       type: object
       properties:
@@ -206,6 +183,30 @@ components:
           items:
             $ref: '#/components/schemas/PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Agent Phone Numbers_listPhoneNumbers_Response_200
+    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk:
+      type: object
+      properties: {}
+      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaInboundTrunk
+    PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: PhoneNumbersGetResponsesContentApplicationJsonSchemaItemsItems
+    PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem
+    PhoneNumbersPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: PhoneNumbersPostResponsesContentApplicationJsonSchemaItem
+    Agent_Phone_Numbers_forceDeletePhoneNumber_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Phone Numbers_forceDeletePhoneNumber_Response_200
     Agent_Phone_Numbers_deletePhoneNumber_Response_200:
       type: object
       properties:
@@ -214,19 +215,18 @@ components:
         message:
           type: string
       title: Agent Phone Numbers_deletePhoneNumber_Response_200
-    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaProvider:
-      type: string
-      enum:
-      - twilio
-      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaProvider
-    PhoneNumbersPostResponsesContentApplicationJsonSchemaItem:
+    PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk:
       type: object
       properties: {}
-      title: PhoneNumbersPostResponsesContentApplicationJsonSchemaItem
-    PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem:
+      title: PhoneNumbersPostRequestBodyContentApplicationJsonSchemaOutboundTrunk
+    Agent_Phone_Numbers_getPhoneNumber_Response_200:
       type: object
-      properties: {}
-      title: PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/PhoneNumbersIdGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Phone Numbers_getPhoneNumber_Response_200
   securitySchemes:
     BearerAuth:
       type: http

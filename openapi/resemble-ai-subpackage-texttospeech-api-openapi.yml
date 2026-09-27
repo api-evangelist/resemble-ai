@@ -147,6 +147,74 @@ paths:
               - data
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
+    Text-to-Speech_synthesize_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        audio_content:
+          type: string
+          format: byte
+          description: Base64-encoded audio bytes
+        audio_timestamps:
+          $ref: '#/components/schemas/AudioTimestamps'
+        duration:
+          type: number
+          format: double
+          description: Audio duration in seconds
+        synth_duration:
+          type: number
+          format: double
+          description: Raw synthesis time
+        output_format:
+          type: string
+        sample_rate:
+          type: integer
+        title:
+          type: string
+        issues:
+          type: array
+          items:
+            type: string
+      title: Text-to-Speech_synthesize_Response_200
+    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
     StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
       type: string
       enum:
@@ -205,74 +273,6 @@ components:
       default: wav
       description: Audio output format
       title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
-    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
-    Text-to-Speech_synthesize_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        audio_content:
-          type: string
-          format: byte
-          description: Base64-encoded audio bytes
-        audio_timestamps:
-          $ref: '#/components/schemas/AudioTimestamps'
-        duration:
-          type: number
-          format: double
-          description: Audio duration in seconds
-        synth_duration:
-          type: number
-          format: double
-          description: Raw synthesis time
-        output_format:
-          type: string
-        sample_rate:
-          type: integer
-        title:
-          type: string
-        issues:
-          type: array
-          items:
-            type: string
-      title: Text-to-Speech_synthesize_Response_200
   securitySchemes:
     BearerAuth:
       type: http

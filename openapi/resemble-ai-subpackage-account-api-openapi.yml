@@ -100,24 +100,6 @@ paths:
                 $ref: '#/components/schemas/Account_getBillingUsage_Response_200'
 components:
   schemas:
-    Account_getTeams_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Account_getTeams_Response_200
-    Account_getAccount_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
-      title: Account_getAccount_Response_200
     AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -138,14 +120,14 @@ components:
         current_usage:
           type: integer
       title: AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem
-    Account_getTeam_Response_200:
+    AccountGetResponsesContentApplicationJsonSchemaItem:
       type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Account_getTeam_Response_200
+      properties: {}
+      title: AccountGetResponsesContentApplicationJsonSchemaItem
+    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
     Account_getBillingUsage_Response_200:
       type: object
       properties:
@@ -154,18 +136,36 @@ components:
         item:
           $ref: '#/components/schemas/AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem'
       title: Account_getBillingUsage_Response_200
+    Account_getTeams_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Account_getTeams_Response_200
     AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem
-    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
+    Account_getAccount_Response_200:
       type: object
-      properties: {}
-      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
-    AccountGetResponsesContentApplicationJsonSchemaItem:
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getAccount_Response_200
+    Account_getTeam_Response_200:
       type: object
-      properties: {}
-      title: AccountGetResponsesContentApplicationJsonSchemaItem
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Account_getTeam_Response_200
   securitySchemes:
     BearerAuth:
       type: http

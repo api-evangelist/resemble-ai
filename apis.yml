@@ -55,7 +55,7 @@ modified: '2026-05-19'
 specificationVersion: '0.23'
 apis:
 - aid: resemble-ai:resemble-ai-subpackage-account-api
-  name: Resemble AI subpackage_account API
+  name: Resemble AI Subpackage Account API
   description: The subpackage_account API from Resemble AI — 4 operation(s) for subpackage_account.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -72,7 +72,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-agentknowledgebase-api
-  name: Resemble AI subpackage_agentKnowledgeBase API
+  name: Resemble AI Subpackage Agent Knowledge Base API
   description: >-
     The subpackage_agentKnowledgeBase API from Resemble AI — 5 operation(s) for subpackage_agentknowledgebase.
   humanURL: https://docs.resemble.ai/
@@ -89,7 +89,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-agentphonenumbers-api
-  name: Resemble AI subpackage_agentPhoneNumbers API
+  name: Resemble AI Subpackage Agent Phone Numbers API
   description: >-
     The subpackage_agentPhoneNumbers API from Resemble AI — 3 operation(s) for subpackage_agentphonenumbers.
   humanURL: https://docs.resemble.ai/
@@ -106,7 +106,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-agents-api
-  name: Resemble AI subpackage_agents API
+  name: Resemble AI Subpackage Agents API
   description: The subpackage_agents API from Resemble AI — 5 operation(s) for subpackage_agents.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -123,7 +123,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-agenttools-api
-  name: Resemble AI subpackage_agentTools API
+  name: Resemble AI Subpackage Agent Tools API
   description: >-
     The subpackage_agentTools API from Resemble AI — 2 operation(s) for subpackage_agenttools.
   humanURL: https://docs.resemble.ai/
@@ -140,7 +140,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-agentwebhooks-api
-  name: Resemble AI subpackage_agentWebhooks API
+  name: Resemble AI Subpackage Agent Webhooks API
   description: >-
     The subpackage_agentWebhooks API from Resemble AI — 2 operation(s) for subpackage_agentwebhooks.
   humanURL: https://docs.resemble.ai/
@@ -157,7 +157,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-audioedit-api
-  name: Resemble AI subpackage_audioEdit API
+  name: Resemble AI Subpackage Audio Edit API
   description: The subpackage_audioEdit API from Resemble AI — 2 operation(s) for subpackage_audioedit.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -173,7 +173,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-audioenhancement-api
-  name: Resemble AI subpackage_audioEnhancement API
+  name: Resemble AI Subpackage Audio Enhancement API
   description: >-
     The subpackage_audioEnhancement API from Resemble AI — 2 operation(s) for subpackage_audioenhancement.
   humanURL: https://docs.resemble.ai/
@@ -190,7 +190,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-audiosourcetracing-api
-  name: Resemble AI subpackage_audioSourceTracing API
+  name: Resemble AI Subpackage Audio Source Tracing API
   description: >-
     The subpackage_audioSourceTracing API from Resemble AI — 2 operation(s) for subpackage_audiosourcetracing.
   humanURL: https://docs.resemble.ai/
@@ -207,7 +207,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-clips-api
-  name: Resemble AI subpackage_clips API
+  name: Resemble AI Subpackage Clips API
   description: The subpackage_clips API from Resemble AI — 2 operation(s) for subpackage_clips.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -224,7 +224,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-custompronunciations-api
-  name: Resemble AI subpackage_customPronunciations API
+  name: Resemble AI Subpackage Custom Pronunciations API
   description: >-
     The subpackage_customPronunciations API from Resemble AI — 3 operation(s) for subpackage_custompronunciations.
   humanURL: https://docs.resemble.ai/
@@ -241,7 +241,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-deepfakedetection-api
-  name: Resemble AI subpackage_deepfakeDetection API
+  name: Resemble AI Subpackage Deepfake Detection API
   description: >-
     The subpackage_deepfakeDetection API from Resemble AI — 4 operation(s) for subpackage_deepfakedetection.
   humanURL: https://docs.resemble.ai/
@@ -258,7 +258,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-detectintelligence-api
-  name: Resemble AI subpackage_detectIntelligence API
+  name: Resemble AI Subpackage Detect Intelligence API
   description: >-
     The subpackage_detectIntelligence API from Resemble AI — 2 operation(s) for subpackage_detectintelligence.
   humanURL: https://docs.resemble.ai/
@@ -275,7 +275,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-duets-api
-  name: Resemble AI subpackage_duets API
+  name: Resemble AI Subpackage Duets API
   description: The subpackage_duets API from Resemble AI — 4 operation(s) for subpackage_duets.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -292,7 +292,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-identity-api
-  name: Resemble AI subpackage_identity API
+  name: Resemble AI Subpackage Identity API
   description: The subpackage_identity API from Resemble AI — 2 operation(s) for subpackage_identity.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -309,7 +309,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-intelligence-api
-  name: Resemble AI subpackage_intelligence API
+  name: Resemble AI Subpackage Intelligence API
   description: >-
     The subpackage_intelligence API from Resemble AI — 3 operation(s) for subpackage_intelligence.
   humanURL: https://docs.resemble.ai/
@@ -327,7 +327,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-projects-api
-  name: Resemble AI subpackage_projects API
+  name: Resemble AI Subpackage Projects API
   description: The subpackage_projects API from Resemble AI — 2 operation(s) for subpackage_projects.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -344,7 +344,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-recordings-api
-  name: Resemble AI subpackage_recordings API
+  name: Resemble AI Subpackage Recordings API
   description: >-
     The subpackage_recordings API from Resemble AI — 2 operation(s) for subpackage_recordings.
   humanURL: https://docs.resemble.ai/
@@ -362,7 +362,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-secureuploads-api
-  name: Resemble AI subpackage_secureUploads API
+  name: Resemble AI Subpackage Secure Uploads API
   description: >-
     The subpackage_secureUploads API from Resemble AI — 1 operation(s) for subpackage_secureuploads.
   humanURL: https://docs.resemble.ai/
@@ -379,7 +379,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-speechtotext-api
-  name: Resemble AI subpackage_speechToText API
+  name: Resemble AI Subpackage Speech To Text API
   description: >-
     The subpackage_speechToText API from Resemble AI — 5 operation(s) for subpackage_speechtotext.
   humanURL: https://docs.resemble.ai/
@@ -396,7 +396,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-termsubstitutions-api
-  name: Resemble AI subpackage_termSubstitutions API
+  name: Resemble AI Subpackage Term Substitutions API
   description: >-
     The subpackage_termSubstitutions API from Resemble AI — 2 operation(s) for subpackage_termsubstitutions.
   humanURL: https://docs.resemble.ai/
@@ -413,7 +413,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-texttospeech-api
-  name: Resemble AI subpackage_textToSpeech API
+  name: Resemble AI Subpackage Text To Speech API
   description: >-
     The subpackage_textToSpeech API from Resemble AI — 2 operation(s) for subpackage_texttospeech.
   humanURL: https://docs.resemble.ai/
@@ -430,7 +430,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-voicedesign-api
-  name: Resemble AI subpackage_voiceDesign API
+  name: Resemble AI Subpackage Voice Design API
   description: >-
     The subpackage_voiceDesign API from Resemble AI — 2 operation(s) for subpackage_voicedesign.
   humanURL: https://docs.resemble.ai/
@@ -447,7 +447,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-voices-api
-  name: Resemble AI subpackage_voices API
+  name: Resemble AI Subpackage Voices API
   description: The subpackage_voices API from Resemble AI — 3 operation(s) for subpackage_voices.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai
@@ -464,7 +464,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-voicesettingspresets-api
-  name: Resemble AI subpackage_voiceSettingsPresets API
+  name: Resemble AI Subpackage Voice Settings Presets API
   description: >-
     The subpackage_voiceSettingsPresets API from Resemble AI — 2 operation(s) for subpackage_voicesettingspresets.
   humanURL: https://docs.resemble.ai/
@@ -481,7 +481,7 @@ apis:
   - type: Pricing
     url: https://www.resemble.ai/pricing/
 - aid: resemble-ai:resemble-ai-subpackage-watermark-api
-  name: Resemble AI subpackage_watermark API
+  name: Resemble AI Subpackage Watermark API
   description: The subpackage_watermark API from Resemble AI — 4 operation(s) for subpackage_watermark.
   humanURL: https://docs.resemble.ai/
   baseURL: https://api.resemble.ai

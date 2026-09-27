@@ -141,6 +141,28 @@ components:
         item:
           $ref: '#/components/schemas/TermSubstitutionsPostResponsesContentApplicationJsonSchemaItem'
       title: Term Substitutions_createTermSubstitution_Response_200
+    TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem
+    Term_Substitutions_deleteTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Term Substitutions_deleteTermSubstitution_Response_200
+    TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems
+    Term_Substitutions_getTermSubstitution_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem'
+      title: Term Substitutions_getTermSubstitution_Response_200
     Term_Substitutions_listTermSubstitutions_Response_200:
       type: object
       properties:
@@ -151,28 +173,6 @@ components:
           items:
             $ref: '#/components/schemas/TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Term Substitutions_listTermSubstitutions_Response_200
-    TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: TermSubstitutionsGetResponsesContentApplicationJsonSchemaItemsItems
-    Term_Substitutions_deleteTermSubstitution_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Term Substitutions_deleteTermSubstitution_Response_200
-    Term_Substitutions_getTermSubstitution_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem'
-      title: Term Substitutions_getTermSubstitution_Response_200
-    TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: TermSubstitutionsIdGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

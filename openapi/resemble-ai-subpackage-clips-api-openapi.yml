@@ -151,14 +151,12 @@ paths:
                   type: boolean
 components:
   schemas:
-    Clips_updateClip_Response_200:
+    Clips_deleteClip_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        item:
-          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem'
-      title: Clips_updateClip_Response_200
+      title: Clips_deleteClip_Response_200
     Clips_listClips_Response_200:
       type: object
       properties:
@@ -169,24 +167,14 @@ components:
           items:
             $ref: '#/components/schemas/ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Clips_listClips_Response_200
-    Clips_deleteClip_Response_200:
+    Clips_updateClip_Response_200:
       type: object
       properties:
         success:
           type: boolean
-      title: Clips_deleteClip_Response_200
-    ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem
-    ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem
-    ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem'
+      title: Clips_updateClip_Response_200
     Clips_getClip_Response_200:
       type: object
       properties:
@@ -195,6 +183,18 @@ components:
         item:
           $ref: '#/components/schemas/ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem'
       title: Clips_getClip_Response_200
+    ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsClipUuidPatchResponsesContentApplicationJsonSchemaItem
+    ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsGetResponsesContentApplicationJsonSchemaItemsItems
+    ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidClipsClipUuidGetResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http
