@@ -156,114 +156,6 @@ paths:
                 $ref: '#/components/schemas/GetAudioEnhancementRequestNotFoundError'
 components:
   schemas:
-    GetAudioEnhancementRequestNotFoundError:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: GetAudioEnhancementRequestNotFoundError
-    AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine:
-      type: string
-      enum:
-      - v1
-      - v2
-      default: v2
-      description: Enhancement engine to use. Default is v2.
-      title: AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine
-    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus
-    Audio_Enhancement_listAudioEnhancements_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        page:
-          type: integer
-        num_pages:
-          type: integer
-        page_size:
-          type: integer
-        total_count:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Audio Enhancement_listAudioEnhancements_Response_200
-    AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      title: AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus
-    Audio_Enhancement_getAudioEnhancement_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        uuid:
-          type: string
-        status:
-          $ref: '#/components/schemas/AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus'
-        enhanced_audio_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: Download URL. Only present when status is completed. This is a temporary signed URL.
-        error_message:
-          type:
-          - string
-          - 'null'
-          description: Human-readable error. Only present when status is failed.
-      title: Audio Enhancement_getAudioEnhancement_Response_200
-    CreateAudioEnhancementRequestBadRequestError:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: CreateAudioEnhancementRequestBadRequestError
-    AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus:
-      type: string
-      enum:
-      - pending
-      title: AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus
-    CreateAudioEnhancementRequestForbiddenError:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: CreateAudioEnhancementRequestForbiddenError
-    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine:
-      type: string
-      enum:
-      - v1
-      - v2
-      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine
-    Audio_Enhancement_createAudioEnhancement_Response_202:
-      type: object
-      properties:
-        success:
-          type: boolean
-        uuid:
-          type: string
-        status:
-          $ref: '#/components/schemas/AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus'
-      title: Audio Enhancement_createAudioEnhancement_Response_202
     AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties:
@@ -303,6 +195,106 @@ components:
           type: string
           format: uri
       title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems
+    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsStatus
+    Audio_Enhancement_listAudioEnhancements_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        total_count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Audio Enhancement_listAudioEnhancements_Response_200
+    CreateAudioEnhancementRequestForbiddenError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: CreateAudioEnhancementRequestForbiddenError
+    AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      title: AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus
+    AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus
+    Audio_Enhancement_createAudioEnhancement_Response_202:
+      type: object
+      properties:
+        success:
+          type: boolean
+        uuid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AudioEnhancementsPostResponsesContentApplicationJsonSchemaStatus'
+      title: Audio Enhancement_createAudioEnhancement_Response_202
+    GetAudioEnhancementRequestNotFoundError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: GetAudioEnhancementRequestNotFoundError
+    Audio_Enhancement_getAudioEnhancement_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        uuid:
+          type: string
+        status:
+          $ref: '#/components/schemas/AudioEnhancementsEnhancementUuidGetResponsesContentApplicationJsonSchemaStatus'
+        enhanced_audio_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Download URL. Only present when status is completed. This is a temporary signed URL.
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: Human-readable error. Only present when status is failed.
+      title: Audio Enhancement_getAudioEnhancement_Response_200
+    AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine:
+      type: string
+      enum:
+      - v1
+      - v2
+      title: AudioEnhancementsGetResponsesContentApplicationJsonSchemaItemsItemsEnhancementEngine
+    CreateAudioEnhancementRequestBadRequestError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: CreateAudioEnhancementRequestBadRequestError
     ListAudioEnhancementsRequestBadRequestError:
       type: object
       properties:
@@ -311,6 +303,14 @@ components:
         message:
           type: string
       title: ListAudioEnhancementsRequestBadRequestError
+    AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine:
+      type: string
+      enum:
+      - v1
+      - v2
+      default: v2
+      description: Enhancement engine to use. Default is v2.
+      title: AudioEnhancementsPostRequestBodyContentMultipartFormDataSchemaEnhancementEngine
   securitySchemes:
     BearerAuth:
       type: http

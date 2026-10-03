@@ -147,33 +147,36 @@ paths:
               - data
 components:
   schemas:
-    Error:
+    AudioTimestamps:
       type: object
       properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
+        graph_chars:
+          type: array
+          items:
+            type: string
+          description: Grapheme characters
+        graph_times:
+          type: array
+          items:
             type: array
             items:
-              type: string
-        message:
-          type: string
-      title: Error
-    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
+              type: number
+              format: double
+          description: Grapheme timestamps [start, end] in seconds
+        phon_chars:
+          type: array
+          items:
+            type: string
+          description: Phoneme characters
+        phon_times:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+          description: Phoneme timestamps [start, end] in seconds
+      title: AudioTimestamps
     Text-to-Speech_synthesize_Response_200:
       type: object
       properties:
@@ -215,6 +218,17 @@ components:
       - '48000'
       description: Audio sample rate in Hz
       title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
+    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
     StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
       type: string
       enum:
@@ -225,36 +239,30 @@ components:
       default: PCM_32
       description: Audio precision
       title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
-    AudioTimestamps:
+    SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
+      type: string
+      enum:
+      - wav
+      - mp3
+      default: wav
+      description: Audio output format
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
+    Error:
       type: object
       properties:
-        graph_chars:
-          type: array
-          items:
-            type: string
-          description: Grapheme characters
-        graph_times:
-          type: array
-          items:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
             type: array
             items:
-              type: number
-              format: double
-          description: Grapheme timestamps [start, end] in seconds
-        phon_chars:
-          type: array
-          items:
-            type: string
-          description: Phoneme characters
-        phon_times:
-          type: array
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-          description: Phoneme timestamps [start, end] in seconds
-      title: AudioTimestamps
+              type: string
+        message:
+          type: string
+      title: Error
     SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision:
       type: string
       enum:
@@ -265,14 +273,6 @@ components:
       default: PCM_32
       description: Audio precision for WAV output
       title: SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision
-    SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
-      type: string
-      enum:
-      - wav
-      - mp3
-      default: wav
-      description: Audio output format
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat
   securitySchemes:
     BearerAuth:
       type: http

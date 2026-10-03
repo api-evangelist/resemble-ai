@@ -234,10 +234,55 @@ paths:
               - script
 components:
   schemas:
-    DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem:
+    DuetVoicesPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
-      title: DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem
+      title: DuetVoicesPostResponsesContentApplicationJsonSchemaItem
+    DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker:
+      type: string
+      enum:
+      - '0'
+      - '1'
+      description: Speaker index (0 or 1)
+      title: DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker
+    Duets_listDuetVoicePairs_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Duets_listDuetVoicePairs_Response_200
+    DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems
+    Duets_generateDuet_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetPostResponsesContentApplicationJsonSchemaItem'
+      title: Duets_generateDuet_Response_200
+    Duets_listDuetVoices_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Duets_listDuetVoices_Response_200
+    Duets_deleteDuetVoice_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Duets_deleteDuetVoice_Response_200
     Duets_createDuetVoicePair_Response_200:
       type: object
       properties:
@@ -246,6 +291,26 @@ components:
         item:
           $ref: '#/components/schemas/DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem'
       title: Duets_createDuetVoicePair_Response_200
+    DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: DuetVoicePairsPostResponsesContentApplicationJsonSchemaItem
+    DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems
+    DuetPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        status:
+          type: string
+      title: DuetPostResponsesContentApplicationJsonSchemaItem
+    DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem
     DuetPostRequestBodyContentApplicationJsonSchemaScriptItems:
       type: object
       properties:
@@ -259,68 +324,6 @@ components:
       - speaker
       - text
       title: DuetPostRequestBodyContentApplicationJsonSchemaScriptItems
-    Duets_listDuetVoicePairs_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Duets_listDuetVoicePairs_Response_200
-    DuetVoicesPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: DuetVoicesPostResponsesContentApplicationJsonSchemaItem
-    Duets_createDuetVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DuetVoicesPostResponsesContentApplicationJsonSchemaItem'
-      title: Duets_createDuetVoice_Response_200
-    DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: DuetVoicePairsGetResponsesContentApplicationJsonSchemaItemsItems
-    Duets_listDuetVoices_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Duets_listDuetVoices_Response_200
-    DuetPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-        status:
-          type: string
-      title: DuetPostResponsesContentApplicationJsonSchemaItem
-    DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem
-    Duets_deleteDuetVoice_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Duets_deleteDuetVoice_Response_200
-    Duets_generateDuet_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DuetPostResponsesContentApplicationJsonSchemaItem'
-      title: Duets_generateDuet_Response_200
     Duets_updateDuetVoice_Response_200:
       type: object
       properties:
@@ -329,17 +332,14 @@ components:
         item:
           $ref: '#/components/schemas/DuetVoicesIdPutResponsesContentApplicationJsonSchemaItem'
       title: Duets_updateDuetVoice_Response_200
-    DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems:
+    Duets_createDuetVoice_Response_200:
       type: object
-      properties: {}
-      title: DuetVoicesGetResponsesContentApplicationJsonSchemaItemsItems
-    DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker:
-      type: string
-      enum:
-      - '0'
-      - '1'
-      description: Speaker index (0 or 1)
-      title: DuetPostRequestBodyContentApplicationJsonSchemaScriptItemsSpeaker
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DuetVoicesPostResponsesContentApplicationJsonSchemaItem'
+      title: Duets_createDuetVoice_Response_200
   securitySchemes:
     BearerAuth:
       type: http

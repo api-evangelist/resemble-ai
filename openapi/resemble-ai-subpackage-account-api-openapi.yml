@@ -100,6 +100,16 @@ paths:
                 $ref: '#/components/schemas/Account_getBillingUsage_Response_200'
 components:
   schemas:
+    Account_getTeams_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Account_getTeams_Response_200
     AccountTeamsTeamUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -124,10 +134,6 @@ components:
       type: object
       properties: {}
       title: AccountGetResponsesContentApplicationJsonSchemaItem
-    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
     Account_getBillingUsage_Response_200:
       type: object
       properties:
@@ -136,20 +142,6 @@ components:
         item:
           $ref: '#/components/schemas/AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem'
       title: Account_getBillingUsage_Response_200
-    Account_getTeams_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Account_getTeams_Response_200
-    AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem
     Account_getAccount_Response_200:
       type: object
       properties:
@@ -158,6 +150,14 @@ components:
         item:
           $ref: '#/components/schemas/AccountGetResponsesContentApplicationJsonSchemaItem'
       title: Account_getAccount_Response_200
+    AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AccountBillingUsageGetResponsesContentApplicationJsonSchemaItem
+    AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AccountTeamsGetResponsesContentApplicationJsonSchemaItemsItems
     Account_getTeam_Response_200:
       type: object
       properties:

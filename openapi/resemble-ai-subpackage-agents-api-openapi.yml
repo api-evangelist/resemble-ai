@@ -316,6 +316,181 @@ paths:
                 $ref: '#/components/schemas/Agents_getSystemTools_Response_200'
 components:
   schemas:
+    AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat:
+      type: string
+      enum:
+      - pcm_8000
+      - pcm_16000
+      - pcm_22050
+      - pcm_24000
+      - pcm_44100
+      - pcm_48000
+      - ulaw_8000
+      default: pcm_16000
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat
+    AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode:
+      type: string
+      enum:
+      - speed
+      - accuracy
+      description: RAG search strategy
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode
+    Agents_getAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agents_getAgent_Response_200
+    AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr
+    Agents_deleteAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agents_deleteAgent_Response_200
+    Agents_listAgents_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsGetResponsesContentApplicationJsonSchemaItemsItems'
+        count:
+          type: integer
+      title: Agents_listAgents_Response_200
+    Agents_createAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agents_createAgent_Response_200
+    AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode:
+      type: string
+      enum:
+      - silence
+      default: silence
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode
+    AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools
+    AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      type: object
+      properties: {}
+      description: Runtime variable overrides
+      title: AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables
+    AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode:
+      type: string
+      enum:
+      - speed
+      - accuracy
+      default: accuracy
+      description: RAG search strategy - speed (faster) or accuracy (more thorough)
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode
+    Agents_getSystemTools_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Agents_getSystemTools_Response_200
+    Agents_dispatchAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        call_id:
+          type: string
+      title: Agents_dispatchAgent_Response_200
+    AgentsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsPostResponsesContentApplicationJsonSchemaItem
+    AgentsPostRequestBodyContentApplicationJsonSchemaTurn:
+      type: object
+      properties:
+        turn_timeout:
+          type: integer
+          default: 7
+        silence_end_call_timeout:
+          type: integer
+          default: -1
+        mode:
+          $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode'
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurn
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm
+    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: ASR provider name (e.g., "deepgram")
+        model:
+          type: string
+          description: Model identifier (e.g., "nova-2")
+        description:
+          type: string
+          description: Human-readable description of the capability
+      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems
+    AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      - type: boolean
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables
+    AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools:
+      type: object
+      properties: {}
+      title: AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools
+    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: LLM provider name (e.g., "openai", "anthropic")
+        model:
+          type: string
+          description: Model identifier (e.g., "gpt-4o", "claude-3-5-sonnet-20241022")
+        description:
+          type: string
+          description: Human-readable description of the capability
+      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems
+    AgentsUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsUuidGetResponsesContentApplicationJsonSchemaItem
     Error:
       type: object
       properties:
@@ -332,85 +507,6 @@ components:
         message:
           type: string
       title: Error
-    AgentsPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsPostResponsesContentApplicationJsonSchemaItem
-    Agents_getAgentCapabilities_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        asr_capabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems'
-        llm_capabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems'
-      title: Agents_getAgentCapabilities_Response_200
-    AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode:
-      type: string
-      enum:
-      - speed
-      - accuracy
-      default: accuracy
-      description: RAG search strategy - speed (faster) or accuracy (more thorough)
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaSearchMode
-    AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat:
-      type: string
-      enum:
-      - pcm_8000
-      - pcm_16000
-      - pcm_22050
-      - pcm_24000
-      - pcm_44100
-      - pcm_48000
-      - ulaw_8000
-      default: pcm_16000
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaAsrUserInputAudioFormat
-    AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools:
-      type: object
-      properties: {}
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaSystemTools
-    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: ASR provider name (e.g., "deepgram")
-        model:
-          type: string
-          description: Model identifier (e.g., "nova-2")
-        description:
-          type: string
-          description: Human-readable description of the capability
-      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaLlm
-    Agents_listAgents_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsGetResponsesContentApplicationJsonSchemaItemsItems'
-        count:
-          type: integer
-      title: Agents_listAgents_Response_200
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables
-    AgentsUuidPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchResponsesContentApplicationJsonSchemaItem
     AgentsPostRequestBodyContentApplicationJsonSchemaLlm:
       type: object
       properties:
@@ -434,35 +530,46 @@ components:
         built_in_tools:
           $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools'
       title: AgentsPostRequestBodyContentApplicationJsonSchemaLlm
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaAsr
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn
-    AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
-      oneOf:
-      - type: string
-      - type: number
-        format: double
-      - type: boolean
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaDynamicVariables
-    Agents_getSystemTools_Response_200:
+    Agents_getAgentCapabilities_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        items:
+        asr_capabilities:
           type: array
           items:
-            $ref: '#/components/schemas/AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Agents_getSystemTools_Response_200
+            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaAsrCapabilitiesItems'
+        llm_capabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems'
+      title: Agents_getAgentCapabilities_Response_200
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaTurn
+    AgentsUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchResponsesContentApplicationJsonSchemaItem
+    Agents_updateAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsUuidPatchResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agents_updateAgent_Response_200
     AgentsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
       title: AgentsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables:
+      type: object
+      properties: {}
+      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaDynamicVariables
     AgentsPostRequestBodyContentApplicationJsonSchemaAsr:
       type: object
       properties:
@@ -478,113 +585,6 @@ components:
           items:
             type: string
       title: AgentsPostRequestBodyContentApplicationJsonSchemaAsr
-    Agents_deleteAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agents_deleteAgent_Response_200
-    Agents_updateAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AgentsUuidPatchResponsesContentApplicationJsonSchemaItem'
-        message:
-          type: string
-      title: Agents_updateAgent_Response_200
-    AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables:
-      type: object
-      properties: {}
-      description: Runtime variable overrides
-      title: AgentsUuidDispatchPostRequestBodyContentApplicationJsonSchemaDynamicVariables
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools:
-      type: object
-      properties: {}
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSystemTools
-    AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AgentsSystemToolsGetResponsesContentApplicationJsonSchemaItemsItems
-    AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems:
-      type: object
-      properties:
-        provider:
-          type: string
-          description: LLM provider name (e.g., "openai", "anthropic")
-        model:
-          type: string
-          description: Model identifier (e.g., "gpt-4o", "claude-3-5-sonnet-20241022")
-        description:
-          type: string
-          description: Human-readable description of the capability
-      title: AgentsCapabilitiesGetResponsesContentApplicationJsonSchemaLlmCapabilitiesItems
-    AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode:
-      type: string
-      enum:
-      - speed
-      - accuracy
-      description: RAG search strategy
-      title: AgentsUuidPatchRequestBodyContentApplicationJsonSchemaSearchMode
-    AgentsPostRequestBodyContentApplicationJsonSchemaTurn:
-      type: object
-      properties:
-        turn_timeout:
-          type: integer
-          default: 7
-        silence_end_call_timeout:
-          type: integer
-          default: -1
-        mode:
-          $ref: '#/components/schemas/AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode'
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurn
-    Agents_createAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AgentsPostResponsesContentApplicationJsonSchemaItem'
-        message:
-          type: string
-      title: Agents_createAgent_Response_200
-    Agents_dispatchAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        call_id:
-          type: string
-      title: Agents_dispatchAgent_Response_200
-    Agents_getAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AgentsUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Agents_getAgent_Response_200
-    AgentsUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsUuidGetResponsesContentApplicationJsonSchemaItem
-    AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode:
-      type: string
-      enum:
-      - silence
-      default: silence
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaTurnMode
-    AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems:
-      type: object
-      properties: {}
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaWebhooksItems
-    AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools:
-      type: object
-      properties: {}
-      title: AgentsPostRequestBodyContentApplicationJsonSchemaLlmBuiltInTools
   securitySchemes:
     BearerAuth:
       type: http

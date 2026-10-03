@@ -107,6 +107,29 @@ paths:
                 $ref: '#/components/schemas/Audio_Edit_getAudioEdit_Response_200'
 components:
   schemas:
+    Audio_Edit_getAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_getAudioEdit_Response_200
+    EditPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        voice_uuid:
+          type: string
+        original_transcript:
+          type: string
+        target_transcript:
+          type: string
+        input_audio_url:
+          type: string
+          format: uri
+      title: EditPostResponsesContentApplicationJsonSchemaItem
     EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -125,25 +148,18 @@ components:
           type: string
           format: uri
       title: EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem
+    Audio_Edit_createAudioEdit_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/EditPostResponsesContentApplicationJsonSchemaItem'
+      title: Audio Edit_createAudioEdit_Response_200
     EditGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
       title: EditGetResponsesContentApplicationJsonSchemaItemsItems
-    EditPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-        voice_uuid:
-          type: string
-        original_transcript:
-          type: string
-        target_transcript:
-          type: string
-        input_audio_url:
-          type: string
-          format: uri
-      title: EditPostResponsesContentApplicationJsonSchemaItem
     Audio_Edit_listAudioEdits_Response_200:
       type: object
       properties:
@@ -160,22 +176,6 @@ components:
           items:
             $ref: '#/components/schemas/EditGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Audio Edit_listAudioEdits_Response_200
-    Audio_Edit_getAudioEdit_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/EditAudioEditUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Audio Edit_getAudioEdit_Response_200
-    Audio_Edit_createAudioEdit_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/EditPostResponsesContentApplicationJsonSchemaItem'
-      title: Audio Edit_createAudioEdit_Response_200
   securitySchemes:
     BearerAuth:
       type: http

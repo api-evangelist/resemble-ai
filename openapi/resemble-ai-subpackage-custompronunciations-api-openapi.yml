@@ -226,85 +226,6 @@ paths:
               - active
 components:
   schemas:
-    Custom_Pronunciations_updatePronunciation_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/CustomPronunciation'
-      title: Custom Pronunciations_updatePronunciation_Response_200
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    Custom_Pronunciations_bulkCreatePronunciations_Response_201:
-      type: object
-      properties:
-        success:
-          type: boolean
-        total_created:
-          type: integer
-          description: Number of pronunciations successfully created
-        total_errors:
-          type: integer
-          description: Number of files that failed validation
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomPronunciation'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems'
-      title: Custom Pronunciations_bulkCreatePronunciations_Response_201
-    Custom_Pronunciations_createPronunciation_Response_201:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/CustomPronunciation'
-      title: Custom Pronunciations_createPronunciation_Response_201
-    PronunciationsGetParametersStatus:
-      type: string
-      enum:
-      - pending
-      - ready
-      - failed
-      title: PronunciationsGetParametersStatus
-    CustomPronunciationStatus:
-      type: string
-      enum:
-      - pending
-      - ready
-      - failed
-      description: Processing status. Only "ready" pronunciations are applied during synthesis.
-      title: CustomPronunciationStatus
-    PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems:
-      type: object
-      properties: {}
-      title: PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems
-    Custom_Pronunciations_getPronunciation_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/CustomPronunciation'
-      title: Custom Pronunciations_getPronunciation_Response_200
     Custom_Pronunciations_listPronunciations_Response_200:
       type: object
       properties:
@@ -315,6 +236,28 @@ components:
           items:
             $ref: '#/components/schemas/CustomPronunciation'
       title: Custom Pronunciations_listPronunciations_Response_200
+    Custom_Pronunciations_getPronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_getPronunciation_Response_200
+    Custom_Pronunciations_deletePronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Custom Pronunciations_deletePronunciation_Response_200
+    CustomPronunciationStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - failed
+      description: Processing status. Only "ready" pronunciations are applied during synthesis.
+      title: CustomPronunciationStatus
     CustomPronunciation:
       type: object
       properties:
@@ -342,12 +285,69 @@ components:
           type: string
           format: date-time
       title: CustomPronunciation
-    Custom_Pronunciations_deletePronunciation_Response_200:
+    Custom_Pronunciations_bulkCreatePronunciations_Response_201:
       type: object
       properties:
         success:
           type: boolean
-      title: Custom Pronunciations_deletePronunciation_Response_200
+        total_created:
+          type: integer
+          description: Number of pronunciations successfully created
+        total_errors:
+          type: integer
+          description: Number of files that failed validation
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomPronunciation'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems'
+      title: Custom Pronunciations_bulkCreatePronunciations_Response_201
+    PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems:
+      type: object
+      properties: {}
+      title: PronunciationsBulkPostResponsesContentApplicationJsonSchemaErrorsItems
+    Custom_Pronunciations_createPronunciation_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_createPronunciation_Response_201
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    PronunciationsGetParametersStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - failed
+      title: PronunciationsGetParametersStatus
+    Custom_Pronunciations_updatePronunciation_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/CustomPronunciation'
+      title: Custom Pronunciations_updatePronunciation_Response_200
   securitySchemes:
     BearerAuth:
       type: http

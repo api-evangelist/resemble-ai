@@ -79,14 +79,14 @@ paths:
               - name
 components:
   schemas:
-    Voice_Design_generateVoiceDesign_Response_200:
+    Voice_Design_createVoiceFromCandidate_Response_200:
       type: object
       properties:
-        voice_candidates:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems'
-      title: Voice Design_generateVoiceDesign_Response_200
+        success:
+          type: boolean
+        voice_uuid:
+          type: string
+      title: Voice Design_createVoiceFromCandidate_Response_200
     VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems:
       type: object
       properties:
@@ -98,14 +98,14 @@ components:
         uuid:
           type: string
       title: VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems
-    Voice_Design_createVoiceFromCandidate_Response_200:
+    Voice_Design_generateVoiceDesign_Response_200:
       type: object
       properties:
-        success:
-          type: boolean
-        voice_uuid:
-          type: string
-      title: Voice Design_createVoiceFromCandidate_Response_200
+        voice_candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceDesignPostResponsesContentApplicationJsonSchemaVoiceCandidatesItems'
+      title: Voice Design_generateVoiceDesign_Response_200
   securitySchemes:
     BearerAuth:
       type: http

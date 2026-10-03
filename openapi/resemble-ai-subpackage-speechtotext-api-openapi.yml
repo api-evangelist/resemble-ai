@@ -219,77 +219,6 @@ paths:
                 $ref: '#/components/schemas/Speech-to-Text_getTranscriptQuestion_Response_200'
 components:
   schemas:
-    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        query:
-          type: string
-        answer:
-          type: string
-        status:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems
-    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta:
-      type: object
-      properties: {}
-      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        transcript_uuid:
-          type: string
-          format: uuid
-        query:
-          type: string
-        status:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-      title: SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem
-    SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        status:
-          type: string
-        duration_seconds:
-          type: number
-          format: double
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems
     Speech-to-Text_listTranscriptQuestions_Response_200:
       type: object
       properties:
@@ -302,26 +231,6 @@ components:
         meta:
           $ref: '#/components/schemas/SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta'
       title: Speech-to-Text_listTranscriptQuestions_Response_200
-    SpeechToTextGetResponsesContentApplicationJsonSchemaMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total_pages:
-          type: integer
-        total_items:
-          type: integer
-      title: SpeechToTextGetResponsesContentApplicationJsonSchemaMeta
-    Speech-to-Text_getTranscript_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Speech-to-Text_getTranscript_Response_200
     SpeechToTextPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -337,18 +246,6 @@ components:
           type: string
           format: date-time
       title: SpeechToTextPostResponsesContentApplicationJsonSchemaItem
-    Speech-to-Text_listTranscripts_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems'
-        meta:
-          $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaMeta'
-      title: Speech-to-Text_listTranscripts_Response_200
     SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -371,22 +268,40 @@ components:
           type: string
           format: date-time
       title: SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem
-    Speech-to-Text_createTranscript_Response_200:
+    Speech-to-Text_listTranscripts_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        item:
-          $ref: '#/components/schemas/SpeechToTextPostResponsesContentApplicationJsonSchemaItem'
-      title: Speech-to-Text_createTranscript_Response_200
-    Speech-to-Text_askTranscriptQuestion_Response_200:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems'
+        meta:
+          $ref: '#/components/schemas/SpeechToTextGetResponsesContentApplicationJsonSchemaMeta'
+      title: Speech-to-Text_listTranscripts_Response_200
+    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems:
       type: object
       properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem'
-      title: Speech-to-Text_askTranscriptQuestion_Response_200
+        text:
+          type: string
+        start_time:
+          type: number
+          format: double
+        end_time:
+          type: number
+          format: double
+        speaker_id:
+          type: string
+      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems
     SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -418,14 +333,50 @@ components:
           type: string
           format: date-time
       title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem
-    Speech-to-Text_getTranscriptQuestion_Response_200:
+    SpeechToTextGetResponsesContentApplicationJsonSchemaMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_pages:
+          type: integer
+        total_items:
+          type: integer
+      title: SpeechToTextGetResponsesContentApplicationJsonSchemaMeta
+    Speech-to-Text_createTranscript_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Speech-to-Text_getTranscriptQuestion_Response_200
+          $ref: '#/components/schemas/SpeechToTextPostResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_createTranscript_Response_200
+    Speech-to-Text_askTranscriptQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_askTranscriptQuestion_Response_200
+    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        query:
+          type: string
+        answer:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaItemsItems
     SpeechToTextPostResponsesContentApplicationJsonSchemaItemStatus:
       type: string
       enum:
@@ -434,28 +385,77 @@ components:
       - completed
       - failed
       title: SpeechToTextPostResponsesContentApplicationJsonSchemaItemStatus
-    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems:
+    SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
-        text:
+        uuid:
           type: string
-        start_time:
+          format: uuid
+        transcript_uuid:
+          type: string
+          format: uuid
+        query:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      title: SpeechToTextUuidAskPostResponsesContentApplicationJsonSchemaItem
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    Speech-to-Text_getTranscriptQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidQuestionsQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_getTranscriptQuestion_Response_200
+    Speech-to-Text_getTranscript_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Speech-to-Text_getTranscript_Response_200
+    SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta:
+      type: object
+      properties: {}
+      title: SpeechToTextUuidQuestionsGetResponsesContentApplicationJsonSchemaMeta
+    SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        status:
+          type: string
+        duration_seconds:
           type: number
           format: double
-        end_time:
-          type: number
-          format: double
-        speaker_id:
+        created_at:
           type: string
-      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemWordsItems
-    SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      title: SpeechToTextUuidGetResponsesContentApplicationJsonSchemaItemStatus
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: SpeechToTextGetResponsesContentApplicationJsonSchemaItemsItems
   securitySchemes:
     BearerAuth:
       type: http

@@ -191,6 +191,34 @@ paths:
                   $ref: '#/components/schemas/AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig'
 components:
   schemas:
+    AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem
+    Agent_Tools_deleteAgentTool_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Tools_deleteAgentTool_Response_200
+    AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig
+    AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig
     Agent_Tools_listAgentTools_Response_200:
       type: object
       properties:
@@ -201,16 +229,6 @@ components:
           items:
             $ref: '#/components/schemas/AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Agent Tools_listAgentTools_Response_200
-    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType:
-      type: string
-      enum:
-      - webhook
-      - client
-      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType
-    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolConfig
     Agent_Tools_createAgentTool_Response_200:
       type: object
       properties:
@@ -221,26 +239,12 @@ components:
         message:
           type: string
       title: Agent Tools_createAgentTool_Response_200
-    AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidToolsToolUuidPatchResponsesContentApplicationJsonSchemaItem
-    AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidToolsGetResponsesContentApplicationJsonSchemaItemsItems
-    Agent_Tools_deleteAgentTool_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agent Tools_deleteAgentTool_Response_200
-    AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType:
+      type: string
+      enum:
+      - webhook
+      - client
+      title: AgentsAgentUuidToolsPostRequestBodyContentApplicationJsonSchemaToolType
     Agent_Tools_getAgentTool_Response_200:
       type: object
       properties:
@@ -249,14 +253,10 @@ components:
         item:
           $ref: '#/components/schemas/AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem'
       title: Agent Tools_getAgentTool_Response_200
-    AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem:
+    AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
-      title: AgentsAgentUuidToolsPostResponsesContentApplicationJsonSchemaItem
-    AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidToolsToolUuidPatchRequestBodyContentApplicationJsonSchemaToolConfig
+      title: AgentsAgentUuidToolsToolUuidGetResponsesContentApplicationJsonSchemaItem
     Agent_Tools_updateAgentTool_Response_200:
       type: object
       properties:

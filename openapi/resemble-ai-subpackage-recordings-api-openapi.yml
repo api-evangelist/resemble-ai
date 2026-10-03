@@ -209,14 +209,18 @@ paths:
                   type: boolean
 components:
   schemas:
-    Recordings_getRecording_Response_200:
+    VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem'
-      title: Recordings_getRecording_Response_200
+      properties: {}
+      title: VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems
+    VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem
+    VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem
     Recordings_createRecording_Response_200:
       type: object
       properties:
@@ -225,18 +229,24 @@ components:
         item:
           $ref: '#/components/schemas/VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem'
       title: Recordings_createRecording_Response_200
-    Recordings_updateRecording_Response_200:
+    Recordings_getRecording_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem'
-      title: Recordings_updateRecording_Response_200
-    VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem:
+          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem'
+      title: Recordings_getRecording_Response_200
+    Recordings_deleteRecording_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Recordings_deleteRecording_Response_200
+    VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
-      title: VoicesVoiceUuidRecordingsRecordingIdGetResponsesContentApplicationJsonSchemaItem
+      title: VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem
     Recordings_listRecordings_Response_200:
       type: object
       properties:
@@ -247,24 +257,14 @@ components:
           items:
             $ref: '#/components/schemas/VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Recordings_listRecordings_Response_200
-    Recordings_deleteRecording_Response_200:
+    Recordings_updateRecording_Response_200:
       type: object
       properties:
         success:
           type: boolean
-      title: Recordings_deleteRecording_Response_200
-    VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsGetResponsesContentApplicationJsonSchemaItemsItems
-    VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsPostResponsesContentApplicationJsonSchemaItem
-    VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem
+        item:
+          $ref: '#/components/schemas/VoicesVoiceUuidRecordingsRecordingIdPatchResponsesContentApplicationJsonSchemaItem'
+      title: Recordings_updateRecording_Response_200
   securitySchemes:
     BearerAuth:
       type: http

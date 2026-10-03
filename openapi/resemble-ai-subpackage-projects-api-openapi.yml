@@ -172,18 +172,32 @@ paths:
                 $ref: '#/components/schemas/Projects_deleteProject_Response_200'
 components:
   schemas:
-    Projects_getProject_Response_200:
+    ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem
+    Projects_deleteProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Projects_deleteProject_Response_200
+    Projects_createProject_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Projects_getProject_Response_200
+          $ref: '#/components/schemas/ProjectsPostResponsesContentApplicationJsonSchemaItem'
+      title: Projects_createProject_Response_200
     ProjectsPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: ProjectsPostResponsesContentApplicationJsonSchemaItem
+    ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem
     Projects_listProjects_Response_200:
       type: object
       properties:
@@ -194,6 +208,18 @@ components:
           items:
             $ref: '#/components/schemas/ProjectsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Projects_listProjects_Response_200
+    ProjectsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: ProjectsGetResponsesContentApplicationJsonSchemaItemsItems
+    Projects_getProject_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Projects_getProject_Response_200
     Projects_updateProject_Response_200:
       type: object
       properties:
@@ -202,32 +228,6 @@ components:
         item:
           $ref: '#/components/schemas/ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem'
       title: Projects_updateProject_Response_200
-    ProjectsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: ProjectsGetResponsesContentApplicationJsonSchemaItemsItems
-    Projects_deleteProject_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-      title: Projects_deleteProject_Response_200
-    ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidGetResponsesContentApplicationJsonSchemaItem
-    ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties: {}
-      title: ProjectsProjectUuidPutResponsesContentApplicationJsonSchemaItem
-    Projects_createProject_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/ProjectsPostResponsesContentApplicationJsonSchemaItem'
-      title: Projects_createProject_Response_200
   securitySchemes:
     BearerAuth:
       type: http
