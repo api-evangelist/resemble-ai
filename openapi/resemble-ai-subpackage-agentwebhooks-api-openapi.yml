@@ -181,28 +181,10 @@ paths:
                   $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig'
 components:
   schemas:
-    Agent_Webhooks_createAgentWebhook_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem'
-        message:
-          type: string
-      title: Agent Webhooks_createAgentWebhook_Response_200
-    Agent_Webhooks_deleteAgentWebhook_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      title: Agent Webhooks_deleteAgentWebhook_Response_200
-    AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem:
+    AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig:
       type: object
       properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem
+      title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig
     Agent_Webhooks_updateAgentWebhook_Response_200:
       type: object
       properties:
@@ -213,10 +195,16 @@ components:
         message:
           type: string
       title: Agent Webhooks_updateAgentWebhook_Response_200
-    AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig:
+    Agent_Webhooks_createAgentWebhook_Response_200:
       type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Webhooks_createAgentWebhook_Response_200
     AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookType:
       type: string
       enum:
@@ -233,14 +221,10 @@ components:
           items:
             $ref: '#/components/schemas/AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Agent Webhooks_listAgentWebhooks_Response_200
-    AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem:
+    AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig:
       type: object
       properties: {}
-      title: AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem
-    AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksPostRequestBodyContentApplicationJsonSchemaWebhookConfig
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchRequestBodyContentApplicationJsonSchemaWebhookConfig
     Agent_Webhooks_getAgentWebhook_Response_200:
       type: object
       properties:
@@ -249,14 +233,30 @@ components:
         item:
           $ref: '#/components/schemas/AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem'
       title: Agent Webhooks_getAgentWebhook_Response_200
-    AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems
     AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: AgentsAgentUuidWebhooksPostResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidPatchResponsesContentApplicationJsonSchemaItem
+    AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksGetResponsesContentApplicationJsonSchemaItemsItems
+    AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: AgentsAgentUuidWebhooksWebhookUuidGetResponsesContentApplicationJsonSchemaItem
+    Agent_Webhooks_deleteAgentWebhook_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Webhooks_deleteAgentWebhook_Response_200
   securitySchemes:
     BearerAuth:
       type: http

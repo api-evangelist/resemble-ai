@@ -335,14 +335,76 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem:
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType
+    AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
-      title: KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem
-    AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
+      title: AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems
+    Agent_Knowledge_Base_listKnowledgeItems_Response_200:
       type: object
-      properties: {}
-      title: AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
+        pagination:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination'
+      title: Agent Knowledge Base_listKnowledgeItems_Response_200
+    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - ready
+      - failed
+      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    KnowledgeItemsGetParametersStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - ready
+      - failed
+      title: KnowledgeItemsGetParametersStatus
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_count:
+          type: integer
+        total_pages:
+          type: integer
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination
+    Agent_Knowledge_Base_detachKnowledgeItemFromAgent_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems'
+        message:
+          type: string
+      title: Agent Knowledge Base_detachKnowledgeItemFromAgent_Response_200
     KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemAgentsItems:
       type: object
       properties:
@@ -352,7 +414,95 @@ components:
         name:
           type: string
       title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemAgentsItems
-    Agent_Knowledge_Base_attachKnowledgeItemToAgent_Response_201:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    KnowledgeItemsGetParametersSourceType:
+      type: string
+      enum:
+      - document
+      - url
+      - text
+      title: KnowledgeItemsGetParametersSourceType
+    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        source_type:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType'
+        status:
+          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus'
+        error_message:
+          type:
+          - string
+          - 'null'
+        chunk_count:
+          type:
+          - integer
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        document_url:
+          type:
+          - string
+          - 'null'
+        document_filename:
+          type:
+          - string
+          - 'null'
+        agent_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
+    Agent_Knowledge_Base_reingestKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem'
+        message:
+          type: string
+      title: Agent Knowledge Base_reingestKnowledgeItem_Response_200
+    Agent_Knowledge_Base_deleteKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      title: Agent Knowledge Base_deleteKnowledgeItem_Response_200
+    KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties: {}
+      title: KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem
+    Agent_Knowledge_Base_listAgentKnowledgeItems_Response_200:
       type: object
       properties:
         success:
@@ -360,10 +510,20 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems'
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
+        count:
+          type: integer
+      title: Agent Knowledge Base_listAgentKnowledgeItems_Response_200
+    Agent_Knowledge_Base_createKnowledgeItem_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem'
         message:
           type: string
-      title: Agent Knowledge Base_attachKnowledgeItemToAgent_Response_201
+      title: Agent Knowledge Base_createKnowledgeItem_Response_201
     KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
       type: string
       enum:
@@ -372,6 +532,14 @@ components:
       - ready
       - failed
       title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus
+    Agent_Knowledge_Base_getKnowledgeItem_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Agent Knowledge Base_getKnowledgeItem_Response_200
     KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -417,52 +585,6 @@ components:
           type: string
           format: date-time
       title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem
-    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType:
-      type: string
-      enum:
-      - document
-      - url
-      - text
-      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemSourceType
-    KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total_count:
-          type: integer
-        total_pages:
-          type: integer
-      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination
-    KnowledgeItemsGetParametersSourceType:
-      type: string
-      enum:
-      - document
-      - url
-      - text
-      title: KnowledgeItemsGetParametersSourceType
-    KnowledgeItemsGetParametersStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - ready
-      - failed
-      title: KnowledgeItemsGetParametersStatus
-    Agent_Knowledge_Base_detachKnowledgeItemFromAgent_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems'
-        message:
-          type: string
-      title: Agent Knowledge Base_detachKnowledgeItemFromAgent_Response_200
     KnowledgeItemsPostRequestBodyContentApplicationJsonSchemaSourceType:
       type: string
       enum:
@@ -471,152 +593,30 @@ components:
       - text
       description: Type of knowledge source
       title: KnowledgeItemsPostRequestBodyContentApplicationJsonSchemaSourceType
-    Agent_Knowledge_Base_listKnowledgeItems_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
-        pagination:
-          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaPagination'
-      title: Agent Knowledge Base_listKnowledgeItems_Response_200
-    Agent_Knowledge_Base_createKnowledgeItem_Response_201:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/KnowledgeItemsPostResponsesContentApplicationJsonSchemaItem'
-        message:
-          type: string
-      title: Agent Knowledge Base_createKnowledgeItem_Response_201
-    Agent_Knowledge_Base_listAgentKnowledgeItems_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems'
-        count:
-          type: integer
-      title: Agent Knowledge Base_listAgentKnowledgeItems_Response_200
-    KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem:
+    AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
-      title: KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: AgentsAgentUuidKnowledgeItemsKnowledgeItemUuidDeleteResponsesContentApplicationJsonSchemaItemsItems
+      title: AgentsAgentUuidKnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
     AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties: {}
       title: AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems
-    Agent_Knowledge_Base_deleteKnowledgeItem_Response_200:
+    Agent_Knowledge_Base_attachKnowledgeItemToAgent_Response_201:
       type: object
       properties:
         success:
           type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentsAgentUuidKnowledgeItemsPostResponsesContentApplicationJsonSchemaItemsItems'
         message:
           type: string
-      title: Agent Knowledge Base_deleteKnowledgeItem_Response_200
-    Agent_Knowledge_Base_getKnowledgeItem_Response_200:
+      title: Agent Knowledge Base_attachKnowledgeItemToAgent_Response_201
+    KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem:
       type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Agent Knowledge Base_getKnowledgeItem_Response_200
-    Agent_Knowledge_Base_reingestKnowledgeItem_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem'
-        message:
-          type: string
-      title: Agent Knowledge Base_reingestKnowledgeItem_Response_200
-    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType:
-      type: string
-      enum:
-      - document
-      - url
-      - text
-      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType
-    KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - ready
-      - failed
-      title: KnowledgeItemsUuidGetResponsesContentApplicationJsonSchemaItemStatus
-    KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        source_type:
-          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsSourceType'
-        status:
-          $ref: '#/components/schemas/KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItemsStatus'
-        error_message:
-          type:
-          - string
-          - 'null'
-        chunk_count:
-          type:
-          - integer
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        document_url:
-          type:
-          - string
-          - 'null'
-        document_filename:
-          type:
-          - string
-          - 'null'
-        agent_count:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: KnowledgeItemsGetResponsesContentApplicationJsonSchemaItemsItems
+      properties: {}
+      title: KnowledgeItemsUuidReingestPostResponsesContentApplicationJsonSchemaItem
   securitySchemes:
     BearerAuth:
       type: http

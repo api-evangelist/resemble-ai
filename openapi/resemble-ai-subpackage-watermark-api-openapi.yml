@@ -153,65 +153,36 @@ paths:
                 $ref: '#/components/schemas/Watermark_getWatermarkDetectionResult_Response_200'
 components:
   schemas:
-    WatermarkDetectPostResponsesContentApplicationJsonSchemaItem:
+    Watermark_getWatermarkApplyResult_Response_200:
       type: object
       properties:
-        uuid:
-          type: string
-        media_type:
-          $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType'
-        source_media_url:
-          type: string
-          format: uri
-        metrics:
-          oneOf:
-          - $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics'
-          - type: 'null'
-          description: Detection results. Null while processing.
-        watermarked_media:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItem
-    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_getWatermarkApplyResult_Response_200
+    WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties: {}
+      description: Detection results. Null while processing.
+      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics
+    WatermarkDetectPostParametersPrefer:
+      type: string
+      enum:
+      - wait
+      title: WatermarkDetectPostParametersPrefer
+    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType:
       type: string
       enum:
       - audio
       - image
       - video
-      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
-    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem:
+      description: Detected media type of the source file.
+      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType
+    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics:
       type: object
-      properties:
-        uuid:
-          type: string
-        media_type:
-          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType'
-        source_media_url:
-          type: string
-          format: uri
-        metrics:
-          oneOf:
-          - $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics'
-          - type: 'null'
-          description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
-        watermarked_media:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem
+      properties: {}
+      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics
     WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType:
       type: string
       enum:
@@ -246,74 +217,6 @@ components:
           type: string
           format: date-time
       title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem
-    Watermark_applyWatermark_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/WatermarkApplyPostResponsesContentApplicationJsonSchemaItem'
-      title: Watermark_applyWatermark_Response_200
-    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark:
-      oneOf:
-      - type: object
-        additionalProperties:
-          type: boolean
-      - type: boolean
-      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark
-    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
-      type: object
-      properties:
-        has_watermark:
-          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark'
-      description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
-      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
-    WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics:
-      type: object
-      properties: {}
-      description: Detection results. Null while processing.
-      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics
-    WatermarkApplyPostParametersPrefer:
-      type: string
-      enum:
-      - wait
-      title: WatermarkApplyPostParametersPrefer
-    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType:
-      type: string
-      enum:
-      - audio
-      - image
-      - video
-      description: Detected media type of the source file.
-      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMediaType
-    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
-      type: object
-      properties: {}
-      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
-    Watermark_getWatermarkApplyResult_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItem'
-      title: Watermark_getWatermarkApplyResult_Response_200
-    WatermarkDetectPostParametersPrefer:
-      type: string
-      enum:
-      - wait
-      title: WatermarkDetectPostParametersPrefer
-    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
-      type: string
-      enum:
-      - audio
-      - image
-      - video
-      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
-    WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics:
-      type: object
-      properties: {}
-      title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItemMetrics
     Watermark_getWatermarkDetectionResult_Response_200:
       type: object
       properties:
@@ -322,6 +225,58 @@ components:
         item:
           $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem'
       title: Watermark_getWatermarkDetectionResult_Response_200
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType'
+        source_media_url:
+          type: string
+          format: uri
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+          description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItem
+    WatermarkDetectPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMediaType'
+        source_media_url:
+          type: string
+          format: uri
+        metrics:
+          oneOf:
+          - $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItemMetrics'
+          - type: 'null'
+          description: Detection results. Null while processing.
+        watermarked_media:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: WatermarkDetectPostResponsesContentApplicationJsonSchemaItem
     Watermark_detectWatermark_Response_200:
       type: object
       properties:
@@ -330,6 +285,20 @@ components:
         item:
           $ref: '#/components/schemas/WatermarkDetectPostResponsesContentApplicationJsonSchemaItem'
       title: Watermark_detectWatermark_Response_200
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties:
+        has_watermark:
+          $ref: '#/components/schemas/WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark'
+      description: Detection results. For audio, has_watermark is a per-channel object. For image/video, has_watermark is a boolean.
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
     WatermarkApplyPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -359,6 +328,37 @@ components:
           type: string
           format: date-time
       title: WatermarkApplyPostResponsesContentApplicationJsonSchemaItem
+    Watermark_applyWatermark_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/WatermarkApplyPostResponsesContentApplicationJsonSchemaItem'
+      title: Watermark_applyWatermark_Response_200
+    WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark:
+      oneOf:
+      - type: object
+        additionalProperties:
+          type: boolean
+      - type: boolean
+      title: WatermarkDetectUuidResultGetResponsesContentApplicationJsonSchemaItemMetricsHasWatermark
+    WatermarkApplyPostParametersPrefer:
+      type: string
+      enum:
+      - wait
+      title: WatermarkApplyPostParametersPrefer
+    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - image
+      - video
+      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMediaType
+    WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics:
+      type: object
+      properties: {}
+      title: WatermarkApplyUuidResultGetResponsesContentApplicationJsonSchemaItemMetrics
   securitySchemes:
     BearerAuth:
       type: http

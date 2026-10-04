@@ -96,6 +96,18 @@ paths:
               - audio_url
 components:
   schemas:
+    IdentityGetResponsesContentApplicationJsonSchemaItemsItems:
+      type: object
+      properties: {}
+      title: IdentityGetResponsesContentApplicationJsonSchemaItemsItems
+    Identity_createIdentity_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/IdentityPostResponsesContentApplicationJsonSchemaItem'
+      title: Identity_createIdentity_Response_200
     Identity_searchIdentities_Response_200:
       type: object
       properties:
@@ -106,22 +118,10 @@ components:
           items:
             $ref: '#/components/schemas/IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems'
       title: Identity_searchIdentities_Response_200
-    IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems:
-      type: object
-      properties: {}
-      title: IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems
     IdentityPostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties: {}
       title: IdentityPostResponsesContentApplicationJsonSchemaItem
-    Identity_createIdentity_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/IdentityPostResponsesContentApplicationJsonSchemaItem'
-      title: Identity_createIdentity_Response_200
     Identity_listIdentities_Response_200:
       type: object
       properties:
@@ -132,10 +132,10 @@ components:
           items:
             $ref: '#/components/schemas/IdentityGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Identity_listIdentities_Response_200
-    IdentityGetResponsesContentApplicationJsonSchemaItemsItems:
+    IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems:
       type: object
       properties: {}
-      title: IdentityGetResponsesContentApplicationJsonSchemaItemsItems
+      title: IdentitySearchPostResponsesContentApplicationJsonSchemaMatchesItems
   securitySchemes:
     BearerAuth:
       type: http

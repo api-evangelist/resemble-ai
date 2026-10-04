@@ -190,36 +190,6 @@ paths:
                   type: string
 components:
   schemas:
-    Voice_Settings_Presets_getVoiceSettingsPreset_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data:
-          $ref: '#/components/schemas/VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData'
-      title: Voice Settings Presets_getVoiceSettingsPreset_Response_200
-    VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData:
-      type: object
-      properties: {}
-      title: VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData
-    VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData:
-      type: object
-      properties: {}
-      title: VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData
-    VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems:
-      type: object
-      properties: {}
-      title: VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems
-    Voice_Settings_Presets_createVoiceSettingsPreset_Response_201:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data:
-          $ref: '#/components/schemas/VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData'
-        message:
-          type: string
-      title: Voice Settings Presets_createVoiceSettingsPreset_Response_201
     Voice_Settings_Presets_updateVoiceSettingsPreset_Response_200:
       type: object
       properties:
@@ -228,16 +198,14 @@ components:
         data:
           $ref: '#/components/schemas/VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData'
       title: Voice Settings Presets_updateVoiceSettingsPreset_Response_200
-    VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData:
+    VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData:
       type: object
       properties: {}
-      title: VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData
-    Voice_Settings_Presets_deleteVoiceSettingsPreset_Response_200:
+      title: VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData
+    VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
-      properties:
-        success:
-          type: boolean
-      title: Voice Settings Presets_deleteVoiceSettingsPreset_Response_200
+      properties: {}
+      title: VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems
     Voice_Settings_Presets_listVoiceSettingsPresets_Response_200:
       type: object
       properties:
@@ -248,6 +216,38 @@ components:
           items:
             $ref: '#/components/schemas/VoiceSettingsPresetsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Voice Settings Presets_listVoiceSettingsPresets_Response_200
+    Voice_Settings_Presets_getVoiceSettingsPreset_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/VoiceSettingsPresetsUuidGetResponsesContentApplicationJsonSchemaData'
+      title: Voice Settings Presets_getVoiceSettingsPreset_Response_200
+    Voice_Settings_Presets_createVoiceSettingsPreset_Response_201:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData'
+        message:
+          type: string
+      title: Voice Settings Presets_createVoiceSettingsPreset_Response_201
+    Voice_Settings_Presets_deleteVoiceSettingsPreset_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+      title: Voice Settings Presets_deleteVoiceSettingsPreset_Response_200
+    VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsPostResponsesContentApplicationJsonSchemaData
+    VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData:
+      type: object
+      properties: {}
+      title: VoiceSettingsPresetsUuidPatchResponsesContentApplicationJsonSchemaData
   securitySchemes:
     BearerAuth:
       type: http

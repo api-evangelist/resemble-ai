@@ -77,17 +77,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
-        error_message:
-          type:
-          - string
-          - 'null'
-      title: AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults
     AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -102,6 +91,33 @@ components:
           type: string
           description: UUID of the associated detect object
       title: AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
+    AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
+        error_message:
+          type:
+          - string
+          - 'null'
+      title: AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItemResults
     Audio_Source_Tracing_listAudioSourceTracings_Response_200:
       type: object
       properties:
@@ -120,6 +136,25 @@ components:
           items:
             $ref: '#/components/schemas/AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems'
       title: Audio Source Tracing_listAudioSourceTracings_Response_200
+    AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
+        error_message:
+          type:
+          - string
+          - 'null'
+      title: AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults
+    Audio_Source_Tracing_getAudioSourceTracing_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Audio Source Tracing_getAudioSourceTracing_Response_200
     AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties:
@@ -134,41 +169,6 @@ components:
           type: string
           description: UUID of the associated detect object
       title: AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItems
-    AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
-        error_message:
-          type:
-          - string
-          - 'null'
-      title: AudioSourceTracingsGetResponsesContentApplicationJsonSchemaItemsItemsResults
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    Audio_Source_Tracing_getAudioSourceTracing_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/AudioSourceTracingsUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Audio Source Tracing_getAudioSourceTracing_Response_200
   securitySchemes:
     BearerAuth:
       type: http

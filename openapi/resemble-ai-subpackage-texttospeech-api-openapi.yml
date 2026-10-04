@@ -147,36 +147,17 @@ paths:
               - data
 components:
   schemas:
-    AudioTimestamps:
-      type: object
-      properties:
-        graph_chars:
-          type: array
-          items:
-            type: string
-          description: Grapheme characters
-        graph_times:
-          type: array
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-          description: Grapheme timestamps [start, end] in seconds
-        phon_chars:
-          type: array
-          items:
-            type: string
-          description: Phoneme characters
-        phon_times:
-          type: array
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-          description: Phoneme timestamps [start, end] in seconds
-      title: AudioTimestamps
+    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
     Text-to-Speech_synthesize_Response_200:
       type: object
       properties:
@@ -207,38 +188,6 @@ components:
           items:
             type: string
       title: Text-to-Speech_synthesize_Response_200
-    StreamPostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: StreamPostRequestBodyContentApplicationJsonSchemaSampleRate
-    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '32000'
-      - '44100'
-      - '48000'
-      description: Audio sample rate in Hz
-      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
-    StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
-      type: string
-      enum:
-      - MULAW
-      - PCM_16
-      - PCM_24
-      - PCM_32
-      default: PCM_32
-      description: Audio precision
-      title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
     SynthesizePostRequestBodyContentApplicationJsonSchemaOutputFormat:
       type: string
       enum:
@@ -263,6 +212,57 @@ components:
         message:
           type: string
       title: Error
+    AudioTimestamps:
+      type: object
+      properties:
+        graph_chars:
+          type: array
+          items:
+            type: string
+          description: Grapheme characters
+        graph_times:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+          description: Grapheme timestamps [start, end] in seconds
+        phon_chars:
+          type: array
+          items:
+            type: string
+          description: Phoneme characters
+        phon_times:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+          description: Phoneme timestamps [start, end] in seconds
+      title: AudioTimestamps
+    StreamPostRequestBodyContentApplicationJsonSchemaPrecision:
+      type: string
+      enum:
+      - MULAW
+      - PCM_16
+      - PCM_24
+      - PCM_32
+      default: PCM_32
+      description: Audio precision
+      title: StreamPostRequestBodyContentApplicationJsonSchemaPrecision
+    SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '32000'
+      - '44100'
+      - '48000'
+      description: Audio sample rate in Hz
+      title: SynthesizePostRequestBodyContentApplicationJsonSchemaSampleRate
     SynthesizePostRequestBodyContentApplicationJsonSchemaPrecision:
       type: string
       enum:

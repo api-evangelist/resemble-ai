@@ -339,15 +339,21 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DetectBatchStatus:
+    Deepfake_Detection_createDetectBatch_Response_202:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectBatch'
+      title: Deepfake Detection_createDetectBatch_Response_202
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus:
       type: string
       enum:
       - processing
       - completed
-      - partially_failed
       - failed
-      description: "Aggregate status across all child detects.\n  - `processing` — at least one child detect is still running.\n  - `completed` — every child detect completed successfully.\n  - `partially_failed` — at least one succeeded and at least one failed.\n  - `failed` — every child detect failed.\n"
-      title: DetectBatchStatus
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus
     DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness:
       type: object
       properties:
@@ -359,69 +365,34 @@ components:
         indicators:
           type: string
       title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness
-    Deepfake_Detection_listDetections_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        page:
-          type: integer
-        num_pages:
-          type: integer
-        page_size:
-          type: integer
-        total_count:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetectGetResponsesContentApplicationJsonSchemaItemsItems'
-      title: Deepfake Detection_listDetections_Response_200
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType:
-      type: string
-      enum:
-      - none
-      - vishing
-      - impersonation
-      - romance_scam
-      - tech_support_scam
-      - financial_fraud
-      - extortion
-      - political_manipulation
-      - synthetic_media_fraud
-      - insurance_fraud
-      - employment_fraud
-      - other
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType
-    DetectImageMetrics:
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud:
       type: object
       properties:
         type:
-          type: string
-          description: Type of image analysis performed
-        label:
-          type: string
-          description: Detection label (fake or real)
-        image:
-          type: string
-          description: URL to visualization image
-        score:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType'
+        confidence:
           type: number
           format: double
-          description: Detection confidence score
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetectImageMetricsChildrenItems'
-          description: Nested analysis results (structure varies by pipeline)
-      required:
-      - type
-      - label
-      - image
-      - score
-      - children
-      description: Image detection metrics (for image media type)
-      title: DetectImageMetrics
+        reasoning:
+          type: string
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligence:
+      type: object
+      properties:
+        description:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription'
+        created_at:
+          type: string
+          format: date-time
+      description: Intelligence results when requested
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligence
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment:
+      type: string
+      enum:
+      - real_person
+      - not_real_person
+      - inconclusive
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment
     DetectVideoMetricsChildrenItemsChildrenItems:
       type: object
       properties:
@@ -455,140 +426,74 @@ components:
       - timestamp
       - children
       title: DetectVideoMetricsChildrenItemsChildrenItems
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+    DetectPostRequestBodyContentMultipartFormDataSchemaModelTypes:
+      type: string
+      enum:
+      - image
+      - talking_head
+      description: Use talking_head for face-swaps
+      title: DetectPostRequestBodyContentMultipartFormDataSchemaModelTypes
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType:
+      type: string
+      enum:
+      - none
+      - vishing
+      - impersonation
+      - romance_scam
+      - tech_support_scam
+      - financial_fraud
+      - extortion
+      - political_manipulation
+      - synthetic_media_fraud
+      - insurance_fraud
+      - employment_fraud
+      - other
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType
+    DetectBatchStatus:
       type: string
       enum:
       - processing
       - completed
+      - partially_failed
       - failed
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing:
+      description: "Aggregate status across all child detects.\n  - `processing` — at least one child detect is still running.\n  - `completed` — every child detect completed successfully.\n  - `partially_failed` — at least one succeeded and at least one failed.\n  - `failed` — every child detect failed.\n"
+      title: DetectBatchStatus
+    Error:
       type: object
       properties:
-        label:
+        success:
+          type: boolean
+        error:
           type: string
-          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
-        error_message:
-          type:
-          - string
-          - 'null'
-      description: Source tracing results (only returned if audio is labeled fake)
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1:
-      type: object
-      properties:
-        speaker_info:
-          type: string
-        language:
-          type: string
-        dialect:
-          type: string
-        emotion:
-          type: string
-        speaking_style:
-          type: string
-        context:
-          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
         message:
           type: string
-        abnormalities:
-          type: string
-        transcription:
-          type: string
-        translation:
-          type:
-          - string
-          - 'null'
-        misinformation:
-          type: string
-        fraud:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud'
-        liveness:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness'
-        digitally_altered:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered'
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription:
-      oneOf:
-      - type: string
-      - $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1'
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription
-    DetectUuidGetResponsesContentApplicationJsonSchemaItem:
+      title: Error
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence:
       type: object
       properties:
         uuid:
           type: string
-        media_type:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType'
-        status:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus'
-        metrics:
-          $ref: '#/components/schemas/DetectAudioMetrics'
-        image_metrics:
-          $ref: '#/components/schemas/DetectImageMetrics'
-        video_metrics:
-          $ref: '#/components/schemas/DetectVideoMetrics'
-        audio_source_tracing:
-          oneOf:
-          - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing'
-          - type: 'null'
-          description: Source tracing results (only returned if audio is labeled fake)
-        intelligence:
-          oneOf:
-          - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence'
-          - type: 'null'
-          description: Intelligence results when requested
-        url:
-          type:
-          - string
-          - 'null'
-          description: URL to the media file. Null when Zero Retention Modeon Modeon Modeon Modeon Modeon Modeon Mode is enabled.
-        audio_url:
-          type:
-          - string
-          - 'null'
-          description: Alias of url. Null when Zero Retention Mode is enabled.
-        filename:
-          type: string
-          description: Original filename, or tokenized (redacted_<token>.<ext>) when Zero Retention Mode is enabled
-        duration:
-          type: number
-          format: double
-        zero_retention_mode:
-          type: boolean
-          description: Whether Zero Retention Mode is enabled for this detect
-        file_deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: ISO 8601 timestamp of when the file was purged, or null if not yet deleted
+        description:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription'
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItem
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment:
-      type: string
-      enum:
-      - real_person
-      - not_real_person
-      - inconclusive
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment
-    DetectImageMetricsChildrenItems:
-      type: object
-      properties: {}
-      title: DetectImageMetricsChildrenItems
-    Deepfake_Detection_getDetection_Response_200:
+      description: Intelligence results when requested
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence
+    Deepfake_Detection_getDetectBatch_Response_200:
       type: object
       properties:
         success:
           type: boolean
         item:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Deepfake Detection_getDetection_Response_200
+          $ref: '#/components/schemas/DetectBatch'
+      title: Deepfake Detection_getDetectBatch_Response_200
     DetectAudioMetrics:
       type: object
       properties:
@@ -616,141 +521,6 @@ components:
       - aggregated_score
       description: Audio detection metrics (for audio and video media types)
       title: DetectAudioMetrics
-    DetectGetResponsesContentApplicationJsonSchemaItemsItemsExtraParams:
-      type: object
-      properties: {}
-      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsExtraParams
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription:
-      oneOf:
-      - type: string
-      - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1'
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription
-    DetectPostResponsesContentApplicationJsonSchemaItem:
-      type: object
-      properties:
-        uuid:
-          type: string
-        status:
-          type: string
-        zero_retention_mode:
-          type: boolean
-          description: Whether Zero Retention Mode is enabled for this detect
-        file_deleted_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: ISO 8601 timestamp of when the file was purged, or null if not yet deleted
-        url:
-          type:
-          - string
-          - 'null'
-          description: URL to the media file. Null when Zero Retention Mode is enabled.
-        audio_url:
-          type:
-          - string
-          - 'null'
-          description: Alias of url. Null when Zero Retention Mode is enabled.
-        filename:
-          type: string
-          description: Original filename, or tokenized (redacted_<token>.<ext>) when Zero Retention Modeon Modeon Mode is enabled
-        intelligence:
-          oneOf:
-          - $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligence'
-          - type: 'null'
-          description: Intelligence results when requested
-      title: DetectPostResponsesContentApplicationJsonSchemaItem
-    DetectGetResponsesContentApplicationJsonSchemaItemsItemsMediaType:
-      type: string
-      enum:
-      - audio
-      - video
-      - image
-      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsMediaType
-    DetectGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
-      type: string
-      enum:
-      - processing
-      - completed
-      - failed
-      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsStatus
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1:
-      type: object
-      properties:
-        speaker_info:
-          type: string
-        language:
-          type: string
-        dialect:
-          type: string
-        emotion:
-          type: string
-        speaking_style:
-          type: string
-        context:
-          type: string
-        message:
-          type: string
-        abnormalities:
-          type: string
-        transcription:
-          type: string
-        translation:
-          type:
-          - string
-          - 'null'
-        misinformation:
-          type: string
-        fraud:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud'
-        liveness:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness'
-        digitally_altered:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered'
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1
-    DetectVideoMetricsChildrenItemsChildrenItemsChildrenItems:
-      type: object
-      properties:
-        type:
-          type: string
-        conclusion:
-          type: string
-        score:
-          type: number
-          format: double
-        certainty:
-          type: number
-          format: double
-        certainty (%):
-          type: string
-      required:
-      - type
-      - conclusion
-      - score
-      - certainty
-      - certainty (%)
-      title: DetectVideoMetricsChildrenItemsChildrenItemsChildrenItems
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType'
-        confidence:
-          type: number
-          format: double
-        reasoning:
-          type: string
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligence:
-      type: object
-      properties:
-        description:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription'
-        created_at:
-          type: string
-          format: date-time
-      description: Intelligence results when requested
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligence
     DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered:
       type: object
       properties:
@@ -762,73 +532,6 @@ components:
         alterations:
           type: string
       title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment:
-      type: string
-      enum:
-      - real_person
-      - not_real_person
-      - inconclusive
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment
-    Deepfake_Detection_createDetection_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItem'
-      title: Deepfake Detection_createDetection_Response_200
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType:
-      type: string
-      enum:
-      - none
-      - vishing
-      - impersonation
-      - romance_scam
-      - tech_support_scam
-      - financial_fraud
-      - extortion
-      - political_manipulation
-      - synthetic_media_fraud
-      - insurance_fraud
-      - employment_fraud
-      - other
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType
-    Deepfake_Detection_createDetectBatch_Response_202:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectBatch'
-      title: Deepfake Detection_createDetectBatch_Response_202
-    DetectBatch:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: Batch UUID.
-        status:
-          $ref: '#/components/schemas/DetectBatchStatus'
-          description: "Aggregate status across all child detects.\n  - `processing` — at least one child detect is still running.\n  - `completed` — every child detect completed successfully.\n  - `partially_failed` — at least one succeeded and at least one failed.\n  - `failed` — every child detect failed.\n"
-        total_files:
-          type: integer
-          description: Number of files in the batch (1–50).
-        completed_count:
-          type: integer
-          description: Number of child detects that have completed successfully.
-        failed_count:
-          type: integer
-          description: Number of child detects that have failed.
-        created_at:
-          type: string
-          format: date-time
-        detect_uuids:
-          type: array
-          items:
-            type: string
-          description: UUIDs of the child detects. Use `GET /detect/{uuid}` to retrieve per-file results.
-      description: Aggregate state for a batch detection job. Returned by `POST /detect/batch` and `GET /detect/batch/{uuid}`.
-      title: DetectBatch
     DetectGetResponsesContentApplicationJsonSchemaItemsItems:
       type: object
       properties:
@@ -902,34 +605,134 @@ components:
           type: string
           format: date-time
       title: DetectGetResponsesContentApplicationJsonSchemaItemsItems
-    DetectGetResponsesContentApplicationJsonSchemaItemsItemsIntelligence:
-      type: object
-      properties: {}
-      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsIntelligence
-    DetectPostRequestBodyContentMultipartFormDataSchemaModelTypes:
-      type: string
-      enum:
-      - image
-      - talking_head
-      description: Use talking_head for face-swaps
-      title: DetectPostRequestBodyContentMultipartFormDataSchemaModelTypes
-    Error:
+    Deepfake_Detection_listDetections_Response_200:
       type: object
       properties:
         success:
           type: boolean
-        error:
+        page:
+          type: integer
+        num_pages:
+          type: integer
+        page_size:
+          type: integer
+        total_count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectGetResponsesContentApplicationJsonSchemaItemsItems'
+      title: Deepfake Detection_listDetections_Response_200
+    Deepfake_Detection_getDetection_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Deepfake Detection_getDetection_Response_200
+    DetectBatch:
+      type: object
+      properties:
+        uuid:
           type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          description: Batch UUID.
+        status:
+          $ref: '#/components/schemas/DetectBatchStatus'
+          description: "Aggregate status across all child detects.\n  - `processing` — at least one child detect is still running.\n  - `completed` — every child detect completed successfully.\n  - `partially_failed` — at least one succeeded and at least one failed.\n  - `failed` — every child detect failed.\n"
+        total_files:
+          type: integer
+          description: Number of files in the batch (1–50).
+        completed_count:
+          type: integer
+          description: Number of child detects that have completed successfully.
+        failed_count:
+          type: integer
+          description: Number of child detects that have failed.
+        created_at:
+          type: string
+          format: date-time
+        detect_uuids:
+          type: array
+          items:
+            type: string
+          description: UUIDs of the child detects. Use `GET /detect/{uuid}` to retrieve per-file results.
+      description: Aggregate state for a batch detection job. Returned by `POST /detect/batch` and `GET /detect/batch/{uuid}`.
+      title: DetectBatch
+    DetectImageMetricsChildrenItems:
+      type: object
+      properties: {}
+      title: DetectImageMetricsChildrenItems
+    DetectVideoMetricsChildrenItems:
+      type: object
+      properties:
+        type:
+          type: string
+        conclusion:
+          type: string
+        score:
+          type: number
+          format: double
+        certainty:
+          type: number
+          format: double
+        certainty (%):
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectVideoMetricsChildrenItemsChildrenItems'
+          description: Frame-level detection results
+      required:
+      - type
+      - conclusion
+      - score
+      - certainty
+      - certainty (%)
+      - children
+      title: DetectVideoMetricsChildrenItems
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1:
+      type: object
+      properties:
+        speaker_info:
+          type: string
+        language:
+          type: string
+        dialect:
+          type: string
+        emotion:
+          type: string
+        speaking_style:
+          type: string
+        context:
+          type: string
         message:
           type: string
-      title: Error
-    DetectGetResponsesContentApplicationJsonSchemaItemsItemsAudioSourceTracing:
+        abnormalities:
+          type: string
+        transcription:
+          type: string
+        translation:
+          type:
+          - string
+          - 'null'
+        misinformation:
+          type: string
+        fraud:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud'
+        liveness:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness'
+        digitally_altered:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered'
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1
+    DetectGetResponsesContentApplicationJsonSchemaItemsItemsStatus:
+      type: string
+      enum:
+      - processing
+      - completed
+      - failed
+      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsStatus
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing:
       type: object
       properties:
         label:
@@ -940,34 +743,14 @@ components:
           - string
           - 'null'
       description: Source tracing results (only returned if audio is labeled fake)
-      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsAudioSourceTracing
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType:
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing
+    DetectGetResponsesContentApplicationJsonSchemaItemsItemsMediaType:
       type: string
       enum:
       - audio
       - video
       - image
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType
-    Deepfake_Detection_getDetectBatch_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectBatch'
-      title: Deepfake Detection_getDetectBatch_Response_200
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence:
-      type: object
-      properties:
-        uuid:
-          type: string
-        description:
-          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription'
-        created_at:
-          type: string
-          format: date-time
-      description: Intelligence results when requested
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence
+      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsMediaType
     DetectVideoMetrics:
       type: object
       properties:
@@ -997,6 +780,35 @@ components:
       - children
       description: Video detection metrics (for video media type)
       title: DetectVideoMetrics
+    DetectImageMetrics:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of image analysis performed
+        label:
+          type: string
+          description: Detection label (fake or real)
+        image:
+          type: string
+          description: URL to visualization image
+        score:
+          type: number
+          format: double
+          description: Detection confidence score
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectImageMetricsChildrenItems'
+          description: Nested analysis results (structure varies by pipeline)
+      required:
+      - type
+      - label
+      - image
+      - score
+      - children
+      description: Image detection metrics (for image media type)
+      title: DetectImageMetrics
     DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness:
       type: object
       properties:
@@ -1008,18 +820,154 @@ components:
         indicators:
           type: string
       title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness
-    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud:
+    DetectPostResponsesContentApplicationJsonSchemaItem:
+      type: object
+      properties:
+        uuid:
+          type: string
+        status:
+          type: string
+        zero_retention_mode:
+          type: boolean
+          description: Whether Zero Retention Mode is enabled for this detect
+        file_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: ISO 8601 timestamp of when the file was purged, or null if not yet deleted
+        url:
+          type:
+          - string
+          - 'null'
+          description: URL to the media file. Null when Zero Retention Mode is enabled.
+        audio_url:
+          type:
+          - string
+          - 'null'
+          description: Alias of url. Null when Zero Retention Mode is enabled.
+        filename:
+          type: string
+          description: Original filename, or tokenized (redacted_<token>.<ext>) when Zero Retention Modeon Modeon Mode is enabled
+        intelligence:
+          oneOf:
+          - $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligence'
+          - type: 'null'
+          description: Intelligence results when requested
+      title: DetectPostResponsesContentApplicationJsonSchemaItem
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1:
+      type: object
+      properties:
+        speaker_info:
+          type: string
+        language:
+          type: string
+        dialect:
+          type: string
+        emotion:
+          type: string
+        speaking_style:
+          type: string
+        context:
+          type: string
+        message:
+          type: string
+        abnormalities:
+          type: string
+        transcription:
+          type: string
+        translation:
+          type:
+          - string
+          - 'null'
+        misinformation:
+          type: string
+        fraud:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud'
+        liveness:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Liveness'
+        digitally_altered:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered'
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType'
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType'
         confidence:
           type: number
           format: double
         reasoning:
           type: string
-      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud
-    DetectVideoMetricsChildrenItems:
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1Fraud
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment:
+      type: string
+      enum:
+      - real_person
+      - not_real_person
+      - inconclusive
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1LivenessAssessment
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered:
+      type: object
+      properties:
+        detected:
+          type: boolean
+        confidence:
+          type: number
+          format: double
+        alterations:
+          type: string
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType:
+      type: string
+      enum:
+      - audio
+      - video
+      - image
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription:
+      oneOf:
+      - type: string
+      - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription1'
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescription
+    DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription:
+      oneOf:
+      - type: string
+      - $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription1'
+      title: DetectPostResponsesContentApplicationJsonSchemaItemIntelligenceDescription
+    DetectGetResponsesContentApplicationJsonSchemaItemsItemsExtraParams:
+      type: object
+      properties: {}
+      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsExtraParams
+    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType:
+      type: string
+      enum:
+      - none
+      - vishing
+      - impersonation
+      - romance_scam
+      - tech_support_scam
+      - financial_fraud
+      - extortion
+      - political_manipulation
+      - synthetic_media_fraud
+      - insurance_fraud
+      - employment_fraud
+      - other
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1FraudType
+    DetectGetResponsesContentApplicationJsonSchemaItemsItemsIntelligence:
+      type: object
+      properties: {}
+      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsIntelligence
+    Deepfake_Detection_createDetection_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectPostResponsesContentApplicationJsonSchemaItem'
+      title: Deepfake Detection_createDetection_Response_200
+    DetectVideoMetricsChildrenItemsChildrenItemsChildrenItems:
       type: object
       properties:
         type:
@@ -1034,30 +982,82 @@ components:
           format: double
         certainty (%):
           type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetectVideoMetricsChildrenItemsChildrenItems'
-          description: Frame-level detection results
       required:
       - type
       - conclusion
       - score
       - certainty
       - certainty (%)
-      - children
-      title: DetectVideoMetricsChildrenItems
-    DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered:
+      title: DetectVideoMetricsChildrenItemsChildrenItemsChildrenItems
+    DetectUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
-        detected:
-          type: boolean
-        confidence:
+        uuid:
+          type: string
+        media_type:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemMediaType'
+        status:
+          $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemStatus'
+        metrics:
+          $ref: '#/components/schemas/DetectAudioMetrics'
+        image_metrics:
+          $ref: '#/components/schemas/DetectImageMetrics'
+        video_metrics:
+          $ref: '#/components/schemas/DetectVideoMetrics'
+        audio_source_tracing:
+          oneOf:
+          - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemAudioSourceTracing'
+          - type: 'null'
+          description: Source tracing results (only returned if audio is labeled fake)
+        intelligence:
+          oneOf:
+          - $ref: '#/components/schemas/DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligence'
+          - type: 'null'
+          description: Intelligence results when requested
+        url:
+          type:
+          - string
+          - 'null'
+          description: URL to the media file. Null when Zero Retention Modeon Modeon Modeon Modeon Modeon Modeon Mode is enabled.
+        audio_url:
+          type:
+          - string
+          - 'null'
+          description: Alias of url. Null when Zero Retention Mode is enabled.
+        filename:
+          type: string
+          description: Original filename, or tokenized (redacted_<token>.<ext>) when Zero Retention Mode is enabled
+        duration:
           type: number
           format: double
-        alterations:
+        zero_retention_mode:
+          type: boolean
+          description: Whether Zero Retention Mode is enabled for this detect
+        file_deleted_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: ISO 8601 timestamp of when the file was purged, or null if not yet deleted
+        created_at:
           type: string
-      title: DetectUuidGetResponsesContentApplicationJsonSchemaItemIntelligenceDescriptionOneOf1DigitallyAltered
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      title: DetectUuidGetResponsesContentApplicationJsonSchemaItem
+    DetectGetResponsesContentApplicationJsonSchemaItemsItemsAudioSourceTracing:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Identified source (e.g., resemble_ai, elevenlabs) or "real" if audio is not synthetic
+        error_message:
+          type:
+          - string
+          - 'null'
+      description: Source tracing results (only returned if audio is labeled fake)
+      title: DetectGetResponsesContentApplicationJsonSchemaItemsItemsAudioSourceTracing
   securitySchemes:
     BearerAuth:
       type: http

@@ -105,6 +105,39 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
+    Detect_Intelligence_getDetectIntelligenceQuestion_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
+      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        message:
+          type: string
+      title: Error
     DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -145,14 +178,15 @@ components:
         item:
           $ref: '#/components/schemas/DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItem'
       title: Detect Intelligence_askDetectIntelligenceQuestion_Response_202
-    Detect_Intelligence_getDetectIntelligenceQuestion_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem'
-      title: Detect Intelligence_getDetectIntelligenceQuestion_Response_200
+    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      description: Current status of the question
+      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
     DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem:
       type: object
       properties:
@@ -185,40 +219,6 @@ components:
           type: string
           format: date-time
       title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItem
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        message:
-          type: string
-      title: Error
-    DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Current status of the question
-      title: DetectsUuidIntelligenceQuestionUuidGetResponsesContentApplicationJsonSchemaItemStatus
-    DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      - failed
-      description: Current status of the question
-      title: DetectsUuidIntelligencePostResponsesContentApplicationJsonSchemaItemStatus
   securitySchemes:
     BearerAuth:
       type: http
