@@ -1,4 +1,29 @@
 edges:
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/resemble/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Resemble
+    matched_domain: resemble.ai
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: resemble
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 - partner_name: MCP Registry
   partner: mcp
   partner_match: register
@@ -14,7 +39,7 @@ edges:
     registered_name: io.github.resemble-ai/resemble-mcp
     register_id: io.github.resemble-ai/resemble-mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - io.github.resemble-ai/resemble-mcp
@@ -86,34 +111,9 @@ edges:
     - tts
     vendor_domain: resemble.ai
     hub_org_models_in_top_1000: 3
-    hub_org_downloads: 1641445
+    hub_org_downloads: 1726057
   matched_by: verified-domain-table
   detected_by: sweep-voice-ai.py
-  first_seen: '2026-10-15'
-- partner_name: Zapier
-  partner: zapier
-  partner_match: aggregator
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://zapier.com/apps/resemble/integrations
-  category: null
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Resemble
-    matched_domain: resemble.ai
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: resemble
-    beta: false
-    builder: unknown (not in the directory record)
-  detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
 - partner_name: Microsoft Teams (own)
   partner: microsoft-teams
@@ -134,6 +134,22 @@ edges:
   category: Microsoft Teams app
   publisher_verified:
   - Microsoft 365 Publisher Attestation
+- partner_name: Talkdesk (own)
+  partner: talkdesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appconnect.talkdesk.com/apps/resemble-ai
+  mirror_of: talkdesk/integrations/talkdesk-integration-edges.yml
+  apps:
+  - Resemble AI
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
 generated: '2026-10-14'
 method: searched
 checked:
@@ -143,5 +159,6 @@ checked:
 - https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/api/v4/apps/
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- talkdesk/integrations/talkdesk-integration-edges.yml
 source:
 - https://zapier.com/api/v4/apps/
