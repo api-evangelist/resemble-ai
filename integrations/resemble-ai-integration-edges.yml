@@ -115,6 +115,37 @@ edges:
   matched_by: verified-domain-table
   detected_by: sweep-voice-ai.py
   first_seen: '2026-10-15'
+- partner_name: Mozilla Firefox Add-ons (AMO)
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: firefox-add-ons
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://addons.mozilla.org/en-US/firefox/addon/resemble-ai-deepfake-detector/
+  app: Resemble AI Deepfake Detector
+  listing_count: 1
+  category: browser extension (Firefox Add-ons)
+  partner_url: https://addons.mozilla.org/
+  contract_reference:
+    register: 'Firefox Add-ons (addons.mozilla.org public API v5 search: authors, homepage, support_url)'
+    spec_file: null
+    role: firefox-add-on-publisher
+    registered_name: Gianni Gabriel
+    register_id: https://addons.mozilla.org/api/v5/addons/addon/resemble-ai-deepfake-detector/
+    matched_domain: resemble.ai
+    matched_by: domain
+    matched_name: Resemble AI Deepfake Detector
+    builder: domain-attested
+    signal_note: ONE edge per provider for the store; listing alone = participation. The AMO author name (builder
+      publisher) or homepage + support_url both on the provider's domain (builder domain-attested) identifies it;
+      extension / user counts are context, never counted. No Mozilla repo in all/*, so no platform-side edge exists
+      to mirror.
+    detected_by: sweep-browser-extension-stores.py
+    detected: '2026-10-21'
+  detected_by: sweep-browser-extension-stores.py
+  first_seen: '2026-10-21'
 - partner_name: Microsoft Teams (own)
   partner: microsoft-teams
   partner_match: mirror
@@ -150,37 +181,33 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
-- partner_name: Mozilla Firefox Add-ons (AMO)
-  partner: null
-  partner_match: null
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: firefox-add-ons
-  channel: partner-built
   relationship: platform-app
   direction: third-party
-  evidence: https://addons.mozilla.org/en-US/firefox/addon/resemble-ai-deepfake-detector/
-  app: Resemble AI Deepfake Detector
-  listing_count: 1
-  category: browser extension (Firefox Add-ons)
-  partner_url: https://addons.mozilla.org/
-  contract_reference:
-    register: 'Firefox Add-ons (addons.mozilla.org public API v5 search: authors, homepage, support_url)'
-    spec_file: null
-    role: firefox-add-on-publisher
-    registered_name: Gianni Gabriel
-    register_id: https://addons.mozilla.org/api/v5/addons/addon/resemble-ai-deepfake-detector/
-    matched_domain: resemble.ai
-    matched_by: domain
-    matched_name: Resemble AI Deepfake Detector
-    builder: domain-attested
-    signal_note: ONE edge per provider for the store; listing alone = participation. The AMO author name (builder
-      publisher) or homepage + support_url both on the provider's domain (builder domain-attested) identifies it;
-      extension / user counts are context, never counted. No Mozilla repo in all/*, so no platform-side edge exists
-      to mirror.
-    detected_by: sweep-browser-extension-stores.py
-    detected: '2026-10-21'
-  detected_by: sweep-browser-extension-stores.py
-  first_seen: '2026-10-21'
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/ResembleAI
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - ResembleAI/Dramabox-samples
+  - ResembleAI/Chatterbox
+  - ResembleAI/chatterbox-turbo-demo
+  - ResembleAI/resemble-enhance
+  - ResembleAI/Chatterbox-Multilingual-TTS
+  - ResembleAI/Dramabox
+  - ResembleAI/Chatterbox-Multilingual-TTS-V3
+  - ResembleAI/Chatterbox_TTS_Demo
+  - ResembleAI/Chatterbox-Multilingual-TTS-pt-br
+  listing_count: 2
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub datasets
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
 generated: '2026-10-14'
 method: searched
 checked:
@@ -194,5 +221,6 @@ checked:
 - https://addons.mozilla.org/api/v5/addons/addon/<slug>/
 - https://addons.mozilla.org/api/v5/addons/search/?type=extension&app=firefox
 - https://chromewebstore.google.com/sitemap
+- hugging-face/integrations/hugging-face-integration-edges.yml
 source:
 - https://zapier.com/api/v4/apps/
